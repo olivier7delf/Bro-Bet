@@ -1,0 +1,2 @@
+class BetParticipationsController < ApplicationController
+end
