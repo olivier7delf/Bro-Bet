@@ -20,8 +20,10 @@
         <li class="nav-item dropdown">
           <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "Show Last bet", bet_path(Bet.last), class: "dropdown-item" %>
+            <%= link_to "New bet", new_my_bet_path, class: "dropdown-item" %>
+            <%= link_to "Show User", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Index bet_participations", bet_participations_path(), class: "dropdown-item" %>
             <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
           </div>
         </li>

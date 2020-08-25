@@ -40,10 +40,12 @@ Bet.create!(
   title: "Margot deviendra t elle une Gryffondor ?",
   description: "",
   stake: "100 teilles",
-  closed_at: DateTime.new(2020, 8, 2, 12, 0, 0),
+  closed_at: DateTime.new(2020, 8, 26, 12, 0, 0),
   resulted_at: DateTime.new(2020, 8, 29, 19, 0, 0),
   owner_choice: true,
   user: User.find_by(nickname: "tt")
 )
 puts "CREATED : Margot Bête"
+
+
 
