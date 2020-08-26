@@ -1,1 +1,10 @@
 rename it according to its purpose
+
+<div class="bet-infos">
+  <h2><%= @bet.title %></h2>
+  <p><%= @bet.description %></p>
+  <p>mise : <%= @bet.stake %></p>
+  <p>Date de cloture : <%= @bet.closed_at %></p>
+  <p>Date d résultat : <%= @bet.resulted_at %></p>
+  <p>Créateur : <%= @bet.user.nickname %></p>
+</div>
