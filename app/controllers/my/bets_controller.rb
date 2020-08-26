@@ -1,5 +1,6 @@
 class My::BetsController < ApplicationController
   def show
+    @bet = Bet.find(params[:id])
   end
 
   def new
