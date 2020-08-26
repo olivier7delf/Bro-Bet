@@ -17,3 +17,17 @@
   background-color: black;
   color: white;
 }
+
+.bet-result {
+  padding: 6px;
+  border-radius: 5px;
+
+}
+
+.winner {
+  background-color: $success;
+}
+
+.loser {
+  background-color: $main;
+}
