@@ -1,4 +1,12 @@
 class Bet < ApplicationRecord
+  PROGRESS = {
+    "join_pending": 0,
+    "joined": 1,
+    "result_pending": 2,
+    "result_input": 3,
+    "resulted": 4
+  }
+
   belongs_to :user
   has_many :bet_participations
   has_many :in_users, through: :bet_participations, class_name: "User", foreign_key: "user_id", source: :user

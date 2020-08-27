@@ -1,0 +1,13 @@
+
+<% if Bet::PROGRESS[@progress.to_sym] >= 2 %>
+  <p>
+    Bro
+    <% BetParticipation.where(bet: @bet).each do |participant| %>
+      <% if participant.user_choice %> <%= participant.user.nickname %> <% end %>
+    <% end %>
+    No Bro
+    <% BetParticipation.where(bet: @bet).each do |participant| %>
+      <% unless participant.user_choice %> <%= participant.user.nickname %> <% end %>
+    <% end %>
+  </p>
+<% end %>
