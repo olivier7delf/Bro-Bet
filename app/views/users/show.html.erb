@@ -1,9 +1,23 @@
 
+<div class="caca">
+  <span>Victoires : <%= @bets_winned %> (<%= @ratio_victory %> % )</span>
+  <span>Niveau : <%= @level %></span>
+
+  <span>Poop's Bro : <%= @poop_bro %> (<%= @poop_bro_bets %>)</span>
+  <span>Golden Bro : <%= @golden_bro %> (<%= @golden_bro_bets %>)</span>
+  <span>Bro 4 life : <%= @bro4life %> (<%= @bro4life_bets %>)</span>
+
+  <span>Tes Bets :
+    <ul>
+      <li>Total : <%= @bets_played %></li>
+      <li>Finis : <%= @bets_finished %></li>
+      <li>Créés : <%= @bets_created %></li>
+    </ul>
+  </span>
+</div>
 
 
 
-
-
-  <div class="container btn-new-bet">
-    <%= link_to 'Start a new Bet', new_my_bet_path %>
-  </div>
+<div class="container btn-new-bet">
+  <%= link_to 'Start a new Bet', new_my_bet_path %>
+</div>
