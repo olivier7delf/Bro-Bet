@@ -7,7 +7,6 @@ class My::BetsController < ApplicationController
     end
     bet_progress
     bet_user_result
-
   end
 
   def new
