@@ -122,9 +122,9 @@
 }
 
 .btn-new-bet {
-  border: 1px white solid;
+  border: none;
   padding: 8px 16px;
-  color: white;
+  color: $bg;
   border-radius: 30px;
   background-color: $second;
   font-weight: bolder;

@@ -11,14 +11,11 @@ class My::BetsController < ApplicationController
   end
 
   def new
-    @bet = Bet.new()
+    @bet = Bet.new
   end
 
   def create
     @bet = Bet.new(bet_params)
-    @bet.title = params["titre"]
-    @bet.description = params["description"]
-    @bet.stake = params["stake"]
     @bet.user = current_user
 
     if @bet.save
@@ -45,6 +42,6 @@ class My::BetsController < ApplicationController
   private
 
   def bet_params
-    params.require(:bet).permit(:owner_choice, :closed_at, :resulted_at)
+    params.require(:bet).permit(:title, :description, :stake, :owner_choice, :closed_at, :resulted_at)
   end
 end
