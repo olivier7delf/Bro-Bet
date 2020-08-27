@@ -1,7 +1,8 @@
 <% if Bet::PROGRESS[@progress.to_sym] >= 4  %>
   <% if @user_result %>
-    <span class="bet-result winner">You win !</span>
+    <%= render 'shared/result_win' %>
   <% else %>
-    <span class="bet-result loser">Loser !</span>
+    <%= render 'shared/result_lose' %>
+
   <% end %>
 <% end %>

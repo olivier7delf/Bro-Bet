@@ -15,7 +15,8 @@ class My::BetsController < ApplicationController
   end
 
   def create
-    raise
+    @bet = Bet.last
+    redirect_to my_bet_path(@bet)
   end
 
   def edit
@@ -23,7 +24,6 @@ class My::BetsController < ApplicationController
   end
 
   def update
-
     @bet = Bet.find(params[:id])
     @bet.result = params[:bet][:result]
     @bet.save!
