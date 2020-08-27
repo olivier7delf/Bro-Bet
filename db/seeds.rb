@@ -78,6 +78,7 @@ Bet.create!(
   owner_choice: true,
   user: User.find_by(nickname: "tt")
 )
+
 puts "CREATED : copro bet"
 
 Bet.create!(
@@ -90,6 +91,7 @@ Bet.create!(
   user: User.find_by(nickname: "tt")
 )
 puts "CREATED : Bis copro bet"
+
 
 # BetParticipation.create!(user: User.find_by(nickname: "margot"), bet: Bet.last, user_choice: true)
 # puts "CREATED : BetParticipation Margot au pari de TT"
