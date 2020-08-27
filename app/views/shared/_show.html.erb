@@ -2,6 +2,16 @@ rename it according to its purpose
 
 <div class="bet-infos">
   <h2><%= @bet.title %></h2>
+  <p>
+    <%= render 'shared/show_result_input' %>
+    <%= render 'shared/show_resulted' %>
+    <%= render 'shared/show_result_pending' %>
+    <% if Bet::PROGRESS[@progress.to_sym] < 2 %>
+      <p>
+        Participant: <%= @bet.in_users.map { |u| u.nickname }.join(', ') %>
+      </p>
+    <% end %>
+  </p>
   <p><%= @bet.description %></p>
   <p>mise : <%= @bet.stake %></p>
   <p>Date de cloture : <%= @bet.closed_at %></p>
