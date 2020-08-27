@@ -4,9 +4,11 @@ class My::BetsController < ApplicationController
   end
 
   def new
+    @bet = Bet.new()
   end
 
   def create
+    raise
   end
 
   def edit
