@@ -1,0 +1,32 @@
+
+<div class="container bet-participations pt-4">
+  <h2>Mes paris en cours</h2>
+    <% @pending_bets.each do |pending_bet| %>
+      <div class="card-bet-participation">
+        <div class="card-bet-participation-infos">
+          <h3><%= pending_bet.title %></h3>
+          <p><%= pending_bet.description %></p>
+          <p>Mise: <%= pending_bet.stake %></p>
+          <p>Ma prédiction: <%= pending_bet.owner_choice ? "Bro" : "No Bro" %></p>
+          <p>Clotûré le <%= pending_bet.closed_at.strftime("%d/%m/%Y à %k:%M") %></p>
+          <p>Résultat publié le <%= pending_bet.resulted_at.strftime("%d/%m/%Y à %k:%M") %></p>
+        </div>
+      </div>
+    <% end %>
+</div>
+
+<div class="container bet-participations pt-4">
+  <h2>Mes paris terminés</h2>
+    <% @finished_bets.each do |finished_bet| %>
+      <div class="card-bet-participation">
+        <div class="card-bet-participation-infos">
+          <h3><%= finished_bet.title %></h3>
+          <p><%= finished_bet.description %></p>
+          <p>Mise: <%= finished_bet.stake %></p>
+          <% ma_prediction = finished_bet.owner_choice ? "Bro" : "No Bro"%>
+          <% mon_resultat = finished_bet.result ? "Bro" : "No Bro" %>
+          <p> <%= ma_prediction == mon_resultat ? "Gagné!" : "Perdu!" %> </p>
+        </div>
+      </div>
+    <% end %>
+</div>
