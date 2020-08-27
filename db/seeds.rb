@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
 BetParticipation.destroy_all
 puts "DESTROYED : Bet_participation"
 TournamentParticipation.destroy_all
@@ -69,6 +68,7 @@ Bet.create!(
   user: User.find_by(nickname: "tt")
 )
 puts "CREATED : Rosé bet"
+
 Bet.create!(
   title: "La coprolithe, un collectionneur en possède plus de 1200. Est-ce vrai?",
   description: "Pour être sûr qu'il exite bien des 💩 pré-histériques...",
@@ -78,13 +78,25 @@ Bet.create!(
   owner_choice: true,
   user: User.find_by(nickname: "tt")
 )
-puts "CREATED : Rosé bet"
+
+puts "CREATED : copro bet"
+
+Bet.create!(
+  title: "Bis La coprolithe, un collectionneur en possède plus de 1200. Est-ce vrai?",
+  description: "Bis Pour être sûr qu'il exite bien des 💩 pré-histériques...",
+  stake: "💩",
+  closed_at: DateTime.new(2020, 8, 26, 22, 0, 0),
+  resulted_at: DateTime.new(2020, 9, 15, 19, 0, 0),
+  owner_choice: true,
+  user: User.find_by(nickname: "tt")
+)
+puts "CREATED : Bis copro bet"
+
 
 # BetParticipation.create!(user: User.find_by(nickname: "margot"), bet: Bet.last, user_choice: true)
 # puts "CREATED : BetParticipation Margot au pari de TT"
 # BetParticipation.create!(user: User.find_by(nickname: "tt"), bet: Bet.last, user_choice: false)
 # puts "CREATED : BetParticipation TT au pari de TT"
-
 
 Bet.all.each do |bet|
   User.all.each do |user|
@@ -99,9 +111,41 @@ Bet.all.each do |bet|
     puts "CREATED : BetParticipation #{user.nickname} au pari de #{bet.user.nickname} : #{bet.title[0..20]}"
   end
 
-  if [true, false].sample()
+  if [true, false].sample() && Bet.last != bet
     bet.update(result: [true, false].sample())
     puts "UPDATED : Bet result"
   end
 end
 
+# mon_dernier_bet_participation_plus_bet = BetParticipation.joins(:bet).where(user: User.last).last
+# mes_bet_participationS_plus_bet = BetParticipation.joins(:bet).where(user: User.last)
+
+# def verify_same_result_and_increment_compteur(bp_b, compteur)
+#   if bp_b.bet.result == bp_b.user_choice
+#     compteur += 1
+#   end
+#   return compteur
+# end
+
+# ###
+
+# compteur = 0
+# bp_bs = BetParticipation.joins(:bet).where(user: User.last)
+# # Joiture automatique de BetParticipation (model) et bet (la table est au singulier car belongs_to :bet dans le modèle)
+# # where le user est celui choisit (ici le dernier)
+# bp_b = bp_bs.last
+# if bp_b.bet.result == bp_b.user_choice
+#   compteur += 1
+# end
+
+# ###
+
+# compteur = 0
+
+# bp_bs = BetParticipation.joins(:bet).where(user: User.last)
+# # bp_bs est une liste qu'il faut parcourir
+# bp_bs.each do |bp_b|
+#   if bp_b.bet.result == bp_b.user_choice
+#     compteur += 1
+#   end
+# end

@@ -9,10 +9,8 @@ class User < ApplicationRecord
   has_many :in_bets, through: :bet_participations, class_name: "Bet", foreign_key: "bet_id", source: :bet
   # has_many :created_bets, class_name: :bet, foreign_key: :user_id #  through: :bet_participations, source: :bets
 
-
   has_many :tournaments
   has_many :tournament_participations
-
 
   validates :nickname, presence: true, uniqueness: true
   validates :description, length: { maximum: 140 }
