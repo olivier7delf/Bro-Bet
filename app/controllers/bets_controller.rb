@@ -1,6 +1,6 @@
 class BetsController < ApplicationController
   def show
-    @bet = Bet.find(params[:id])
+    @bet = Bet.find(params[:id]).includes(:user)
     bet_progress
     bet_user_result
 

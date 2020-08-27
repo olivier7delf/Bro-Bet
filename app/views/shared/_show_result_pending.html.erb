@@ -1,13 +1,31 @@
 
 <% if Bet::PROGRESS[@progress.to_sym] >= 2 %>
-  <p>
-    Bro
-    <% BetParticipation.where(bet: @bet).each do |participant| %>
-      <% if participant.user_choice %> <%= participant.user.nickname %> <% end %>
-    <% end %>
-    No Bro
-    <% BetParticipation.where(bet: @bet).each do |participant| %>
-      <% unless participant.user_choice %> <%= participant.user.nickname %> <% end %>
-    <% end %>
-  </p>
+  <div class="sides">
+    <div class="side">
+      <% BetParticipation.where(bet: @bet).each do |participant| %>
+        <% if participant.user_choice %>
+        <div class="avatars">
+          <div class="mini-avatar-card">
+            <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+            <span><%= participant.user.nickname %></span>
+          </div>
+        </div>
+        <% end %>
+      <% end %>
+      <p>Bro</p>
+    </div>
+    <div class="side">
+      <div class="avatars">
+        <% BetParticipation.where(bet: @bet).each do |participant| %>
+          <% unless participant.user_choice %>
+              <div class="mini-avatar-card">
+                <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" />
+                <span><%= participant.user.nickname %></span>
+              </div>
+          <% end %>
+        <% end %>
+      </div>
+      <p>No Bro</p>
+    </div>
+  </div>
 <% end %>
