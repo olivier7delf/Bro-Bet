@@ -1,10 +1,31 @@
-<%= form_for(@bet) do |f| %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :result %>
-  <%= f.input :stake %>
-  <%= f.input :owner_choice %>
+<%= simple_form_for [:my, @bet] do |f| %>
+  <div class="form__group">
+    <input type="input" class="form__field" placeholder="Titre" name="titre" id='titre' required />
+    <label for="name" class="form__label">Titre</label>
+  </div>
+  <div class="form__group">
+    <input type="input" class="form__field" placeholder="Description" name="description" id='description' required />
+    <label for="description" class="form__label">Description</label>
+  </div>
+  <div class="form__group mise">
+    <input type="input" class="form__field" placeholder="Stake" name="stake" id='stake' required />
+    <label for="stake" class="form__label mise">Mise</label>
+  </div>
+  <span class="ton-choix"> Ton choix <span style="text-decoration: underline dotted;">*</span></span>
+  <div class="result-btns">
+    <%= f.input_field :owner_choice, inline_label: 'Remember me', label: false,
+            :collection => [[true, 'Bro'], [false, 'No Bro']],
+            :label_method => :last,
+            :value_method => :first,
+            :as => :radio_buttons,
+            :input_html => { class: "bro-btn" },
+            :label_html => { class: "bro-btn" },
+            :checked => true %>
+  </div>
   <%= f.input :closed_at %>
   <%= f.input :resulted_at %>
+  <div class="new-btn">
+    <%= f.submit "Je crée mon Bet", class: "btn-new-bet" %>
+  </div>
 <% end %>
 
