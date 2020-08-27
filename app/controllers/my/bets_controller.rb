@@ -17,9 +17,15 @@ class My::BetsController < ApplicationController
   end
 
   def edit
+    raise
   end
 
   def update
+
+    @bet = Bet.find(params[:id])
+    @bet.result = params[:bet][:result]
+    @bet.save!
+    redirect_to bet_path(@bet)
   end
 
   def destroy
