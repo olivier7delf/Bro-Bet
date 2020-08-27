@@ -18,10 +18,10 @@ puts "DESTROYED : Bet"
 Tournament.destroy_all
 puts "DESTROYED : Tournament"
 
-User.create(nickname: "margot", email: "m@g.com", password: "123123")
-User.create(nickname: "sam", email: "s@g.com", password: "123123")
-User.create(nickname: "tt", email: "t@g.com", password: "123123")
-User.create(nickname: "o", email: "o@g.com", password: "123123")
+User.create(nickname: "margot", email: "margot@g.com", password: "123123")
+User.create(nickname: "sam", email: "sam@g.com", password: "123123")
+User.create(nickname: "tt", email: "tt@g.com", password: "123123")
+User.create(nickname: "oli", email: "oli@g.com", password: "123123")
 puts "CREATED : Users"
 
 Bet.create!(
@@ -98,12 +98,63 @@ puts "CREATED : Bis copro bet"
 # BetParticipation.create!(user: User.find_by(nickname: "tt"), bet: Bet.last, user_choice: false)
 # puts "CREATED : BetParticipation TT au pari de TT"
 
+
+start_titles = [
+  'Maxime va vomir',
+  '3 hommes sur 7 dorment',
+  'Un lynx mangera',
+  "Ce n'est pas la paille qui comptera",
+  "La volonté d'un Tyrex fera"
+]
+
+end_titles = [
+  "d'ici demain",
+  'un gros chat avant le loup',
+  'sur le trottoir',
+  "face contre terre avant le solstice",
+  "plier des montagnes"
+]
+
+stakes = [
+  "une pinte",
+  "une claque",
+  "une bouteille de rosé",
+  "une bonne villageoise (vin)",
+  "3kg de patates",
+  "100 patates",
+  "2kg de pur bolivienne",
+  "le pull de mamie",
+  "une girafe"
+]
+
+nicknames = ["oli", "tt", "margot", "sam"]
+
+50.times do
+  closed_at = DateTime.now + 2 - Random.rand(1..10*24) / 24
+  resulted_at = closed_at + Random.rand(1..10*24) / 24
+  owner_choice = [true, false].sample()
+  title = [start_titles.sample(), end_titles.sample()].join(', ')
+  user = User.find_by(nickname: nicknames.sample())
+  Bet.create!(
+    title: title,
+    description: title,
+    stake: stakes.sample,
+    closed_at: closed_at,
+    resulted_at: resulted_at,
+    owner_choice: [true, false].sample(),
+    user: user
+  )
+  puts "CREATED : Bet par #{user.nickname} : #{title[0..20]}"
+end
+
+
+
 Bet.all.each do |bet|
   User.all.each do |user|
     if user == bet.user
       puts "== #{user}, #{bet}"
       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
-    else
+    elsif (1..100).to_a.sample() > 30
       user_choice = [true, false].sample()
       puts "#{user}, #{bet}, user_choice = #{user_choice}"
       BetParticipation.create!(user: user, bet: bet, user_choice: user_choice)
@@ -111,11 +162,13 @@ Bet.all.each do |bet|
     puts "CREATED : BetParticipation #{user.nickname} au pari de #{bet.user.nickname} : #{bet.title[0..20]}"
   end
 
-  if [true, false].sample() && Bet.last != bet
+  if (1..100).to_a.sample() > 10 && bet.resulted_at < DateTime.now
     bet.update(result: [true, false].sample())
     puts "UPDATED : Bet result"
   end
 end
+
+
 
 # mon_dernier_bet_participation_plus_bet = BetParticipation.joins(:bet).where(user: User.last).last
 # mes_bet_participationS_plus_bet = BetParticipation.joins(:bet).where(user: User.last)

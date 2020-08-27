@@ -1,37 +1,134 @@
-
-
 class UsersController < ApplicationController
   def show
-    @user = current_user
+    @bets_winned = count_my_victories
+    @level = (@bets_winned ** 0.5).to_i
+    @bets_finished = count_bets_finished
+    @bets_played = current_user.bet_participations.joins(:bet).length
+    @bets_created = current_user.bets.count()
+    @ratio_victory = (100 * @bets_winned / @bets_finished).to_i
 
-    # query = "
-    # SELECT
-    #   COUNT (*)
-    # FROM bets b
-    #   JOIN bet_participations bp
-    #   ON b.id = bp.bet_id
-    #   AND b.result = bp.user_choice
-    # WHERE b.user_id = #{@user.id}
-    #   AND bp.user_id = #{@user.id}"
+    poop_name_and_defeats = count_poop_bro
+    @poop_bro = poop_name_and_defeats["nickname"]
+    @poop_bro_bets = poop_name_and_defeats["defeats"]
+
+    name_and_wins = find_golden_bro
+    @golden_bro = name_and_wins["nickname"]
+    @golden_bro_bets = name_and_wins["victories"]
+
+    life_name_and_wins = find_bro4life
+    @bro4life = life_name_and_wins["nickname"]
+    @bro4life_bets = life_name_and_wins["bets"]
   end
 
-def count_my_victories
-      compteur = 0
-    bp_bs = BetParticipation.joins(:bet).where(user: User.last)
-    # Joiture automatique de BetParticipation (model) et bet (la table is au singulier car belongs_to :bet in le modele)
-    # where le user est celui choisit (ici le dernier)
-    bp_b = bp_bs.last
-    if bp_b.bet.result == bp_b.user_choice
-      compteur += 1
-    end
+  private
+
+  def count_my_victories
+    # Mix active record and ruby !! caution the result seems wrong
+    # current_user.bet_participations.count { |p| p.user_choice = p.bet.result }
+    # Mix active record and SQL query
+    current_user.bet_participations.joins(:bet).where("bets.result = bet_participations.user_choice").length
   end
 
-  compteur = 0
-  bp_bs = BetParticipation.joins(:bet).where(user: User.last)
-  # bp_bs est une liste qu'il faut parcourir
-  bp_bs.each do |bp_b|
-  if bp_b.bet.result == bp_b.user_choice
-    compteur += 1
+  def count_bets_finished
+    # Mix active record and ruby !! caution the result seems wrong
+    # current_user.bet_participations.count { |p| p.user_choice = p.bet.result }
+    # Mix active record and SQL query
+    current_user.bet_participations.joins(:bet).where("bets.result IN (true, false)").length
+  end
+
+  def find_bro4life
+    # -Tu paries le plus avec : Bro 4 life
+    query = "
+    SELECT
+      u.nickname nickname,
+      COUNT(*) bets
+    FROM (
+      SELECT
+        bets.id id,
+        bets.result result
+      FROM bets
+      JOIN bet_participations ON bets.id = bet_participations.bet_id
+      WHERE bet_participations.user_id = #{current_user.id}
+    ) b
+    JOIN bet_participations bp
+      ON b.id = bp.bet_id
+    JOIN users u
+      ON bp.user_id = u.id
+    WHERE u.id != #{current_user.id}
+    GROUP BY u.nickname
+    ORDER BY bets DESC
+    "
+    result = ActiveRecord::Base.connection.execute(query)
+    result[0]
+  end
+
+  def find_golden_bro
+    # -Tu paries le plus avec : Bro 4 life
+    query = "
+    SELECT
+      u.nickname nickname,
+      SUM(
+        CASE WHEN bp.user_choice = b.result THEN 1 ELSE 0 END
+      ) victories
+    FROM (
+      SELECT
+        bets.id id,
+        bets.result result
+      FROM bets
+      JOIN bet_participations ON bets.id = bet_participations.bet_id
+      WHERE bet_participations.user_id = #{current_user.id}
+        AND bets.result = bet_participations.user_choice
+    ) b
+    JOIN bet_participations bp
+      ON b.id = bp.bet_id
+    JOIN users u
+      ON bp.user_id = u.id
+    WHERE u.id != #{current_user.id}
+    GROUP BY u.nickname
+    ORDER BY victories DESC
+    "
+    result = ActiveRecord::Base.connection.execute(query)
+    result[0]
+  end
+
+  def count_poop_bro
+    query = "
+    SELECT
+      u.nickname nickname,
+      SUM(
+        CASE WHEN bp.user_choice != b.result THEN 1 ELSE 0 END
+      ) defeats
+    FROM (
+      SELECT
+        bets.id id,
+        bets.result result
+      FROM bets
+      JOIN bet_participations ON bets.id = bet_participations.bet_id
+      WHERE bet_participations.user_id = #{current_user.id}
+        AND bets.result = bet_participations.user_choice
+    ) b
+    JOIN bet_participations bp
+      ON b.id = bp.bet_id
+    JOIN users u
+      ON bp.user_id = u.id
+    WHERE u.id != #{current_user.id}
+    GROUP BY u.nickname
+    ORDER BY defeats DESC
+    "
+    result = ActiveRecord::Base.connection.execute(query)
+    result[0]
+    # current_user.bets.joins(:bet_participations).where("bets.result = bet_participations.user_choice")
+
+    # mes victoires : current_user.bets.joins(:bet_participations).where("bets.result = bet_participations.user_choice")
   end
 end
 
+
+# "\n    SELECT\n      u.nickname nickname,\n
+# SUM(\n        CASE WHEN bp.user_choice != b.result THEN 1 ELSE 0 END\n      ) defeats\n
+#    FROM (\n
+#      SELECT\n        *\n
+#      FROM bets\n
+#      JOIN bet_participations ON bets.id = bet_participations.bet_id\n
+#          WHERE bet_participations.user_id = 3\n      ) b\n
+#    JOIN bet_participations bp\n      ON b.id = bp.bet_id\n    JOIN users u\n      ON bp.user_id = u.id\n    GROUP BY u.nickname\n    ORDER BY defeats DESC\n    "
