@@ -1,7 +1,6 @@
 
 <% if Bet::PROGRESS[@progress.to_sym] >= 2 %>
   <p>
-    Participant:
     Bro
     <% BetParticipation.where(bet: @bet).each do |participant| %>
       <% if participant.user_choice %> <%= participant.user.nickname %> <% end %>

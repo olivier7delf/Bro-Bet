@@ -10,17 +10,37 @@ class My::BetsController < ApplicationController
   end
 
   def new
+    @bet = Bet.new
   end
 
   def create
+    @bet = Bet.new(bet_params)
+    @bet.user = current_user
+
+    if @bet.save
+      redirect_to my_bet_path(@bet)
+    else
+      render :new
+    end
   end
 
   def edit
+    raise
   end
 
   def update
+    @bet = Bet.find(params[:id])
+    @bet.result = params[:bet][:result]
+    @bet.save!
+    redirect_to bet_path(@bet)
   end
 
   def destroy
+  end
+
+  private
+
+  def bet_params
+    params.require(:bet).permit(:title, :description, :stake, :owner_choice, :closed_at, :resulted_at)
   end
 end

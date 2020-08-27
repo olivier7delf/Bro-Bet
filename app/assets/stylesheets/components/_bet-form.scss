@@ -1,0 +1,122 @@
+.new_bet {
+  padding: 16px 28px;
+  color: white;
+}
+
+.form-check {
+  padding: 0;
+  margin-left: 3em;
+}
+
+.result-btns {
+  display: flex;
+  justify-content: center;
+  padding: 10% 0 14% 0;
+  input[type='radio']:after {
+    width: 50px;
+    height: 50px;
+    border-radius: 35px;
+    top: -20px;
+    left: -25px;
+    position: relative;
+    background-color: #FFFFFF;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+  }
+
+  input[type='radio']:checked:after {
+    width: 50px;
+    height: 50px;
+    border-radius: 35px;
+    top: -20px;
+    left: -25px;
+    position: relative;
+    content: '';
+    display: inline-block;
+    visibility: visible;
+  }
+  label {
+    font-size: 24px;
+    margin-left: 24px;
+  }
+
+  #bet_owner_choice_true:checked:after {
+    background-color: $success;
+  }
+  #bet_owner_choice_false:checked:after {
+    background-color: $main;
+  }
+}
+
+.mise {
+  margin-bottom: 16px;
+}
+
+// TEST
+.form__group {
+  position: relative;
+  padding: 15px 0 0;
+}
+
+.form__field {
+  outline: none;
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid $gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: white;
+  padding: 7px 0;
+  background: black;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.bet_resulted_at, .bet_closed_at, .ton-choix {
+  font-size: 20px;
+}
+
+// TEST
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: white;
+}
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    font-weight:700;
+  }
+  outline: none;
+  background-color: transparent;
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, white, black);
+  border-image-slice: 1;
+}
+
+.new-btn {
+  display: flex;
+  justify-content: center;
+  margin: 32px 0px;
+}

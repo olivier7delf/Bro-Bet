@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
     dt = DateTime.now
     if !@bet.result.nil?
       @progress = "resulted"
-    elsif @bet.user == current_user && dt > @bet.resulted_at
+    elsif @bet.user == current_user && dt > @bet.resulted_at #&& dt >= @bet.closed_at
       @progress = "result_input"
-    elsif dt > @bet.closed_at
+    elsif dt >= @bet.closed_at
       @progress = "result_pending"
     else
       @progress = "joined"
