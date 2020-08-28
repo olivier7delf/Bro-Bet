@@ -1,7 +1,7 @@
 
 <div class="container bet-participations pt-4">
   <h2>Mes paris en cours</h2>
-    <% @pending_bets[0..20].each do |pending_bet| %>
+    <% @pending_bets[0..2].each do |pending_bet| %>
       <%= link_to bet_path(pending_bet) do %>
         <div class="card-bet-participation">
           <div class="card-bet-participation-infos">

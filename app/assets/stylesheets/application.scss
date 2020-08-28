@@ -16,6 +16,7 @@
 .wrapper {
   background-color: black;
   color: white;
+  min-height: calc(100vh - 66px);
 }
 
 .bet-result {
