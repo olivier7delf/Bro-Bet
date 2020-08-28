@@ -10,8 +10,7 @@ class Bet < ApplicationRecord
   belongs_to :user
   has_many :bet_participations
   has_many :in_users, through: :bet_participations, class_name: "User", foreign_key: "user_id", source: :user
-  # has_many :users, through: :bet_participations
-  # belongs_to :creator, class_name: :user, foreign_key: :creator_id
+  # has_one :chatroom
 
   has_many :tournament_bets
   # has_many :users_as_participation, through: :bet_participations, source: :users

@@ -14,3 +14,6 @@ config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.c
 # Login
 ADDING ATTRIBUTES TO USER
 What if I want to add a first_name and last_name at sign up?
+
+
+!!!! delete [0..2] in bet_participation index
