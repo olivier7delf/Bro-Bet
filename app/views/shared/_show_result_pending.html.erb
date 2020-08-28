@@ -1,13 +1,75 @@
 
 <% if Bet::PROGRESS[@progress.to_sym] >= 2 %>
-  <p>
-    Bro
-    <% BetParticipation.where(bet: @bet).each do |participant| %>
-      <% if participant.user_choice %> <%= participant.user.nickname %> <% end %>
-    <% end %>
-    No Bro
-    <% BetParticipation.where(bet: @bet).each do |participant| %>
-      <% unless participant.user_choice %> <%= participant.user.nickname %> <% end %>
-    <% end %>
-  </p>
+  <div class="sides">
+    <div class="side">
+      <a data-toggle="modal" data-target="#participants">
+        <div class="avatars">
+          <% BetParticipation.where(bet: @bet).each_with_index do |participant, index| %>
+            <% if participant.user_choice %>
+              <% if index > 0 %>
+                <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
+              <% else %>
+                <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </a>
+      <span class="bro text-center">Bros</span>
+    </div>
+    <div class="side">
+      <a data-toggle="modal" data-target="#participants">
+        <div class="avatars">
+          <% BetParticipation.where(bet: @bet).each_with_index do |participant, index| %>
+            <% unless participant.user_choice %>
+              <% if index > 0 %>
+                <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
+              <% else %>
+                <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </a>
+      <span class="no-bro text-center">No Bros</span>
+    </div>
+  </div>
 <% end %>
+
+<!-- Modal -->
+<div class="modal fade" id="participants" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center">
+        <h5 class="modal-title" id="exampleModalLongTitle">Participants</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex justify-content-around">
+        <div class="d-flex flex-column">
+          <span class="bro text-center">Bros</span>
+          <% BetParticipation.where(bet: @bet).each_with_index do |participant,index| %>
+            <% if participant.user_choice %>
+              <div class="d-flex align-items-center mb-2">
+                <img class="avatar-bordered mr-2" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" style="margin-left: -16px"/>
+                <span class="participant-name"><%= participant.user.nickname %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="d-flex flex-column">
+          <span class="no-bro text-center">No Bros</span>
+          <% BetParticipation.where(bet: @bet).each_with_index do |participant, index| %>
+            <% unless participant.user_choice %>
+              <div class="d-flex align-items-center mb-2">
+                <img class="avatar-bordered mr-2" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+                <span class="participant-name"><%= participant.user.nickname %></span>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
