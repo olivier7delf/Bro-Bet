@@ -6,12 +6,11 @@
         <div class="card-bet-participation">
           <div class="card-bet-participation-infos">
             <h3><%= pending_bet.title %></h3>
-            <p><%= pending_bet.description %></p>
-            <p>Mise: <%= pending_bet.stake %></p>
-            <p>Ma prédiction: <%= pending_bet.owner_choice ? "Bro" : "No Bro" %></p>
-            <p>Clotûré le <%= pending_bet.closed_at.strftime("%d/%m/%Y à %k:%M") %></p>
-            <p>Résultat publié le <%= pending_bet.resulted_at.strftime("%d/%m/%Y à %k:%M") %></p>
+            <p>Mise: <strong><%= pending_bet.stake %></strong></p>
+            <p>Ma prédiction: <strong><%= pending_bet.owner_choice ? "Bro" : "No Bro" %></strong></p>
+            <p>Résultat le <%= pending_bet.resulted_at.strftime("%d/%m/%Y à %k:%M") %></p>
           </div>
+          <span class="<%= pending_bet.owner_choice ? "bro-card" : "no-bro-card" %> text-center"><%= pending_bet.owner_choice ? "Bro" : "No Bro" %></span>
         </div>
       <% end %>
     <% end %>
@@ -25,23 +24,19 @@
       <%= link_to bet_path(finished_bet) do %>
 
         <% if ma_prediction == mon_resultat %>
-          <div class="card-bet-participation winner">
+          <div class="card-bet-participation winner-card">
             <div class="card-bet-participation-infos">
               <h3><%= finished_bet.title %></h3>
-              <p><%= finished_bet.description %></p>
-              <p>Mise: <%= finished_bet.stake %></p>
-              <p>Résultat: <%= mon_resultat %></p>
-              <p> Gagné </p>
+              <p>Mise: <strong><%= finished_bet.stake %></strong></p>
+              <p>Résultat: <span class="<%= mon_resultat == 'Bro' ? "bro-text" : "no-bro-text" %>"><%= mon_resultat %></span></p>
             </div>
           </div>
         <% else %>
-          <div class="card-bet-participation loser">
+          <div class="card-bet-participation loser-card">
             <div class="card-bet-participation-infos">
               <h3><%= finished_bet.title %></h3>
-              <p><%= finished_bet.description %></p>
-              <p>Mise: <%= finished_bet.stake %></p>
-              <p>Résultat: <%= mon_resultat %></p>
-              <p> Perdu </p>
+              <p>Mise: <strong><%= finished_bet.stake %></strong></p>
+              <p>Résultat: <span class="<%= mon_resultat == 'Bro' ? "bro-text" : "no-bro-text" %>"><%= mon_resultat %></span></p>
             </div>
           </div>
         <% end %>
