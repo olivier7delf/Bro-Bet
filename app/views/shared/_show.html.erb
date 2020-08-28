@@ -1,5 +1,3 @@
-rename it according to its purpose
-
 <div class="bet-infos">
   <h4><%= @bet.title %></h4>
   <p>
@@ -7,9 +5,7 @@ rename it according to its purpose
     <%= render 'shared/show_resulted' %>
     <%= render 'shared/show_result_pending' %>
     <% if Bet::PROGRESS[@progress.to_sym] < 2 %>
-      <p>
-        Participant: <%= @bet.in_users.map { |u| u.nickname }.join(', ') %>
-      </p>
+      <%= render 'shared/show_joined' %>
     <% end %>
   </p>
   <p><%= @bet.description %></p>
@@ -18,3 +14,7 @@ rename it according to its purpose
   <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
   <p>Créateur : <%= @bet.user.nickname %></p>
 </div>
+
+
+
+

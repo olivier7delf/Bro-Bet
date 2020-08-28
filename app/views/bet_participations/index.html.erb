@@ -1,7 +1,7 @@
 
 <div class="container bet-participations pt-4">
   <h2>Mes paris en cours</h2>
-    <% @pending_bets.each do |pending_bet| %>
+    <% @pending_bets[0..20].each do |pending_bet| %>
       <%= link_to bet_path(pending_bet) do %>
         <div class="card-bet-participation">
           <div class="card-bet-participation-infos">
@@ -11,6 +11,7 @@
             <p>Ma prédiction: <%= pending_bet.owner_choice ? "Bro" : "No Bro" %></p>
             <p>Clotûré le <%= pending_bet.closed_at.strftime("%d/%m/%Y à %k:%M") %></p>
             <p>Résultat publié le <%= pending_bet.resulted_at.strftime("%d/%m/%Y à %k:%M") %></p>
+            <span class="<%= pending_bet.owner_choice ? "bro" : "no-bro" %> text-center"><%= pending_bet.owner_choice ? "Bro" : "No Bro" %></span>
           </div>
         </div>
       <% end %>
