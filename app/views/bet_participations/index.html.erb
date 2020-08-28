@@ -20,24 +20,31 @@
 <div class="container bet-participations pt-4">
   <h2>Mes paris terminés</h2>
     <% @finished_bets.each do |finished_bet| %>
+      <% ma_prediction = BetParticipation.find_by(user: current_user, bet: finished_bet).user_choice ? "Bro" : "No Bro"%>
+      <% mon_resultat = finished_bet.result ? "Bro" : "No Bro" %>
       <%= link_to bet_path(finished_bet) do %>
-        <div class="card-bet-participation">
-          <div class="card-bet-participation-infos">
-            <h3><%= finished_bet.title %></h3>
-            <p><%= finished_bet.description %></p>
-            <p>Mise: <%= finished_bet.stake %></p>
-            <% ma_prediction = finished_bet.owner_choice ? "Bro" : "No Bro"%>
-            <p>Résultat: <%= mon_resultat = finished_bet.result ? "Bro" : "No Bro" %></p>
-            <p>
-              <% if ma_prediction == mon_resultat %>
-                <%= render 'shared/result_win' %>
-              <% else %>
-                <%= render 'shared/result_lose' %>
-              <% end %>
 
-            </p>
+        <% if ma_prediction == mon_resultat %>
+          <div class="card-bet-participation winner">
+            <div class="card-bet-participation-infos">
+              <h3><%= finished_bet.title %></h3>
+              <p><%= finished_bet.description %></p>
+              <p>Mise: <%= finished_bet.stake %></p>
+              <p>Résultat: <%= mon_resultat %></p>
+              <p> Gagné </p>
+            </div>
           </div>
-        </div>
+        <% else %>
+          <div class="card-bet-participation loser">
+            <div class="card-bet-participation-infos">
+              <h3><%= finished_bet.title %></h3>
+              <p><%= finished_bet.description %></p>
+              <p>Mise: <%= finished_bet.stake %></p>
+              <p>Résultat: <%= mon_resultat %></p>
+              <p> Perdu </p>
+            </div>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
 </div>
