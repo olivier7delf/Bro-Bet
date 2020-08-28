@@ -5,12 +5,18 @@
   border-radius: 30px;
   background-color: $second;
   font-weight: bolder;
+  p {
+
+  }
 }
 
 .btn-home {
   margin-bottom: -50px;
   padding: 12px 18px;
   font-size: 18px;
+  &:hover {
+    background: #5FC525;
+    color: white;
+    text-decoration: none;
+  }
 }
-
-
