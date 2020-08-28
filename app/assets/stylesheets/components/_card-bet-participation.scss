@@ -1,20 +1,71 @@
+.bet-participations {
+  h2 {
+    border-left: 5px solid $second;
+    padding-left: 10px;
+    margin-bottom: 15px;
+  }
+}
+
 .card-bet-participation {
-  box-shadow: 0 0 15px rgba(255,255,255,.2);
+  background: linear-gradient(to right, #303030, $bg-light);
+  border-radius: 5px;
+  margin-bottom: 16px;
+  position: relative;
+  h3 {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  p {
+    font-size: 12px;
+    line-height: 1;
+    opacity: .7;
+    margin-bottom: 0;
+    margin-top: 8px;
+  }
+  .card-bet-participation-infos {
+    padding: 14px;
+    color: white;
+  }
 }
 
-.card-bet-participation h3 {
-  font-size: 16px;
+.bro-card {
+  color: white;
+  border-radius: 35px;
+  background-color: $success;
+  padding: 8px;
+  margin-bottom: 1rem;
+  position: absolute;
+  bottom: 0;
+  right: 16px;
+}
+
+.no-bro-card {
+  color: white;
+  border-radius: 35px;
+  background-color: $main;
+  padding: 8px;
+  margin-bottom: 1rem;
+  position: absolute;
+  bottom: 0;
+  right: 16px;
+}
+
+.winner-card {
+  border-right: $success 18px solid;
+}
+
+.loser-card {
+  border-right: $main 18px solid;
+}
+
+.bro-text {
   font-weight: bold;
+  color: $success;
+  text-shadow: 0.4px 0.4px 0.4px rgba(0, 0, 0, 0.9);
 }
 
-.card-bet-participation p {
-  font-size: 12px;
-  line-height: 1.4;
-  opacity: .7;
-  margin-bottom: 0;
-  margin-top: 8px;
-}
-
-.card-bet-participation .card-bet-participation-infos {
-  padding: 16px;
+.no-bro-text {
+  font-weight: bold;
+  color: $main;
+  text-shadow: 0.4px 0.4px 0.4px rgba(0, 0, 0, 0.9);
 }
