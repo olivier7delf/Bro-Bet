@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
 BetParticipation.destroy_all
 puts "DESTROYED : Bet_participation"
 TournamentParticipation.destroy_all
@@ -18,6 +17,9 @@ puts "DESTROYED : Bet"
 Tournament.destroy_all
 puts "DESTROYED : Tournament"
 
+# User.destroy_all
+# puts "DESTROYED : User"
+
 User.create(nickname: "Margot", email: "margot@g.com", password: "123123")
 User.create(nickname: "Samuel", email: "sam@g.com", password: "123123")
 User.create(nickname: "Théotime", email: "tt@g.com", password: "123123")
@@ -25,129 +27,97 @@ User.create(nickname: "Olivier", email: "oli@g.com", password: "123123")
 puts "CREATED : Users"
 
 Bet.create!(
-  title: "TT va t il récupérer son scoot avant jeudi soir ?",
-  description: "",
+  title: "Paris en cours (de Moi)",
   stake: "une pinte",
   closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
-  resulted_at: DateTime.new(2020, 8, 28, 19, 0, 0),
+  resulted_at: DateTime.new(2021, 8, 28, 19, 0, 0),
   owner_choice: true,
   user: User.find_by(nickname: "Théotime")
 )
 puts "CREATED : TT Bête"
 
 Bet.create!(
-  title: "Margot deviendra t elle une Gryffondor ?",
-  description: "",
-  stake: "100 teilles",
-  closed_at: DateTime.new(2020, 8, 26, 12, 0, 0),
-  resulted_at: DateTime.new(2020, 8, 29, 19, 0, 0),
+  title: "Résultat à mettre (de Moi)",
+  stake: "une pinte",
+  closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
+  resulted_at: DateTime.new(2020, 8, 28, 22, 51, 0),
   owner_choice: true,
   user: User.find_by(nickname: "Théotime")
 )
-puts "CREATED : Margot Bête"
-
+puts "CREATED : TT Bête"
 
 Bet.create!(
-  title: "Sam va être malade dans le Space Mountain",
-  description: "",
-  stake: "1 cubi de rosé",
-  closed_at: DateTime.new(2020, 8, 29, 20, 0, 0),
-  resulted_at: DateTime.new(2020, 8, 30, 20, 0, 0),
+  title: "Pari terminé (de Moi)",
+  stake: "une pinte",
+  closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
+  resulted_at: DateTime.new(2020, 8, 28, 22, 54, 0),
   owner_choice: true,
-  user: User.find_by(nickname: "Théotime")
+  user: User.find_by(nickname: "Théotime"),
+  result: true
 )
-puts "CREATED : Disney bet"
+puts "CREATED : TT Bête"
 
 Bet.create!(
-  title: "Le vin rosé est un mélange de vin blanc et de vin rouge de la même AOC?",
-  description: "Savoir ce que l'on boit frais l'été",
-  stake: "un verre de rosé",
-  closed_at: DateTime.new(2020, 8, 25, 12, 0, 0),
-  resulted_at: DateTime.new(2020, 8, 25, 18, 0, 0),
-  owner_choice: false,
-  user: User.find_by(nickname: "Théotime")
-)
-puts "CREATED : Rosé bet"
-
-Bet.create!(
-  title: "La coprolithe, un collectionneur en possède plus de 1200. Est-ce vrai?",
-  description: "Pour être sûr qu'il exite bien des 💩 pré-histériques...",
-  stake: "💩",
-  closed_at: DateTime.new(2020, 8, 20, 12, 0, 0),
-  resulted_at: DateTime.new(2020, 8, 20, 19, 0, 0),
+  title: "Pari en cours (de Sam)",
+  stake: "une pinte",
+  closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
+  resulted_at: DateTime.new(2021, 8, 28, 22, 54, 0),
   owner_choice: true,
-  user: User.find_by(nickname: "Théotime")
+  user: User.find_by(nickname: "Samuel"),
 )
-puts "CREATED : copro bet"
+puts "CREATED : Sam Bête"
 
-start_titles = [
-  'Maxime va choper',
-  'Antoine mangera une brebis entière',
-  "Nu, Didier fera l'hélico",
-  "Le tigre de Bertrand mangera Kernan",
-  "Le scooter de Florian se vendra pour une chocolatine"
-]
-
-end_titles = [
-  "d'ici demain",
-  'samedi soir',
-  'au mariage de Sama',
-  "en haut de la vieille tour",
-  "au cinéma"
-]
-
-stakes = [
-  "une pinte",
-  "une claque",
-  "une bouteille de rosé",
-  "une bonne villageoise (vin)",
-  "3kg de patates",
-  "100 patates",
-  "2kg de pur bolivienne",
-  "le pull de mamie",
-  "une girafe"
-]
-
-nicknames = User.all.map {|user| user.nickname }
-
-5.times do
-  closed_at = DateTime.now + 2 - Random.rand(1..10*24) / 24
-  resulted_at = closed_at + Random.rand(1..10*24) / 24
-  owner_choice = [true, false].sample()
-  title = [start_titles.sample(), end_titles.sample()].join(', ')
-  user = User.find_by(nickname: nicknames.sample())
-  Bet.create!(
-    title: title,
-    description: title,
-    stake: stakes.sample,
-    closed_at: closed_at,
-    resulted_at: resulted_at,
-    owner_choice: [true, false].sample(),
-    user: user
-  )
-  puts "CREATED : Bet par #{user.nickname} : #{title[0..20]}"
-end
-
-
+Bet.create!(
+  title: "Pari terminé (de Sam)",
+  stake: "une pinte",
+  closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
+  resulted_at: DateTime.new(2020, 8, 28, 22, 54, 0),
+  owner_choice: true,
+  user: User.find_by(nickname: "Samuel"),
+  result: true
+)
+puts "CREATED : Sam Bête"
 
 Bet.all.each do |bet|
   User.all.each do |user|
     if user == bet.user
-      puts "== #{user}, #{bet}"
       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
-    elsif (1..100).to_a.sample() > 30
-      user_choice = [true, false].sample()
-      puts "#{user}, #{bet}, user_choice = #{user_choice}"
-      BetParticipation.create!(user: user, bet: bet, user_choice: user_choice)
+    else
+      BetParticipation.create!(user: user, bet: bet, user_choice: !bet.owner_choice)
     end
-    puts "CREATED : BetParticipation #{user.nickname} au pari de #{bet.user.nickname} : #{bet.title[0..20]}"
-  end
-
-  if (1..100).to_a.sample() > 10 && bet.resulted_at < DateTime.now
-    bet.update(result: [true, false].sample())
-    puts "UPDATED : Bet result"
   end
 end
+
+Bet.create!(
+  title: "Pari à rejoindre (de Sam)",
+  stake: "une pinte",
+  closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
+  resulted_at: DateTime.new(2020, 8, 28, 22, 54, 0),
+  owner_choice: true,
+  user: User.find_by(nickname: "Samuel"),
+)
+puts "CREATED : Sam Bête"
+
+BetParticipation.create!(user: User.find_by(nickname: "Samuel"), bet: Bet.last, user_choice: Bet.last.owner_choice)
+
+# Bet.all.each do |bet|
+#   User.all.each do |user|
+#     if user == bet.user
+#       puts "== #{user}, #{bet}"
+#       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
+#     elsif (1..100).to_a.sample() > 30
+#       user_choice = [true, false].sample()
+#       puts "#{user}, #{bet}, user_choice = #{user_choice}"
+#       BetParticipation.create!(user: user, bet: bet, user_choice: user_choice)
+#     end
+#     puts "CREATED : BetParticipation #{user.nickname} au pari de #{bet.user.nickname} : #{bet.title[0..20]}"
+#   end
+
+#   if (1..100).to_a.sample() > 10 && bet.resulted_at < DateTime.now
+#     bet.update(result: [true, false].sample())
+#     puts "UPDATED : Bet result"
+#   end
+# end
 
 
 

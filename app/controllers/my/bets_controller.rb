@@ -5,7 +5,7 @@ class My::BetsController < ApplicationController
     if @bet.user != current_user
       redirect_to bet_path(@bet)
     end
-    bet_progress
+    @state = bet_progress
     bet_user_result
   end
 
@@ -18,6 +18,7 @@ class My::BetsController < ApplicationController
     @bet.user = current_user
 
     if @bet.save
+      BetParticipation.create(bet: @bet, user: current_user, user_choice: params["bet"]["owner_choice"])
       redirect_to my_bet_path(@bet)
     else
       render :new

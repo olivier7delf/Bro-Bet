@@ -2,16 +2,30 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   def bet_progress
-    dt = DateTime.now
-    if !@bet.result.nil?
-      @progress = "resulted"
-    elsif @bet.user == current_user && dt > @bet.resulted_at #&& dt >= @bet.closed_at
-      @progress = "result_input"
-    elsif dt >= @bet.closed_at
-      @progress = "result_pending"
-    else
-      @progress = "joined"
+    dt = Time.now
+    dt_parsed = Time.zone.local_to_utc(dt)
+    if @bet.user == current_user
+      if @bet.resulted_at > dt_parsed
+        return "created"
+      elsif @bet.resulted_at < dt_parsed && @bet.result == nil
+        return "result_to_put"
+      else
+        return "finished"
+      end
+      # if @bet.closed_at > dt_parsed &&
+      #   return "joined"
+      # end
     end
+
+    # if !@bet.result.nil?
+    #   @progress = "resulted"
+    # elsif @bet.user == current_user && dt > @bet.resulted_at #&& dt >= @bet.closed_at
+    #   @progress = "result_input"
+    # elsif dt >= @bet.closed_at
+    #   @progress = "result_pending"
+    # else
+    #   @progress = "joined"
+    # end
   end
 
   def bet_user_result

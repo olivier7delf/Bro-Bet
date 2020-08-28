@@ -1,13 +1,6 @@
 <div class="bet-infos">
+  <%= @a %>
   <h4><%= @bet.title %></h4>
-  <p>
-    <%= render 'shared/show_result_input' %>
-    <%= render 'shared/show_resulted' %>
-    <%= render 'shared/show_result_pending' %>
-    <% if Bet::PROGRESS[@progress.to_sym] < 2 %>
-      <%= render 'shared/show_joined' %>
-    <% end %>
-  </p>
   <p><%= @bet.description %></p>
   <p>Créateur : <%= @bet.user.nickname %></p>
   <p>Mise : <%= @bet.stake %></p>
