@@ -4,13 +4,11 @@
     <div class="side">
       <a data-toggle="modal" data-target="#participants">
         <div class="avatars">
-          <% BetParticipation.where(bet: @bet).each_with_index do |participant, index| %>
-            <% if participant.user_choice %>
-              <% if index > 0 %>
-                <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
-              <% else %>
-                <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
-              <% end %>
+          <% BetParticipation.where(bet: @bet, user_choice: true).each_with_index do |participant, index| %>
+            <% if index > 0 %>
+              <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
+            <% else %>
+              <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
             <% end %>
           <% end %>
         </div>
@@ -20,13 +18,11 @@
     <div class="side">
       <a data-toggle="modal" data-target="#participants">
         <div class="avatars">
-          <% BetParticipation.where(bet: @bet).each_with_index do |participant, index| %>
-            <% unless participant.user_choice %>
-              <% if index > 0 %>
-                <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
-              <% else %>
-                <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
-              <% end %>
+          <% BetParticipation.where(bet: @bet, user_choice: false).each_with_index do |participant, index| %>
+            <% if index > 0 %>
+              <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
+            <% else %>
+              <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
             <% end %>
           <% end %>
         </div>
@@ -52,7 +48,7 @@
           <% BetParticipation.where(bet: @bet).each_with_index do |participant,index| %>
             <% if participant.user_choice %>
               <div class="d-flex align-items-center mb-2">
-                <img class="avatar-bordered mr-2" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" style="margin-left: -16px"/>
+                <img class="avatar-bordered mr-2" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm"/>
                 <span class="participant-name"><%= participant.user.nickname %></span>
               </div>
             <% end %>
