@@ -1,0 +1,8 @@
+<div class="bet-infos">
+  <h4><%= @tournament.title %></h4>
+  <p><%= @tournament.description %></p>
+  <p>Créateur : <%= @tournament.user.nickname %></p>
+  <p>Mise : <%= @tournament.stake %></p>
+  <p>Date de cloture : <%= @tournament.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
+  <p>Date de résultat : <%= @tournament.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
+</div>

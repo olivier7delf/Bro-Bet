@@ -1,0 +1,20 @@
+<%= simple_form_for [:my, @tournament] do |f| %>
+  <div class="form__group required">
+    <input type="input" class="form__field required" placeholder="Titre" name="tournament[title]" id='titre' required />
+    <label for="name" class="form__label">Titre</label>
+  </div>
+  <div class="form__group">
+    <input type="input" class="form__field" placeholder="Description" name="tournament[description]" id='description' required />
+    <label for="description" class="form__label">Description</label>
+  </div>
+  <div class="form__group mise">
+    <input type="input" class="form__field" placeholder="Stake" name="tournament[stake]" id='stake' required />
+    <label for="stake" class="form__label mise">Mise</label>
+  </div>
+  <%= f.input :closed_at, label: "Limite d'inscription" %>
+  <%= f.input :resulted_at, label: "Fin du tournoi" %>
+  <div class="new-btn">
+    <%= f.submit "Lance le tournoi", class: "btn-new-bet" %>
+  </div>
+<% end %>
+

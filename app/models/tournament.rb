@@ -1,4 +1,11 @@
 class Tournament < ApplicationRecord
+  PROGRESS = {
+    "join_pending": 0,
+    "joined": 1,
+    "result_pending": 2,
+    "resulted": 3
+  }
+  # result_pending : you cannot invit friend ? or useless and we delete closed_at
   belongs_to :user
   has_many :tournament_bets
   has_many :tournament_participations

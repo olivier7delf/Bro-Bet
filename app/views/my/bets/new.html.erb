@@ -22,8 +22,8 @@
             :label_html => { class: "bro-btn" },
             :checked => true %>
   </div>
-  <%= f.input :closed_at %>
-  <%= f.input :resulted_at %>
+  <%= f.input :closed_at, label: "Limite d'inscription" %>
+  <%= f.input :resulted_at, label: "Fin du tournoi" %>
   <div class="new-btn">
     <%= f.submit "Lance la Bet", class: "btn-new-bet" %>
   </div>
