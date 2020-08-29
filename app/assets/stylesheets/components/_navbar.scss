@@ -3,7 +3,7 @@
   background: white;
   transition: all 0.3s ease;
   height: 70px;
-  padding: 0px 30px;
+  padding: 0px 16px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -15,6 +15,7 @@
 /* Logo */
 .navbar-mihivai-brand img {
   height: 60px;
+  padding: 8px;
 }
 .navbar-dropdown {
   flex: 0 1 auto;
