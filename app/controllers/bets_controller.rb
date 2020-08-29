@@ -1,7 +1,7 @@
 class BetsController < ApplicationController
   def show
     @bet = Bet.find(params[:id])
-    bet_progress
+    @state = bet_progress
     bet_user_result
 
     #BetParticipation.where(bet: Bet.last).left_outer_joins(:bet).distinct.select("*")

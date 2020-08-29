@@ -41,6 +41,11 @@
   </div>
 </div>
 
+<% if @bet.user == current_user %>
+  <label for="">Lien de partage : </label>
+  <input type="text" value="<%=request.original_url%>">
+<% end %>
+
 
 
 

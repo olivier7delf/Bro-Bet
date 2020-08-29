@@ -30,6 +30,7 @@ class My::BetsController < ApplicationController
   end
 
   def update
+    raise
     @bet = Bet.find(params[:id])
     @bet.result = params[:bet][:result]
     @bet.save!

@@ -91,8 +91,8 @@ end
 Bet.create!(
   title: "Pari à rejoindre (de Sam)",
   stake: "une pinte",
-  closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
-  resulted_at: DateTime.new(2020, 8, 28, 22, 54, 0),
+  closed_at: DateTime.new(2020, 8, 31, 12, 0, 0),
+  resulted_at: DateTime.new(2021, 8, 28, 22, 54, 0),
   owner_choice: true,
   user: User.find_by(nickname: "Samuel"),
 )

@@ -12,9 +12,13 @@ class ApplicationController < ActionController::Base
       else
         return "finished"
       end
-      # if @bet.closed_at > dt_parsed &&
-      #   return "joined"
-      # end
+    end
+    if @bet.closed_at > dt_parsed && BetParticipation.where(bet: @bet, user: current_user).empty?
+      return "to join"
+    elsif @bet.resulted_at > dt_parsed && @bet.closed_at < dt_parsed && !BetParticipation.where(bet: @bet, user: current_user).empty?
+      return "joined"
+    elsif @bet.resulted_at < dt_parsed && !BetParticipation.where(bet: @bet, user: current_user).empty?
+      return "finished"
     end
 
     # if !@bet.result.nil?

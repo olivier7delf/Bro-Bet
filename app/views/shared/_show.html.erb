@@ -1,7 +1,16 @@
 <div class="bet-infos">
-  <%= @a %>
+  <%= @state %>
   <h4><%= @bet.title %></h4>
   <p><%= @bet.description %></p>
+  <% case @state
+  when "to join" %>
+  <% when "joined" %>
+    <%= render "./shared/show_joined" %>
+  <% when "finished" %>
+    <%= render "./shared/show_result_pending" %>
+    <%= render "./shared/show_resulted" %>
+  <% end %>
+
   <p>Créateur : <%= @bet.user.nickname %></p>
   <p>Mise : <%= @bet.stake %></p>
   <p>Date de cloture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
