@@ -1,6 +1,6 @@
 
 <div class="caca">
-  <span>Victoires : <%= @bets_winned %> (<%= @ratio_victory %> % )</span>
+  <i class="fas fa-crown"></i><span>Victoires : <%= @bets_winned %> (<%= @ratio_victory %> % )</span>
   <span>Niveau : <%= @level %></span>
 
   <span>Poop's Bro : <%= @poop_bro %> (<%= @poop_bro_bets %>)</span>
@@ -16,6 +16,7 @@
   </span>
 </div>
 
+<%= pie_chart [["Win", @bets_winned], ["Lose", @bets_played - @bets_winned]], colors: ["#5FC525", "#D3151D"], legend: "bottom", defer: true, donut: true %>
 
 
 <div class="container btn-new-bet">

@@ -14,19 +14,3 @@
   </div>
   <%= f.submit "Je valide" , class: "btn-new-bet" %>
 <% end %>
-
-<%= simple_form_for [:my, @bet] do |f| %>
-  <div class="result-btns">
-    <%= f.input_field :owner_choice, inline_label: 'Remember me', label: false,
-            :collection => [[true, 'Bro'], [false, 'No Bro']],
-            :label_method => :last,
-            :value_method => :first,
-            :as => :radio_buttons,
-            :input_html => { class: "bro-btn" },
-            :label_html => { class: "bro-btn" },
-            :checked => true %>
-  </div>
-  <div class="new-btn">
-    <%= f.submit "Lance la Bet", class: "btn-new-bet" %>
-  </div>
-<% end %>
