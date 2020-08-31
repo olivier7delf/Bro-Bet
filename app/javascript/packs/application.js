@@ -31,7 +31,25 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
+function myFunction() {
+  /* Get the text field */
+  console.log("HHHHHHHHEEHOOOOOOOOOOOOOOO")
+  var copyText = document.getElementById("myInput");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
+
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  myFunction()
 });
+

@@ -7,9 +7,9 @@
     <input type="input" class="form__field" placeholder="Description" name="bet[description]" id='description' required />
     <label for="description" class="form__label">Description</label>
   </div>
-  <div class="form__group mise">
+  <div class="form__group margin-bot">
     <input type="input" class="form__field" placeholder="Stake" name="bet[stake]" id='stake' required />
-    <label for="stake" class="form__label mise">Mise</label>
+    <label for="stake" class="form__label margin-bot">Mise</label>
   </div>
   <span class="ton-choix"> Ton choix <span style="text-decoration: underline dotted;">*</span></span>
   <div class="result-btns">
@@ -22,8 +22,8 @@
             :label_html => { class: "bro-btn" },
             :checked => true %>
   </div>
-  <%= f.input :closed_at %>
-  <%= f.input :resulted_at %>
+  <%= f.input :closed_at, label: "Limite d'inscription" %>
+  <%= f.input :resulted_at, label: "Fin du tournoi" %>
   <div class="new-btn">
     <%= f.submit "Lance la Bet", class: "btn-new-bet" %>
   </div>

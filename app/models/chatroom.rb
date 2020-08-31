@@ -1,5 +1,5 @@
 class Chatroom < ApplicationRecord
-  # bet_chatroom GET    /bets/:bet_id/chatrooms/:id(.:format)   chatrooms#show
+  belongs_to :bet, optional: true
+  belongs_to :tournament, optional: true
   has_many :messages
-  # belongs_to :bet
 end

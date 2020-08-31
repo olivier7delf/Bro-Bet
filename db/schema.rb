@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_27_100707) do
+ActiveRecord::Schema.define(version: 2020_08_31_101436) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,26 @@ ActiveRecord::Schema.define(version: 2020_08_27_100707) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_bets_on_user_id"
+  end
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "bet_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "tournament_id"
+    t.index ["bet_id"], name: "index_chatrooms_on_bet_id"
+    t.index ["tournament_id"], name: "index_chatrooms_on_tournament_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.bigint "chatroom_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "tournament_bets", force: :cascade do |t|
@@ -110,6 +130,10 @@ ActiveRecord::Schema.define(version: 2020_08_27_100707) do
   add_foreign_key "bet_participations", "bets"
   add_foreign_key "bet_participations", "users"
   add_foreign_key "bets", "users"
+  add_foreign_key "chatrooms", "bets"
+  add_foreign_key "chatrooms", "tournaments"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "tournament_bets", "bets"
   add_foreign_key "tournament_bets", "tournaments"
   add_foreign_key "tournament_participations", "tournaments"

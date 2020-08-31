@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def configure_permitted_parameters
@@ -38,7 +37,17 @@ class ApplicationController < ActionController::Base
         @progress = "result_pending"
       end
     end
+  end
 
+  def tournament_progress
+    dt = DateTime.now
+    if dt > @tournament.resulted_at
+      @tournament_progress = "resulted"
+    elsif dt > @tournament.closed_at
+      @tournament_progress = "result_pending"
+    else
+      @tournament_progress = "joined"
+    end
   end
 
   def bet_user_result

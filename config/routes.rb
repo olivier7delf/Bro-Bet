@@ -9,12 +9,15 @@ Rails.application.routes.draw do
     resources :bet_participations, only: [:create]
   end
 
+
   namespace :my do
     resources :bets, only: [:show, :new, :create, :edit, :update, :destroy]
+    resources :tournaments, only: [:show, :new, :create, :edit, :update, :destroy]
   end
 
   resources :users, only: [:show]
 
+  resources :tournaments, only: [:show]
 
 
 

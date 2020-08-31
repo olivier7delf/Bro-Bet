@@ -1,7 +1,21 @@
 class Tournament < ApplicationRecord
+  PROGRESS = {
+    "join_pending": 0,
+    "joined": 1,
+    "result_pending": 2,
+    "resulted": 3
+  }
+  # result_pending : you cannot invit friend ? or useless and we delete closed_at
   belongs_to :user
   has_many :tournament_bets
   has_many :tournament_participations
+  has_one :chatroom
+
+  has_many :in_users, through: :tournament_participations, class_name: "User", foreign_key: "user_id", source: :user
+
+  # has_many :in_bets, through: :bet_participations, class_name: "Bet", foreign_key: "bet_id", source: :bet
+  # has_many :in_bets, through: :tournament_bets, class_name: "Tournament", foreign_key: "tournament_id", source: :tournament
+  has_many :bets, through: :tournament_bets
 
   validates :title, presence: true, length: { minimum: 10, maximum: 80 }
   validates :description, length: { maximum: 280 }

@@ -1,10 +1,16 @@
 <div class="bet-infos">
-  <h4><%= @bet.title %></h4>
+  <div class="bet-title">
+    <h4>
+    <%= @bet.title %>
+    </h4>
+    <p class="text-left" >Par <%= @bet.user.nickname %></p>
+  </div>
+
+
   <% if @progress == "resulted" %>
     Résultat : <%= @bet.result ? "Bro" : "No bro" %>
   <% end %>
-  <%= render "./bets/shared/display_result" %>
-  <p><%= @bet.description %></p>
+
   <% case @progress
   when "join_pending" %>
     <%= render "./bets/shared/participants" %>
@@ -14,7 +20,10 @@
   <% when "joined" %>
     <%= render "./bets/shared/participants" %>
     <label for="">Lien de partage : </label>
-    <input type="text" value="<%=request.original_url%>">
+    <!-- The text field -->
+    <input type="text" value="<%=request.original_url%>" id="myInput">
+    <!-- The button used to copy the text -->
+    <!-- <button onclick="myFunction()">Copy text</button> -->
   <% when "result_pending" %>
     <%= render "./bets/shared/participants_choices" %>
   <% when "result_to_put" %>
@@ -24,7 +33,7 @@
     <%= render "./bets/shared/participants_choices" %>
   <% end %>
 
-  <p>Créateur : <%= @bet.user.nickname %></p>
+  <p><%= @bet.description %></p>
   <p>Mise : <%= @bet.stake %></p>
   <p>Date de cloture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
   <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
