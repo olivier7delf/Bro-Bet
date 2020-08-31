@@ -19,8 +19,8 @@
             <nav class="d-flex flex-column">
               <%= link_to current_user.nickname, user_path(current_user) %>
               <%= link_to "Mon dernier pari", bet_path(Bet.last) %>
-              <%= link_to "Créer ta Bet", new_my_bet_path %>
-              <%= link_to "Voir tes Bets", bet_participations_path() %>
+              <%= link_to "Créer ton Pari", new_my_bet_path %>
+              <%= link_to "Voir tes Paris", bet_participations_path() %>
               <%= link_to "Deconnexion", destroy_user_session_path, method: :delete %>
             </nav>
           </div>
