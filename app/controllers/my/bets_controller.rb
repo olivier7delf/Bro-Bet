@@ -5,7 +5,7 @@ class My::BetsController < ApplicationController
     if @bet.user != current_user
       redirect_to bet_path(@bet)
     end
-    @state = bet_progress
+    bet_progress
     bet_user_result
   end
 
@@ -26,11 +26,9 @@ class My::BetsController < ApplicationController
   end
 
   def edit
-    raise
   end
 
   def update
-    raise
     @bet = Bet.find(params[:id])
     @bet.result = params[:bet][:result]
     @bet.save!

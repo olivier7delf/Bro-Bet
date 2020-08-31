@@ -1,6 +1,6 @@
 /* Main navbar */
-.navbar-mihivai {
-  background: white;
+.navbar-brobet {
+  background: $second;
   transition: all 0.3s ease;
   height: 70px;
   padding: 0px 16px;
@@ -13,7 +13,7 @@
 }
 
 /* Logo */
-.navbar-mihivai-brand img {
+.navbar-brobet-brand img {
   height: 60px;
   padding: 8px;
 }
@@ -22,7 +22,7 @@
   cursor: pointer;
   padding: 0 10px;
   text-decoration: none;
-  color: white;
+  color: $second;
 }
 
 /* Hamburger Styling */

@@ -41,10 +41,14 @@
     margin-left: 24px;
   }
 
-  #bet_owner_choice_true:checked:after {
+  #bet_owner_choice_true:checked:after,
+    #bet_participation_user_choice_true:checked:after,
+    #bet_result_true:checked:after {
     background-color: $success;
   }
-  #bet_owner_choice_false:checked:after {
+  #bet_owner_choice_false:checked:after,
+    #bet_participation_user_choice_false:checked:after,
+    #bet_result_false:checked:after {
     background-color: $main;
   }
 }
