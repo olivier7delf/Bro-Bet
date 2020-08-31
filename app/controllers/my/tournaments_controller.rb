@@ -17,6 +17,10 @@ class My::TournamentsController < ApplicationController
     @tournament.user = current_user
 
     if @tournament.save
+      TournamentParticipation.create(
+        tournament: @tournament,
+        user: current_user
+      )
       redirect_to my_tournament_path(@tournament)
     else
       render :new

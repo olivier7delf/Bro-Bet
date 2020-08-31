@@ -6,6 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Message.destroy_all
+puts "DESTROYED : Message"
+
+Chatroom.destroy_all
+puts "DESTROYED : Chatroom"
+
 BetParticipation.destroy_all
 puts "DESTROYED : Bet_participation"
 TournamentParticipation.destroy_all
@@ -23,6 +29,8 @@ User.create(nickname: "Samuel", email: "sam@g.com", password: "123123")
 User.create(nickname: "Théotime", email: "tt@g.com", password: "123123")
 User.create(nickname: "Olivier", email: "oli@g.com", password: "123123")
 puts "CREATED : Users"
+
+
 
 Bet.create!(
   title: "TT va t il récupérer son scoot avant jeudi soir ?",
@@ -149,7 +157,25 @@ Bet.all.each do |bet|
   end
 end
 
+Tournament.create!(
+  title: "Championat des sports inconnus de septembre",
+  description: "Chacun doit trouver un sport peu connu ayant une compétition et parier dessus",
+  stake: "une bouteille",
+  max_bets_number: 10,
+  closed_at: DateTime.new(2020, 9, 5, 12, 0, 0),
+  resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
+  user: User.find_by(nickname: "Théotime")
+)
 
+TournamentBet.create!(
+  tournament: Tournament.last,
+  bet: Bet.last
+)
+
+TournamentParticipation.create!(
+  tournament: Tournament.last,
+  user: User.find_by(nickname: "Théotime")
+)
 
 # mon_dernier_bet_participation_plus_bet = BetParticipation.joins(:bet).where(user: User.last).last
 # mes_bet_participationS_plus_bet = BetParticipation.joins(:bet).where(user: User.last)

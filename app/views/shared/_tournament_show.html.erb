@@ -1,5 +1,8 @@
 <div class="bet-infos">
   <h4><%= @tournament.title %></h4>
+  <div>
+    <% current_user.in_bets %>
+  </div>
   <p><%= @tournament.description %></p>
   <p>Créateur : <%= @tournament.user.nickname %></p>
   <p>Mise : <%= @tournament.stake %></p>

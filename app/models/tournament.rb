@@ -9,6 +9,13 @@ class Tournament < ApplicationRecord
   belongs_to :user
   has_many :tournament_bets
   has_many :tournament_participations
+  has_one :chatroom
+
+  has_many :in_users, through: :tournament_participations, class_name: "User", foreign_key: "user_id", source: :user
+
+  # has_many :in_bets, through: :bet_participations, class_name: "Bet", foreign_key: "bet_id", source: :bet
+  # has_many :in_bets, through: :tournament_bets, class_name: "Tournament", foreign_key: "tournament_id", source: :tournament
+  has_many :bets, through: :tournament_bets
 
   validates :title, presence: true, length: { minimum: 10, maximum: 80 }
   validates :description, length: { maximum: 280 }

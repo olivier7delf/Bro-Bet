@@ -11,6 +11,7 @@
       <% if user_signed_in? %>
         <%= link_to current_user.nickname, user_path(current_user), class: "dropdown-item" %>
         <%= link_to "Mon dernier pari", bet_path(Bet.last), class: "dropdown-item" %>
+        <%= link_to "Mon dernier tournoi", tournament_path(Tournament.last), class: "dropdown-item" %>
         <%= link_to "Créer ta Bet", new_my_bet_path, class: "dropdown-item" %>
         <%= link_to "Voir tes Bets", bet_participations_path(), class: "dropdown-item" %>
         <%= link_to "Deconnexion", destroy_user_session_path, method: :delete, class: "dropdown-item" %>

@@ -7,9 +7,13 @@
     <input type="input" class="form__field" placeholder="Description" name="tournament[description]" id='description' required />
     <label for="description" class="form__label">Description</label>
   </div>
-  <div class="form__group mise">
+  <div class="form__group">
     <input type="input" class="form__field" placeholder="Stake" name="tournament[stake]" id='stake' required />
-    <label for="stake" class="form__label mise">Mise</label>
+    <label for="stake" class="form__label">Mise</label>
+  </div>
+  <div class="form__group margin-bot">
+    <input type="input" class="form__field" placeholder="Nombre de paris max" name="tournament[max_bets_number]" id='max_bets_number' />
+    <label for="max_bets_number" class="form__label margin-bot">Nombre de paris max</label>
   </div>
   <%= f.input :closed_at, label: "Limite d'inscription" %>
   <%= f.input :resulted_at, label: "Fin du tournoi" %>
