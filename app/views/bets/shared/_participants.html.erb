@@ -4,9 +4,9 @@
       <% @bet.in_users.each_with_index do |participant, index| %>
 
         <% if index > 0 %>
-          <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
+          <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered", style: "margin-left: -16px" %>
         <% else %>
-          <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+          <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered" %>
         <% end %>
 
       <% end %>
@@ -40,6 +40,7 @@
     </div>
   </div>
 </div>
+
 
 
 
