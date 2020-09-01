@@ -6,6 +6,11 @@ class My::TournamentsController < ApplicationController
       redirect_to tournament_path(@tournament)
     end
     tournament_progress
+
+    @available_bets = current_user.in_bets.where(
+      "resulted_at > ? AND resulted_at < ?", DateTime.now, DateTime.now+500)
+    @available_bets.select { |bet| not in @tournament.bets }
+    #modify here to delete bets which are already in the tournament
     @chatroom = @tournament.chatroom
     @message = Message.new()
   end

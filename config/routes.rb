@@ -20,7 +20,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :tournaments, only: [:show]
+  resources :tournaments, only: [:show] do
+    # resources :bets do
+      resources :tournament_bets, only: [:create]
+    # end
+  end
 
 
 
