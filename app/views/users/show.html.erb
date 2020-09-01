@@ -1,3 +1,4 @@
+<%= render "shared/mini-navbar" %>
 <h2 class="text-center">Tableau de Bord</h2>
 <div class="d-flex flex-column align-items-center my-3">
   <%= image_tag "avatar-1", alt: "alttext", class:"avatar-bordered mb-2", style: "width: 80px;" %>
@@ -8,7 +9,7 @@
   <span><i class="fas fa-crown"></i><strong>Victoires</strong> - <%= @bets_winned %> (<%= @ratio_victory %> % )</span>
   <span><i class="fas fa-poop"></i><strong>Poop's Bro</strong> - <%= @poop_bro %> (<%= @poop_bro_bets %>)</span>
   <span><i class="fas fa-gem"></i><strong>Golden Bro</strong> - <%= @golden_bro %> (<%= @golden_bro_bets %>)</span>
-  <span><i class="fas fa-handshake"></i><strong>Bro 4 life</strong> - <%= @bro4life %> (<%= @bro4life_bets %>)</span>
+  <span><i class="fas fa-user-friends"></i><strong>Bro 4 life</strong> - <%= @bro4life %> (<%= @bro4life_bets %>)</span>
 
   <span>Tes Bets :
     <ul>
@@ -22,4 +23,4 @@
   </div>
 </div>
 
- <%= pie_chart [["Victoires", @bets_winned], ["Défaites", @bets_played - @bets_winned]], width: "130px", height: "130px", colors: ["#5FC525", "#D3151D"], legend: false, defer: true, donut: true %>
+<!-- pie_chart [["Victoires", @bets_winned], ["Défaites", @bets_played - @bets_winned]], width: "130px", height: "130px", colors: ["#5FC525", "#D3151D"], legend: false, defer: true, donut: true -->
