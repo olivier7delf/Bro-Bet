@@ -7,6 +7,8 @@ class My::BetsController < ApplicationController
     end
     bet_progress
     bet_user_result
+    @chatroom = @bet.chatroom
+    @message = Message.new()
   end
 
   def new
@@ -19,6 +21,7 @@ class My::BetsController < ApplicationController
 
     if @bet.save
       BetParticipation.create(bet: @bet, user: current_user, user_choice: @bet.owner_choice)
+      Chatroom.create(name: "bet-#{@bet.id}", bet: @bet)
       redirect_to my_bet_path(@bet)
     else
       render :new

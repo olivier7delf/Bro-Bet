@@ -1,0 +1,16 @@
+<h4>Taille ton Bro</h4>
+<div id="messages" data-chatroom-id="<%= @chatroom.id %>">
+  <%= simple_form_for [ @chatroom, @message ] do |f| %>
+    <%= f.input :content, label: false, placeholder: "Ecris ici" %>
+  <% end %>
+  <% @chatroom.messages.order("id DESC").each do |message| %>
+    <div class="message-container" id="message-<%= message.id %>"  style="background:rgba(250,250,250,0.20); color:white;"   >
+      <i class="author">
+        <span><%= message.user.nickname %></span>
+        <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p><%= message.content %></p>
+    </div>
+  <% end %>
+</div>
+
