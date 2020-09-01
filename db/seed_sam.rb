@@ -6,7 +6,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Margot_ir7hyr.png')
-  user.photos.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Sam",
@@ -14,7 +14,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/Sam_tzb5g4.png')
-  user.photos.attach(io: file, filename: 'samprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'samprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Olivier",
@@ -22,7 +22,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Ol_ru1oda.png')
-  user.photos.attach(io: file, filename: 'olivierprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'olivierprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Jonathan",
@@ -30,7 +30,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Jo_jefczh.png')
-  user.photos.attach(io: file, filename: 'joprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'joprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Théotime",
@@ -38,7 +38,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/TT_lsquso.png')
-  user.photos.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Léa",
@@ -46,7 +46,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Le%CC%81a_bxeyi0.png')
-  user.photos.attach(io: file, filename: 'leaprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'leaprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Anais",
@@ -54,7 +54,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676497/Anais_vgq02z.png')
-  user.photos.attach(io: file, filename: 'anaisprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'anaisprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Adrien",
@@ -62,7 +62,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676496/Adri_lrpdta.png')
-  user.photos.attach(io: file, filename: 'adriprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'adriprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Ludovic",
@@ -70,7 +70,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Ludo_nt9ab4.png')
-  user.photos.attach(io: file, filename: 'ludoprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'ludoprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Samah",
@@ -78,7 +78,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Samah_sto0ha.png')
-  user.photos.attach(io: file, filename: 'samahprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'samahprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Céline",
@@ -86,7 +86,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676496/Celine_ttggvj.png')
-  user.photos.attach(io: file, filename: 'celineprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'celineprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Florian",
@@ -94,7 +94,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Florian_sud1ha.png')
-  user.photos.attach(io: file, filename: 'floprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'floprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Kernan",
@@ -102,7 +102,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676497/Kernan_z3x0qc.png')
-  user.photos.attach(io: file, filename: 'kernanprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'kernanprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Pierre",
@@ -110,7 +110,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Pierre_wak7ta.png')
-  user.photos.attach(io: file, filename: 'pierreprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'pierreprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Amélie",
@@ -118,7 +118,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676496/Amelie_zyw5ql.png')
-  user.photos.attach(io: file, filename: 'amelieprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'amelieprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Chloé",
@@ -126,7 +126,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Chloe_onbqry.png')
-  user.photos.attach(io: file, filename: 'chloeprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'chloeprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Jérémy",
@@ -134,7 +134,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Jerem_gispnb.png')
-  user.photos.attach(io: file, filename: 'jeremyprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'jeremyprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Déva",
@@ -142,7 +142,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676497/Deva_ria2uf.png')
-  user.photos.attach(io: file, filename: 'devaprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'devaprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Sophie",
@@ -150,7 +150,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/Sophie_urfipb.png')
-  user.photos.attach(io: file, filename: 'soprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'soprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Victorien",
@@ -158,7 +158,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/Victorien_pl9fu7.png')
-  user.photos.attach(io: file, filename: 'vicprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'vicprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Ophélie",
@@ -166,7 +166,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Ophe%CC%81_pginsw.png')
-  user.photos.attach(io: file, filename: 'opheprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'opheprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Bertrand",
@@ -174,7 +174,7 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676497/Bertrand_ls8dtp.png')
-  user.photos.attach(io: file, filename: 'berprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'berprofile', content_type: 'image/png')
   user.save!
   user = User.new(
     nickname: "Manu",
@@ -182,6 +182,6 @@ def seed_prod
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Manu_iagi2g.png')
-  user.photos.attach(io: file, filename: 'manuprofile', content_type: 'image/png')
+  user.photo.attach(io: file, filename: 'manuprofile', content_type: 'image/png')
   user.save!
 end
