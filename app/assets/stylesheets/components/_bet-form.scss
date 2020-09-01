@@ -41,15 +41,23 @@
     margin-left: 24px;
   }
 
-  #bet_owner_choice_true:checked:after {
+  #bet_owner_choice_true:checked:after,
+    #bet_participation_user_choice_true:checked:after,
+    #bet_result_true:checked:after {
     background-color: $success;
   }
-  #bet_owner_choice_false:checked:after {
+  #bet_owner_choice_false:checked:after,
+    #bet_participation_user_choice_false:checked:after,
+    #bet_result_false:checked:after {
     background-color: $main;
   }
 }
 
-.mise {
+// .mise {
+//   margin-bottom: 16px;
+// }
+
+.margin-bot {
   margin-bottom: 16px;
 }
 
@@ -69,7 +77,8 @@
   font-size: 1.3rem;
   color: white;
   padding: 7px 0;
-  background: black;
+  background: rgba(250, 250, 250, 0.2);
+
   transition: border-color 0.2s;
 
   &::placeholder {
@@ -80,6 +89,7 @@
     font-size: 1.3rem;
     cursor: text;
     top: 20px;
+    margin-left: 6px;
   }
 }
 
@@ -118,5 +128,5 @@
 .new-btn {
   display: flex;
   justify-content: center;
-  margin: 32px 0px;
+  margin: 16px 0px;
 }

@@ -17,3 +17,10 @@ What if I want to add a first_name and last_name at sign up?
 
 
 !!!! delete [0..2] in bet_participation index
+
+Avoir des grades: ex frère de sang....
+changer les poops...
+pour les perdants, avoir des expressions sympa: ex: le touriste...
+
+STRANGE :
+Quand je veux aller sur tournaments/1 (sans /my/) j'attéri sur bets/1: WTF!!

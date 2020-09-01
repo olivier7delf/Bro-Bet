@@ -6,11 +6,12 @@ class UsersController < ApplicationController
     @bets_played = current_user.bet_participations.joins(:bet).length
     @bets_created = current_user.bets.count()
     @ratio_victory = (100 * @bets_winned / @bets_finished).to_i
-
-
-
-
-
+    @bro4life = find_bro4life[0]
+    @bro4life_bets = find_bro4life[1]
+    @golden_bro = find_golden_bro[0]
+    @golden_bro_bets = find_golden_bro[1]
+    @poop_bro = count_poop_bro[0]
+    @poop_bro_bets = count_poop_bro[1]
 
   end
 
@@ -53,12 +54,14 @@ class UsersController < ApplicationController
     ORDER BY bets DESC
     "
     result = ActiveRecord::Base.connection.execute(query)
-    if result.empty?
-      @bro4life = 0
-      @bro4life_bets = 0
+    if result.to_a.empty?
+      return [0, 0]
+      # @bro4life = 0
+      # @bro4life_bets = 0
     else
-      @bro4life = result[0]["nickname"]
-      @bro4life_bets = result[0]["bets"]
+      return [result[0]["nickname"], result[0]["bets"]]
+      # @bro4life = result[0]["nickname"]
+      # @bro4life_bets = result[0]["bets"]
     end
   end
 
@@ -88,12 +91,14 @@ class UsersController < ApplicationController
     ORDER BY victories DESC
     "
     result = ActiveRecord::Base.connection.execute(query)
-    if result.empty?
-      @golden_bro = 0
-      @golden_bro_bets = 0
+    if result.to_a.empty?
+      return [0, 0]
+      # @golden_bro = 0
+      # @golden_bro_bets = 0
     else
-      @golden_bro = result[0]["nickname"]
-      @golden_bro_bets = result[0]["victories"]
+      return [result[0]["nickname"], result[0]["victories"]]
+      # @golden_bro = result[0]["nickname"]
+      # @golden_bro_bets = result[0]["victories"]
     end
   end
 
@@ -122,12 +127,14 @@ class UsersController < ApplicationController
     ORDER BY defeats DESC
     "
     result = ActiveRecord::Base.connection.execute(query)
-    if result.empty?
-      @poop_bro = 0
-      @poop_bro_bets = 0
+    if result.to_a.empty?
+      return [0, 0]
+      # @poop_bro = 0
+      # @poop_bro_bets = 0
     else
-      @poop_bro = result[0]["nickname"]
-      @poop_bro_bets = result[0]["defeats"]
+      return [result[0]["nickname"], result[0]["defeats"]]
+      # @poop_bro = result[0]["nickname"]
+      # @poop_bro_bets = result[0]["defeats"]
     end
     # current_user.bets.joins(:bet_participations).where("bets.result = bet_participations.user_choice")
 

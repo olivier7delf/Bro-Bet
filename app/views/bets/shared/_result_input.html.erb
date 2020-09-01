@@ -1,0 +1,18 @@
+
+<%= simple_form_for [:my, @bet] do |f| %>
+
+  <span class="Ton choix"> Résultat du pari</span>
+  <div class="result-btns">
+    <%= f.input_field :result, inline_label: 'Remember me', label: false,
+            :collection => [[true, 'Bro'], [false, 'No Bro']],
+            :label_method => :last,
+            :value_method => :first,
+            :as => :radio_buttons,
+            :input_html => { class: "bro-btn" },
+            :label_html => { class: "bro-btn" },
+            :checked => true %>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= f.submit "Je valide" , class: "btn-new-bet" %>
+  </div>
+<% end %>

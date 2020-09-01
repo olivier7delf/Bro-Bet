@@ -1,23 +1,25 @@
+<h2 class="text-center">Tableau de Bord</h2>
+<div class="d-flex flex-column align-items-center my-3">
+  <%= image_tag "avatar-1", alt: "alttext", class:"avatar-bordered mb-2", style: "width: 80px;" %>
+  <span><strong>Niveau</strong> : <%= @level %></span>
+</div>
 
-<div class="caca">
-  <span>Victoires : <%= @bets_winned %> (<%= @ratio_victory %> % )</span>
-  <span>Niveau : <%= @level %></span>
-
-  <span>Poop's Bro : <%= @poop_bro %> (<%= @poop_bro_bets %>)</span>
-  <span>Golden Bro : <%= @golden_bro %> (<%= @golden_bro_bets %>)</span>
-  <span>Bro 4 life : <%= @bro4life %> (<%= @bro4life_bets %>)</span>
+<div class="d-flex flex-column infos-user">
+  <span><i class="fas fa-crown"></i><strong>Victoires</strong> - <%= @bets_winned %> (<%= @ratio_victory %> % )</span>
+  <span><i class="fas fa-poop"></i><strong>Poop's Bro</strong> - <%= @poop_bro %> (<%= @poop_bro_bets %>)</span>
+  <span><i class="fas fa-gem"></i><strong>Golden Bro</strong> - <%= @golden_bro %> (<%= @golden_bro_bets %>)</span>
+  <span><i class="fas fa-handshake"></i><strong>Bro 4 life</strong> - <%= @bro4life %> (<%= @bro4life_bets %>)</span>
 
   <span>Tes Bets :
     <ul>
-      <li>Total : <%= @bets_played %></li>
-      <li>Finis : <%= @bets_finished %></li>
-      <li>Créés : <%= @bets_created %></li>
+      <li><strong>Total</strong> : <%= @bets_played %></li>
+      <li><strong>Finis</strong> : <%= @bets_finished %></li>
+      <li><strong>Créés</strong> : <%= @bets_created %></li>
     </ul>
   </span>
+  <div class="btn-new-bet">
+    <%= link_to 'Crée un nouveau Pari !', new_my_bet_path %>
+  </div>
 </div>
 
-
-
-<div class="container btn-new-bet">
-  <%= link_to 'Start a new Bet', new_my_bet_path %>
-</div>
+ <%= pie_chart [["Victoires", @bets_winned], ["Défaites", @bets_played - @bets_winned]], width: "130px", height: "130px", colors: ["#5FC525", "#D3151D"], legend: false, defer: true, donut: true %>

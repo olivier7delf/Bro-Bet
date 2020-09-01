@@ -18,6 +18,7 @@ class My::BetsController < ApplicationController
     @bet.user = current_user
 
     if @bet.save
+      BetParticipation.create(bet: @bet, user: current_user, user_choice: @bet.owner_choice)
       redirect_to my_bet_path(@bet)
     else
       render :new
@@ -25,7 +26,6 @@ class My::BetsController < ApplicationController
   end
 
   def edit
-    raise
   end
 
   def update

@@ -2,13 +2,11 @@
   <a data-toggle="modal" data-target="#participants-no-closed">
     <div class="avatars">
       <% @bet.in_users.each_with_index do |participant, index| %>
-
         <% if index > 0 %>
-          <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
+          <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered", style: "margin-left: -16px" %>
         <% else %>
-          <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+          <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered" %>
         <% end %>
-
       <% end %>
     </div>
   </a>
@@ -18,13 +16,13 @@
 <div class="modal fade" id="participants-no-closed" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header d-flex justify-content-center">
+      <div class="modal-header d-flex justify-content-center bg-second">
         <h5 class="modal-title" id="exampleModalLongTitle">Participants</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body d-flex justify-content-around">
+      <div class="modal-body d-flex justify-content-around bg-light">
         <div class="d-flex flex-column">
 
           <% BetParticipation.where(bet: @bet).each_with_index do |participant,index| %>
@@ -40,7 +38,3 @@
     </div>
   </div>
 </div>
-
-
-
-

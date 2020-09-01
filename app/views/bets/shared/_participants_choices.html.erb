@@ -1,48 +1,46 @@
-
-<% if Bet::PROGRESS[@progress.to_sym] >= 2 %>
-  <div class="sides">
-    <div class="side">
-      <a data-toggle="modal" data-target="#participants">
-        <div class="avatars">
-          <% BetParticipation.where(bet: @bet, user_choice: true).each_with_index do |participant, index| %>
-            <% if index > 0 %>
-              <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
-            <% else %>
-              <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
-            <% end %>
+<div class="sides">
+  <div class="side">
+    <a data-toggle="modal" data-target="#participants">
+      <div class="avatars">
+        <% BetParticipation.where(bet: @bet, user_choice: true).each_with_index do |participant, index| %>
+          <% if index > 0 %>
+            <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered", style: "margin-left:-16px" %>
+          <% else %>
+            <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered" %>
           <% end %>
-        </div>
-      </a>
-      <span class="bro text-center">Bros</span>
-    </div>
-    <div class="side">
-      <a data-toggle="modal" data-target="#participants">
-        <div class="avatars">
-          <% BetParticipation.where(bet: @bet, user_choice: false).each_with_index do |participant, index| %>
-            <% if index > 0 %>
-              <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/sarahlafer" style="margin-left: -16px"/>
-            <% else %>
-              <img class="avatar-bordered" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
-            <% end %>
-          <% end %>
-        </div>
-      </a>
-      <span class="no-bro text-center">No Bros</span>
-    </div>
+        <% end %>
+      </div>
+    </a>
+    <span class="bro text-center">Bros</span>
   </div>
-<% end %>
+  <div class="side">
+    <a data-toggle="modal" data-target="#participants">
+      <div class="avatars">
+        <% BetParticipation.where(bet: @bet, user_choice: false).each_with_index do |participant, index| %>
+          <% if index > 0 %>
+            <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered", style: "margin-left:-16px" %>
+          <% else %>
+            <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered" %>
+          <% end %>
+        <% end %>
+      </div>
+    </a>
+    <span class="no-bro text-center">No Bros</span>
+  </div>
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="participants" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
-      <div class="modal-header d-flex justify-content-center">
+      <div class="modal-header d-flex justify-content-center  bg-second">
         <h5 class="modal-title" id="exampleModalLongTitle">Participants</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body d-flex justify-content-around">
+      <div class="modal-body d-flex justify-content-around bg-light">
         <div class="d-flex flex-column">
           <span class="bro text-center">Bros</span>
           <% BetParticipation.where(bet: @bet).each_with_index do |participant,index| %>
