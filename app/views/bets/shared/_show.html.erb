@@ -39,6 +39,8 @@
     <p>Date de résultat : <br><%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 </div>
 
+<%= render "./shared/show_chatroom" %>
+
 <div class="round-btn-link">
 <a data-toggle="modal" data-target="#tournaments-pending" href="<%= %>">+<i class="fas fa-trophy"></i></a>
 </div>
@@ -81,19 +83,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="container bet-participations pt-2">
-  <h3>En cours</h3>
-    <% #@pending_tournaments[0..2].each do |pending_tournament| %>
-      <%#= link_to tournament_path(pending_tournament) do %>
-        <div class="card-bet-participation">
-          <div class="card-bet-participation-infos">
-            <h3><%#= pending_tournament.title %></h3>
-            <p>Mise: <strong><%#= pending_tournament.stake %></strong></p>
-            <p>Résultat le <%#= pending_tournament.resulted_at.strftime("%d/%m/%Y à %k:%M") %></p>
-          </div>
-        </div>
-      <% #end %>
-    <% #end %>
-</div>
- -->
