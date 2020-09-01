@@ -1,0 +1,55 @@
+<% if action_name == 'index' && controller_name == 'bet_participations' %>
+  <div class="mini-navbar">
+      <div class="tabs active">
+        <%= link_to bet_participations_path do %>
+          <i class="fas fa-handshake text-center"></i>
+        <% end %>
+      </div>
+      <div class="tabs">
+        <%= link_to tournament_participations_path do %>
+          <i class="fas fa-trophy text-center"></i>
+        <% end %>
+      </div>
+      <div class="tabs">
+        <%= link_to user_path(current_user) do %>
+          <i class="fas fa-user text-center"></i>
+        <% end %>
+      </div>
+    </div>
+<% elsif action_name == 'show' && controller_name == 'users' %>
+  <div class="mini-navbar">
+    <div class="tabs">
+      <%= link_to bet_participations_path do %>
+        <i class="fas fa-handshake text-center"></i>
+      <% end %>
+    </div>
+    <div class="tabs">
+      <%= link_to tournament_participations_path do %>
+        <i class="fas fa-trophy text-center"></i>
+      <% end %>
+    </div>
+    <div class="tabs active">
+      <%= link_to user_path(current_user) do %>
+        <i class="fas fa-user text-center"></i>
+      <% end %>
+    </div>
+  </div>
+<% elsif action_name == 'index' && controller_name == 'tournament_participations' %>
+  <div class="mini-navbar">
+    <div class="tabs">
+      <%= link_to bet_participations_path do %>
+        <i class="fas fa-handshake text-center"></i>
+      <% end %>
+    </div>
+    <div class="tabs active">
+      <%= link_to tournament_participations_path do %>
+        <i class="fas fa-trophy text-center"></i>
+      <% end %>
+    </div>
+    <div class="tabs">
+      <%= link_to user_path(current_user) do %>
+        <i class="fas fa-user text-center"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>

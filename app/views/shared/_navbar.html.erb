@@ -1,7 +1,7 @@
 <div class="navbar-brobet">
   <!-- Logo -->
   <a href="/" class="navbar-brobet-brand">
-    <img src="https://image.flaticon.com/icons/png/512/62/62641.png" alt="logo">
+    <img src="https://www.habillez-moi.com/wp-content/uploads/2017/04/Picto-tre%CC%80fle.png" alt="logo">
   </a>
 
   <% if current_user != nil %>
@@ -18,17 +18,17 @@
           <div class="nav-wrapper">
             <nav class="d-flex flex-column">
               <%= link_to current_user.nickname, user_path(current_user) %>
-              <%= link_to "Mon dernier pari", bet_path(Bet.last) %>
-              <%= link_to "Créer ton Pari", new_my_bet_path %>
-              <%= link_to "Voir tes Paris", bet_participations_path() %>
-              <%= link_to "Deconnexion", destroy_user_session_path, method: :delete %>
+              <%= link_to "Créer ton pari", new_my_bet_path %>
+              <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
             </nav>
           </div>
         </div>
       </div>
     </div>
   <% else %>
-    <%= link_to "Je me connecte",  new_user_session_path, class: "" %>
+    <div class="btn-login">
+      <a href="<%= new_user_session_path %>"><i class="far fa-user"></i></a>
+    </div>
   <% end %>
 </div>
 <div style="height: 70px;"></div>

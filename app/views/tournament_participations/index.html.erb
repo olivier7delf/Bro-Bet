@@ -1,0 +1,20 @@
+<%= render "shared/mini-navbar" %>
+<h2 class="text-center">Tournois</h2>
+<div class="container bet-participations pt-2">
+  <h3>En cours</h3>
+    <% @pending_tournaments[0..2].each do |pending_tournament| %>
+      <%= link_to tournament_path(pending_tournament) do %>
+        <div class="card-bet-participation">
+          <div class="card-bet-participation-infos">
+            <h3><%= pending_tournament.title %></h3>
+            <p>Mise: <strong><%= pending_tournament.stake %></strong></p>
+            <p>Résultat le <%= pending_tournament.resulted_at.strftime("%d/%m/%Y à %k:%M") %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+</div>
+
+<div class="container bet-participations pt-2">
+  <h3>Terminés</h3>
+</div>
