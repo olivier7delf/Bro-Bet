@@ -21,18 +21,42 @@ puts "DESTROYED : Tournament"
 User.destroy_all
 puts "DESTROYED : User"
 
-User.create(nickname: "Margot", email: "margot@g.com", password: "123123")
-User.create(nickname: "Samuel", email: "sam@g.com", password: "123123")
- user = User.new(
-    nickname: "Théotime",
-    email: "tt@g.com",
-    password: "123123",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/TT_lsquso.png')
-  user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
-  user.save!
-User.create(nickname: "Olivier", email: "oli@g.com", password: "123123")
-puts "CREATED : Users"
+puts "Creating Users..."
+user = User.new(
+  nickname: "Margot",
+  email: "m@g.com",
+  password: "123123",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Margot_ir7hyr.png')
+user.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
+user.save!
+
+user = User.new(
+  nickname: "Sam",
+  email: "sam@g.com",
+  password: "123123",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/Sam_tzb5g4.png')
+user.photo.attach(io: file, filename: 'samprofile', content_type: 'image/png')
+user.save!
+
+user = User.new(
+  nickname: "Olivier",
+  email: "o@g.com",
+  password: "123123",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Ol_ru1oda.png')
+user.photo.attach(io: file, filename: 'olivierprofile', content_type: 'image/png')
+user.save!
+
+user = User.new(
+  nickname: "Théotime",
+  email: "tt@g.com",
+  password: "123123",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/TT_lsquso.png')
+user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
+user.save!
 
 Bet.create!(
   title: "Paris en cours (de Moi)",
@@ -71,7 +95,7 @@ Bet.create!(
   closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
   resulted_at: DateTime.new(2021, 8, 28, 22, 54, 0),
   owner_choice: true,
-  user: User.find_by(nickname: "Samuel"),
+  user: User.find_by(nickname: "Sam"),
 )
 puts "CREATED : Sam Bête"
 
@@ -81,7 +105,7 @@ Bet.create!(
   closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
   resulted_at: DateTime.new(2020, 8, 28, 22, 54, 0),
   owner_choice: true,
-  user: User.find_by(nickname: "Samuel"),
+  user: User.find_by(nickname: "Sam"),
   result: true
 )
 puts "CREATED : Sam Bête"
@@ -102,11 +126,11 @@ Bet.create!(
   closed_at: DateTime.now + 5,
   resulted_at: DateTime.new(2021, 8, 28, 22, 54, 0),
   owner_choice: true,
-  user: User.find_by(nickname: "Samuel"),
+  user: User.find_by(nickname: "Sam"),
 )
 puts "CREATED : Sam Bête"
 
-BetParticipation.create!(user: User.find_by(nickname: "Samuel"), bet: Bet.last, user_choice: Bet.last.owner_choice)
+BetParticipation.create!(user: User.find_by(nickname: "Sam"), bet: Bet.last, user_choice: Bet.last.owner_choice)
 
 # Bet.all.each do |bet|
 #   User.all.each do |user|
