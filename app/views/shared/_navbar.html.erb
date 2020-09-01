@@ -28,7 +28,9 @@
       </div>
     </div>
   <% else %>
-    <%= link_to "Je me connecte",  new_user_session_path, class: "" %>
+    <div class="btn-login">
+      <a href="<%= new_user_session_path %>"><i class="far fa-user"></i></a>
+    </div>
   <% end %>
 </div>
 <div style="height: 70px;"></div>
