@@ -140,6 +140,26 @@ TournamentParticipation.create!(
   user: User.find_by(nickname: "Théotime")
 )
 
+Tournament.create!(
+  title: "Tournoi des vacances à Amiens",
+  description: "Pour pimenter ce sejour dans cette ville de rêve",
+  stake: "1 bougie à la vanille",
+  max_bets_number: 10,
+  closed_at: DateTime.new(2020, 9, 5, 12, 0, 0),
+  resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
+  user: User.find_by(nickname: "Théotime")
+)
+
+TournamentBet.create!(
+  tournament: Tournament.last,
+  bet: Bet.last
+)
+
+TournamentParticipation.create!(
+  tournament: Tournament.last,
+  user: User.find_by(nickname: "Théotime")
+)
+
 # mon_dernier_bet_participation_plus_bet = BetParticipation.joins(:bet).where(user: User.last).last
 # mes_bet_participationS_plus_bet = BetParticipation.joins(:bet).where(user: User.last)
 

@@ -1,6 +1,7 @@
 <%= render "shared/mini-navbar" %>
-<div class="container bet-participations pt-4">
-  <h2>Mes paris en cours</h2>
+<h2 class="text-center">Paris</h2>
+<div class="container bet-participations pt-2">
+  <h3>En cours</h3>
     <% @pending_bets[0..2].each do |pending_bet| %>
       <%= link_to bet_path(pending_bet) do %>
         <div class="card-bet-participation">
@@ -16,8 +17,8 @@
     <% end %>
 </div>
 
-<div class="container bet-participations pt-4">
-  <h2>Mes paris terminés</h2>
+<div class="container bet-participations pt-2">
+  <h3>Terminés</h3>
     <% @finished_bets.each do |finished_bet| %>
       <% ma_prediction = BetParticipation.find_by(user: current_user, bet: finished_bet).user_choice ? "Bro" : "No Bro"%>
       <% mon_resultat = finished_bet.result ? "Bro" : "No Bro" %>
