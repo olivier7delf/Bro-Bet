@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   # index will be handle by user ?
   resources :bet_participations, only: [:index]
+  resources :tournament_participations, only: [:index]
 
   resources :bets, only: [:show] do
     resources :bet_participations, only: [:create]

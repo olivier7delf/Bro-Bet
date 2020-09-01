@@ -18,12 +18,19 @@ puts "DESTROYED : Bet"
 Tournament.destroy_all
 puts "DESTROYED : Tournament"
 
-# User.destroy_all
-# puts "DESTROYED : User"
+User.destroy_all
+puts "DESTROYED : User"
 
 User.create(nickname: "Margot", email: "margot@g.com", password: "123123")
 User.create(nickname: "Samuel", email: "sam@g.com", password: "123123")
-User.create(nickname: "Théotime", email: "tt@g.com", password: "123123")
+ user = User.new(
+    nickname: "Théotime",
+    email: "tt@g.com",
+    password: "123123",
+  )
+  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/TT_lsquso.png')
+  user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
+  user.save!
 User.create(nickname: "Olivier", email: "oli@g.com", password: "123123")
 puts "CREATED : Users"
 
@@ -132,6 +139,26 @@ tournament = Tournament.create!(
   user: User.find_by(nickname: "Théotime")
 )
 Chatroom.create(name: "tournament-#{tournament.id}", tournament: tournament)
+
+TournamentBet.create!(
+  tournament: Tournament.last,
+  bet: Bet.last
+)
+
+TournamentParticipation.create!(
+  tournament: Tournament.last,
+  user: User.find_by(nickname: "Théotime")
+)
+
+Tournament.create!(
+  title: "Tournoi des vacances à Amiens",
+  description: "Pour pimenter ce sejour dans cette ville de rêve",
+  stake: "1 bougie à la vanille",
+  max_bets_number: 10,
+  closed_at: DateTime.new(2020, 9, 5, 12, 0, 0),
+  resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
+  user: User.find_by(nickname: "Théotime")
+)
 
 TournamentBet.create!(
   tournament: Tournament.last,
