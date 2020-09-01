@@ -4,28 +4,44 @@
       <div class="avatars">
         <% BetParticipation.where(bet: @bet, user_choice: true).each_with_index do |participant, index| %>
           <% if index > 0 %>
-            <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered", style: "margin-left:-16px" %>
+            <% if participant.user.photo.attached? %>
+              <%= cl_image_tag participant.user.photo.key, class: "avatar-bordered mb-2", style: "margin-left: -16px" %>
+            <% else %>
+              <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo" style= "margin-left: -16px">
+            <% end %>
           <% else %>
-            <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered" %>
+            <% if participant.user.photo.attached? %>
+              <%= cl_image_tag participant.user.photo.key, class: "avatar-bordered mb-2"%>
+            <% else %>
+              <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+            <% end %>
           <% end %>
         <% end %>
       </div>
+      <span class="bro text-center">Bros</span>
     </a>
-    <span class="bro text-center">Bros</span>
   </div>
   <div class="side">
     <a data-toggle="modal" data-target="#participants">
       <div class="avatars">
         <% BetParticipation.where(bet: @bet, user_choice: false).each_with_index do |participant, index| %>
           <% if index > 0 %>
-            <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered", style: "margin-left:-16px" %>
+            <% if participant.user.photo.attached? %>
+              <%= cl_image_tag participant.user.photo.key, class: "avatar-bordered mb-2", style: "margin-left: -16px" %>
+            <% else %>
+              <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo" style= "margin-left: -16px">
+            <% end %>
           <% else %>
-            <%= image_tag "avatar-#{rand(1..9)}", alt: "avatar-bordered", class: "avatar-bordered" %>
+            <% if participant.user.photo.attached? %>
+              <%= cl_image_tag participant.user.photo.key, class: "avatar-bordered mb-2"%>
+            <% else %>
+              <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+            <% end %>
           <% end %>
         <% end %>
       </div>
+      <span class="no-bro text-center">No Bros</span>
     </a>
-    <span class="no-bro text-center">No Bros</span>
   </div>
 </div>
 
@@ -46,7 +62,11 @@
           <% BetParticipation.where(bet: @bet).each_with_index do |participant,index| %>
             <% if participant.user_choice %>
               <div class="d-flex align-items-center mb-2">
-                <img class="avatar-bordered mr-2" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm"/>
+                <% if participant.user.photo.attached? %>
+                  <%= cl_image_tag participant.user.photo.key, class: "avatar-bordered mb-2" %>
+                <% else %>
+                  <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+                <% end %>
                 <span class="participant-name"><%= participant.user.nickname %></span>
               </div>
             <% end %>
@@ -57,7 +77,11 @@
           <% BetParticipation.where(bet: @bet).each_with_index do |participant, index| %>
             <% unless participant.user_choice %>
               <div class="d-flex align-items-center mb-2">
-                <img class="avatar-bordered mr-2" alt="avatar-bordered" src="https://kitt.lewagon.com/placeholder/users/arthur-littm" />
+                <% if participant.user.photo.attached? %>
+                  <%= cl_image_tag participant.user.photo.key, class: "avatar-bordered mb-2" %>
+                <% else %>
+                  <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+                <% end %>
                 <span class="participant-name"><%= participant.user.nickname %></span>
               </div>
             <% end %>
