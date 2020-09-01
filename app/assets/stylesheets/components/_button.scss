@@ -76,3 +76,26 @@
   }
 }
 
+.round-btn-link {
+  background-color: $second;
+  margin: 32px auto;
+  color: black;
+  border-radius: 50%;
+  text-align: center;
+  width: 85px;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  i {
+    color: black;
+    text-decoration: none;
+    font-size: 42px;
+  }
+  a {
+    font-size: 47px;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}

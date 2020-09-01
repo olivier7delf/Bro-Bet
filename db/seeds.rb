@@ -18,12 +18,19 @@ puts "DESTROYED : Bet"
 Tournament.destroy_all
 puts "DESTROYED : Tournament"
 
-# User.destroy_all
-# puts "DESTROYED : User"
+User.destroy_all
+puts "DESTROYED : User"
 
 User.create(nickname: "Margot", email: "margot@g.com", password: "123123")
 User.create(nickname: "Samuel", email: "sam@g.com", password: "123123")
-User.create(nickname: "Théotime", email: "tt@g.com", password: "123123")
+ user = User.new(
+    nickname: "Théotime",
+    email: "tt@g.com",
+    password: "123123",
+  )
+  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/TT_lsquso.png')
+  user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
+  user.save!
 User.create(nickname: "Olivier", email: "oli@g.com", password: "123123")
 puts "CREATED : Users"
 

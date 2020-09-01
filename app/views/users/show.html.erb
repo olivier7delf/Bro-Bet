@@ -1,7 +1,11 @@
 <%= render "shared/mini-navbar" %>
 <h2 class="text-center">Tableau de Bord</h2>
 <div class="d-flex flex-column align-items-center my-3">
-  <%= image_tag "avatar-1", alt: "alttext", class:"avatar-bordered mb-2", style: "width: 80px;" %>
+  <% if current_user.photo.attached? %>
+   <%= cl_image_tag current_user.photo.key, class: "avatar-bordered mb-2" %>
+  <% else %>
+    <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+  <% end %>
   <span><strong>Niveau</strong> : <%= @level %></span>
 </div>
 
