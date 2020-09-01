@@ -27,13 +27,12 @@ require("chart.js")
 
 // External imports
 import "bootstrap";
-
+import { initChatroomCable } from "../channels/chatroom_channel";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
 function myFunction() {
   /* Get the text field */
-  console.log("HHHHHHHHEEHOOOOOOOOOOOOOOO")
   var copyText = document.getElementById("myInput");
 
   /* Select the text field */
@@ -50,6 +49,7 @@ function myFunction() {
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
-  myFunction()
+  // myFunction()
+  initChatroomCable();
 });
 

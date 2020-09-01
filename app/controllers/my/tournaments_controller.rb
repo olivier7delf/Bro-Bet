@@ -6,6 +6,8 @@ class My::TournamentsController < ApplicationController
       redirect_to tournament_path(@tournament)
     end
     tournament_progress
+    @chatroom = @tournament.chatroom
+    @message = Message.new()
   end
 
   def new
@@ -21,6 +23,8 @@ class My::TournamentsController < ApplicationController
         tournament: @tournament,
         user: current_user
       )
+      Chatroom.create(name: "tournament-#{@tournament.id}", tournament: @tournament)
+
       redirect_to my_tournament_path(@tournament)
     else
       render :new

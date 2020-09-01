@@ -80,6 +80,7 @@ Bet.create!(
 puts "CREATED : Sam Bête"
 
 Bet.all.each do |bet|
+  Chatroom.create(name: "bet-#{bet.id}", bet: bet)
   User.all.each do |user|
     if user == bet.user
       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
@@ -98,7 +99,8 @@ Bet.create!(
   user: User.find_by(nickname: "Samuel"),
 )
 puts "CREATED : Sam Bête"
-
+last_bet = Bet.last
+Chatroom.create(name: "bet-#{last_bet.id}", bet: last_bet)
 BetParticipation.create!(user: User.find_by(nickname: "Samuel"), bet: Bet.last, user_choice: Bet.last.owner_choice)
 
 # Bet.all.each do |bet|
@@ -120,7 +122,7 @@ BetParticipation.create!(user: User.find_by(nickname: "Samuel"), bet: Bet.last, 
 #   end
 # end
 
-Tournament.create!(
+tournament = Tournament.create!(
   title: "Championat des sports inconnus de septembre",
   description: "Chacun doit trouver un sport peu connu ayant une compétition et parier dessus",
   stake: "une bouteille",
@@ -129,6 +131,7 @@ Tournament.create!(
   resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
   user: User.find_by(nickname: "Théotime")
 )
+Chatroom.create(name: "tournament-#{tournament.id}", tournament: tournament)
 
 TournamentBet.create!(
   tournament: Tournament.last,

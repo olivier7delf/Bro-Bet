@@ -16,7 +16,6 @@ class BetParticipationsController < ApplicationController
     bp.user = current_user
     bp.save
     redirect_to bet_path(@bet)
-
   end
 
   private
