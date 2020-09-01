@@ -19,5 +19,8 @@ class TournamentsController < ApplicationController
     if @tournament.user == current_user
       redirect_to my_tournament_path(@tournament)
     end
+
+    @chatroom = @tournament.chatroom
+    @message = Message.new()
   end
 end

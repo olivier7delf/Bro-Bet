@@ -10,6 +10,9 @@ Rails.application.routes.draw do
     resources :bet_participations, only: [:create]
   end
 
+  resources :chatrooms, only: :show do
+    resources :messages, only: :create
+  end
 
   namespace :my do
     resources :bets, only: [:show, :new, :create, :edit, :update, :destroy]
@@ -18,7 +21,11 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-  resources :tournaments, only: [:show]
+  resources :tournaments, only: [:show] do
+    # resources :bets do
+      resources :tournament_bets, only: [:create]
+    # end
+  end
 
 
 

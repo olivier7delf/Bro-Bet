@@ -59,7 +59,7 @@ user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
 user.save!
 
 Bet.create!(
-  title: "Paris en cours (de Moi)",
+  title: "1 Paris en cours (de Moi)",
   stake: "une pinte",
   closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
   resulted_at: DateTime.new(2021, 8, 28, 19, 0, 0),
@@ -69,7 +69,7 @@ Bet.create!(
 puts "CREATED : TT Bête"
 
 Bet.create!(
-  title: "Résultat à mettre (de Moi)",
+  title: "2 Résultat à mettre (de Moi)",
   stake: "une pinte",
   closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
   resulted_at: DateTime.new(2020, 8, 28, 22, 51, 0),
@@ -79,7 +79,7 @@ Bet.create!(
 puts "CREATED : TT Bête"
 
 Bet.create!(
-  title: "Pari terminé (de Moi)",
+  title: "3 Pari terminé (de Moi)",
   stake: "une pinte",
   closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
   resulted_at: DateTime.new(2020, 8, 28, 22, 54, 0),
@@ -90,7 +90,7 @@ Bet.create!(
 puts "CREATED : TT Bête"
 
 Bet.create!(
-  title: "Pari en cours (de Sam)",
+  title: "4 Pari en cours (de Sam)",
   stake: "une pinte",
   closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
   resulted_at: DateTime.new(2021, 8, 28, 22, 54, 0),
@@ -100,7 +100,7 @@ Bet.create!(
 puts "CREATED : Sam Bête"
 
 Bet.create!(
-  title: "Pari terminé (de Sam)",
+  title: "5 Pari terminé (de Sam)",
   stake: "une pinte",
   closed_at: DateTime.new(2020, 8, 27, 12, 0, 0),
   resulted_at: DateTime.new(2020, 8, 28, 22, 54, 0),
@@ -111,6 +111,7 @@ Bet.create!(
 puts "CREATED : Sam Bête"
 
 Bet.all.each do |bet|
+  Chatroom.create(name: "bet-#{bet.id}", bet: bet)
   User.all.each do |user|
     if user == bet.user
       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
@@ -121,7 +122,7 @@ Bet.all.each do |bet|
 end
 
 Bet.create!(
-  title: "Pari à rejoindre (de Sam)",
+  title: "6 Pari à rejoindre (de Sam)",
   stake: "une pinte",
   closed_at: DateTime.now + 5,
   resulted_at: DateTime.new(2021, 8, 28, 22, 54, 0),
@@ -130,28 +131,30 @@ Bet.create!(
 )
 puts "CREATED : Sam Bête"
 
+last_bet = Bet.last
+Chatroom.create(name: "bet-#{last_bet.id}", bet: last_bet)
 BetParticipation.create!(user: User.find_by(nickname: "Sam"), bet: Bet.last, user_choice: Bet.last.owner_choice)
 
-# Bet.all.each do |bet|
-#   User.all.each do |user|
-#     if user == bet.user
-#       puts "== #{user}, #{bet}"
-#       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
-#     elsif (1..100).to_a.sample() > 30
-#       user_choice = [true, false].sample()
-#       puts "#{user}, #{bet}, user_choice = #{user_choice}"
-#       BetParticipation.create!(user: user, bet: bet, user_choice: user_choice)
-#     end
-#     puts "CREATED : BetParticipation #{user.nickname} au pari de #{bet.user.nickname} : #{bet.title[0..20]}"
-#   end
+Bet.all.each do |bet|
+  User.all.each do |user|
+    if user == bet.user
+      puts "== #{user}, #{bet}"
+      BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
+    elsif (1..100).to_a.sample() > 30
+      user_choice = [true, false].sample()
+      puts "#{user}, #{bet}, user_choice = #{user_choice}"
+      BetParticipation.create!(user: user, bet: bet, user_choice: user_choice)
+    end
+    puts "CREATED : BetParticipation #{user.nickname} au pari de #{bet.user.nickname} : #{bet.title[0..20]}"
+  end
 
-#   if (1..100).to_a.sample() > 10 && bet.resulted_at < DateTime.now
-#     bet.update(result: [true, false].sample())
-#     puts "UPDATED : Bet result"
-#   end
-# end
+  if (1..100).to_a.sample() > 10 && bet.resulted_at < DateTime.now
+    bet.update(result: [true, false].sample())
+    puts "UPDATED : Bet result"
+  end
+end
 
-Tournament.create!(
+tournament = Tournament.create!(
   title: "Championat des sports inconnus de septembre",
   description: "Chacun doit trouver un sport peu connu ayant une compétition et parier dessus",
   stake: "une bouteille",
@@ -160,6 +163,7 @@ Tournament.create!(
   resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
   user: User.find_by(nickname: "Théotime")
 )
+Chatroom.create(name: "tournament-#{tournament.id}", tournament: tournament)
 
 TournamentBet.create!(
   tournament: Tournament.last,
