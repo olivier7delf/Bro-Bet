@@ -2,15 +2,16 @@
 <div class="container bet-participations pt-4">
   <h2>Mes paris en cours</h2>
     <% @pending_bets[0..2].each do |pending_bet| %>
+    <% mon_pari = pending_bet.owner_choice ? "BRO" : "NO BRO" %>
       <%= link_to bet_path(pending_bet) do %>
         <div class="card-bet-participation">
           <div class="card-bet-participation-infos">
             <h3><%= pending_bet.title %></h3>
-            <p>Mise: <strong><%= pending_bet.stake %></strong></p>
-            <p>Ma prédiction: <strong><%= pending_bet.owner_choice ? "Bro" : "No Bro" %></strong></p>
-            <p>Résultat le <%= pending_bet.resulted_at.strftime("%d/%m/%Y à %k:%M") %></p>
+            <p><i class="fas fa-hand-holding-usd"></i> : <strong><%= pending_bet.stake %></strong></p>
+            <p>Mon pari : <span class="<%= mon_pari == 'BRO' ? "bro-text" : "no-bro-text" %>"><%= mon_pari %></span></p>
+            <p>Résultat le <%= pending_bet.resulted_at.strftime("%d/%m/%Y") %></p>
           </div>
-          <span class="<%= pending_bet.owner_choice ? "bro-card" : "no-bro-card" %> text-center"><%= pending_bet.owner_choice ? "Bro" : "No Bro" %></span>
+          <!-- <span class="<%= pending_bet.owner_choice ? "bro-card" : "no-bro-card" %> text-center"><%= pending_bet.owner_choice ? "Bro" : "No Bro" %></span> -->
         </div>
       <% end %>
     <% end %>
@@ -19,24 +20,36 @@
 <div class="container bet-participations pt-4">
   <h2>Mes paris terminés</h2>
     <% @finished_bets.each do |finished_bet| %>
-      <% ma_prediction = BetParticipation.find_by(user: current_user, bet: finished_bet).user_choice ? "Bro" : "No Bro"%>
-      <% mon_resultat = finished_bet.result ? "Bro" : "No Bro" %>
+      <% ma_prediction = BetParticipation.find_by(user: current_user, bet: finished_bet).user_choice ? "BRO" : "NO BRO"%>
+      <% mon_resultat = finished_bet.result ? "BRO" : "NO BRO" %>
       <%= link_to bet_path(finished_bet) do %>
 
         <% if ma_prediction == mon_resultat %>
-          <div class="card-bet-participation winner-card">
+          <div class="card-bet-participation">
+            <div class="winner-circle">
+              <div class="emoticon">
+                <span class="winner-emoji"><i class="fas fa-child"></i></span>
+              </div>
+            </div>
             <div class="card-bet-participation-infos">
               <h3><%= finished_bet.title %></h3>
-              <p>Mise: <strong><%= finished_bet.stake %></strong></p>
-              <p>Résultat: <span class="<%= mon_resultat == 'Bro' ? "bro-text" : "no-bro-text" %>"><%= mon_resultat %></span></p>
+              <p><i class="fas fa-hand-holding-usd"></i> : <strong><%= finished_bet.stake %></strong></p>
+              <p>Mon pari : <span class="<%= ma_prediction == 'BRO' ? "bro-text" : "no-bro-text" %>"><%= ma_prediction %></span></p>
+              <p>Le résultat : <span class="<%= mon_resultat == 'BRO' ? "bro-text" : "no-bro-text" %>"><%= mon_resultat %></span></p>
             </div>
           </div>
         <% else %>
-          <div class="card-bet-participation loser-card">
+          <div class="card-bet-participation">
+            <div class="loser-circle">
+              <div class="emoticon">
+                <span class="loser-emoji"><i class="fas fa-times"></i></span>
+              </div>
+            </div>
             <div class="card-bet-participation-infos">
               <h3><%= finished_bet.title %></h3>
-              <p>Mise: <strong><%= finished_bet.stake %></strong></p>
-              <p>Résultat: <span class="<%= mon_resultat == 'Bro' ? "bro-text" : "no-bro-text" %>"><%= mon_resultat %></span></p>
+              <p><i class="fas fa-hand-holding-usd"></i> : <strong><%= finished_bet.stake %></strong></p>
+              <p>Mon pari : <span class="<%= ma_prediction == 'BRO' ? "bro-text" : "no-bro-text" %>"><%= ma_prediction %></span></p>
+              <p>Le résultat : <span class="<%= mon_resultat == 'BRO' ? "bro-text" : "no-bro-text" %>"><%= mon_resultat %></span></p>
             </div>
           </div>
         <% end %>

@@ -1,4 +1,7 @@
 .bet-participations {
+  a {
+    text-decoration: none;
+  }
   h2 {
     border-left: 5px solid $second;
     padding-left: 10px;
@@ -11,14 +14,15 @@
   border-radius: 5px;
   margin-bottom: 16px;
   position: relative;
+  overflow: hidden;
   h3 {
     font-size: 16px;
     font-weight: bold;
+    padding-right: 20px;
   }
   p {
     font-size: 12px;
     line-height: 1;
-    opacity: .7;
     margin-bottom: 0;
     margin-top: 8px;
   }
@@ -28,44 +32,97 @@
   }
 }
 
-.bro-card {
-  color: white;
-  border-radius: 35px;
-  background-color: $success;
-  padding: 8px;
-  margin-bottom: 1rem;
-  position: absolute;
-  bottom: 0;
-  right: 16px;
-}
+// .bro-card {
+//   color: white;
+//   border-radius: 35px;
+//   background-color: $success;
+//   padding: 8px;
+//   margin-bottom: 1rem;
+//   position: absolute;
+//   bottom: 0;
+//   right: 16px;
+// }
 
-.no-bro-card {
-  color: white;
-  border-radius: 35px;
-  background-color: $main;
-  padding: 8px;
-  margin-bottom: 1rem;
-  position: absolute;
-  bottom: 0;
-  right: 16px;
-}
+// .no-bro-card {
+//   color: white;
+//   border-radius: 35px;
+//   background-color: $main;
+//   padding: 8px;
+//   margin-bottom: 1rem;
+//   position: absolute;
+//   bottom: 0;
+//   right: 16px;
+// }
 
-.winner-card {
-  border-right: $success 18px solid;
-}
+// .winner-card {
+//   border-right: $success 18px solid;
+// }
 
-.loser-card {
-  border-right: $main 18px solid;
-}
+// .loser-card {
+//   border-right: $main 18px solid;
+// }
 
 .bro-text {
   font-weight: bold;
-  color: $success;
-  text-shadow: 0.4px 0.4px 0.4px rgba(0, 0, 0, 0.9);
+  background-color: $success;
+  background: radial-gradient(#326714, $success);
+  color: white;
+  padding: 0 4px;
+  border-radius: 5px;
 }
 
 .no-bro-text {
   font-weight: bold;
-  color: $main;
-  text-shadow: 0.4px 0.4px 0.4px rgba(0, 0, 0, 0.9);
+  background-color: $main;
+  background: radial-gradient(#6F0B10, $main);
+  color: white;
+  padding: 0 4px;
+  border-radius: 5px;
+}
+
+.fa-hand-holding-usd {
+  color: $second;
+  font-size: 16px;
+}
+
+.winner-circle {
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  background-color: $success;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  .winner-emoji {
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    top: 23px;
+    left: 16px;
+  }
+  .emoticon {
+    position: relative;
+
+  }
+}
+
+.loser-circle {
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  background-color: $main;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  .loser-emoji {
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    top: 24px;
+    left: 17px;
+  }
+  .emoticon {
+    position: relative;
+
+  }
 }
