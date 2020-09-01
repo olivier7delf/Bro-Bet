@@ -11,6 +11,7 @@ class User < ApplicationRecord
 
   has_many :tournaments
   has_many :tournament_participations
+  has_many :in_tournaments, through: :tournament_participations, class_name: "Tournament", foreign_key: "tournament_id", source: :tournament
 
   validates :nickname, presence: true, uniqueness: true
   validates :description, length: { maximum: 140 }
