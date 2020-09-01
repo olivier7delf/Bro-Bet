@@ -7,11 +7,9 @@ class My::TournamentsController < ApplicationController
     end
     tournament_progress
 
-
-    @available_bets = current_user.in_bets.where(
+    @available_bets = current_user.in_bets.where.not(id: @tournament.bets).where(
       "resulted_at > ? AND resulted_at < ?", DateTime.now, DateTime.now+500)
-    raise
-    # @available_bets.select { |bet| not in @tournament.bets }
+
     #modify here to delete bets which are already in the tournament
     @chatroom = @tournament.chatroom
     @message = Message.new()

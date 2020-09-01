@@ -15,7 +15,7 @@
       </div>
     </a>
     <% @tournament.bets.each do |bet| %>
-      <span>bet</span>
+      <%= link_to bet.title[0..28], bet_path(bet) %>
     <% end %>
 </div>
 <%= render "./shared/show_chatroom" %>
