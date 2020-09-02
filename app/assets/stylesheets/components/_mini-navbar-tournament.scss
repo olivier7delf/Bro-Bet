@@ -1,0 +1,35 @@
+.mini-navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: -8px 0px 8px 0;
+  padding-bottom: 8px;
+  a {
+    color: white;
+    text-decoration: none;
+    font-size: 32px;
+    i {
+      margin-right:0;
+      padding-bottom: 8px;
+    }
+  }
+  .tabs {
+    text-align: center;
+    width: 100%;
+  }
+  :not(:last-child) {
+    border-right: 2px solid $second;
+  }
+}
+
+.active {
+  width: 80%;
+  a {
+    // background-color: $bg-light;
+    padding: 0 8px;
+    border-radius: 5px;
+  }
+  a > i {
+    border-bottom: 5px solid white;
+  }
+}
