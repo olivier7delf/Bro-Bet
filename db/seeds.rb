@@ -21,6 +21,13 @@ puts "DESTROYED : Tournament"
 User.destroy_all
 puts "DESTROYED : User"
 
+Bonuse.create!(title: "étoile", description: "Invicible, aucun bonus adverse ne t'atteint")
+Bonuse.create!(title: "éclair", description: "Tous vos adversaires sont foudroyez, leur gain sont divisés par deux !")
+Bonuse.create!(title: "champignon", description: "Vroum ! Vous passez la seconde et vos gains sont multipliés par deux !")
+Bonuse.create!(title: "dynamite", description: "Tic tac ! Attention à ne pas vous brulez, elle risque de vous explosez dessus, mais si cela n'arrive pas, votre cible se fera un plaisir de la garder...")
+
+
+
 puts "Creating Users..."
 user = User.new(
   nickname: "Margot",
