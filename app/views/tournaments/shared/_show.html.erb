@@ -34,13 +34,11 @@
 
   <% unless @tournament_progress == "join_pending" %>
     <a data-toggle="modal" data-target="#bets-availables">
-        <div class="btn-new-bet btn-color-success">
-          <span>Ajouter un pari</span>
-        </div>
-      </a>
-      <% @tournament.bets.each do |bet| %>
-        <%= link_to bet.title[0..28], bet_path(bet) %>
-    <% end %>
+      <div class="round-btn-link">
+        <i class="fas fa-plus" style="color: #FEAD34;"></i>
+        <i class="fas fa-handshake"></i>
+      </div>
+    </a>
     <%= render "./shared/show_chatroom" %>
   <% end %>
 </div>
@@ -59,12 +57,18 @@
         <div class="d-flex flex-column">
           <% @available_bets.each_with_index do |bet, index| %>
 
-            <div class="d-flex align-items-center mb-2">
-              <%= link_to bet.title[0..14], bet_path(bet) %>
-              <%= link_to "Ajouter !", tournament_tournament_bets_path(@tournament, bet_id: bet), method: :post  %>
-              </form>
+            <div class="d-flex flex-column align-items-center mb-2">
+              <div class="d-flex">
+                <div class="btn-show">
+                  <%= link_to bet.title[0..14], bet_path(bet) %>
+                </div>
+                <div class="btn-add">
+                  <%= link_to tournament_tournament_bets_path(@tournament, bet_id: bet), method: :post do %>
+                    <i class="fas fa-plus-circle"></i>
+                  <% end %>
+                </div>
+              </div>
             </div>
-
           <% end %>
         </div>
       </div>
