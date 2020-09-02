@@ -96,10 +96,41 @@
     text-decoration: none;
     font-size: 42px;
   }
+  i:first-child {
+    font-size: 21px;
+    position: relative;
+    top: 9px;
+    left: 15px;
+  }
+  i:last-child {
+    position: relative;
+    left: -8px;
+  }
   a {
-    font-size: 47px;
+    font-size: 18px;
     color: black;
     font-weight: bold;
     text-decoration: none;
   }
 }
+
+.btn-add {
+  margin-left: 8px;
+  a {
+    color: $second;
+    font-size: 28px;
+    text-decoration: none;
+  }
+}
+
+.btn-show {
+  border: 0.5px solid;
+  border-radius: 30px;
+  padding: 4px 16px;
+  margin: 4px auto;
+  a {
+    color: $bg;
+    text-decoration: none;
+  }
+}
+

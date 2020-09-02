@@ -74,7 +74,7 @@ def seed_prod
   user.save!
   user = User.new(
     nickname: "Samah",
-    email: "samah@g.com",
+    email: "samahgmb@gmail.com",
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Samah_sto0ha.png')
@@ -82,7 +82,7 @@ def seed_prod
   user.save!
   user = User.new(
     nickname: "Céline",
-    email: "celine@g.com",
+    email: "mercier_celine@hotmail.fr",
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676496/Celine_ttggvj.png')
@@ -90,7 +90,7 @@ def seed_prod
   user.save!
   user = User.new(
     nickname: "Florian",
-    email: "flo@g.com",
+    email: "floriangiambiasi@gmail.com",
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Florian_sud1ha.png')
@@ -98,7 +98,7 @@ def seed_prod
   user.save!
   user = User.new(
     nickname: "Kernan",
-    email: "kernan@g.com",
+    email: "kernanmaheo@gmail.com",
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676497/Kernan_z3x0qc.png')
