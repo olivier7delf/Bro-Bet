@@ -8,11 +8,6 @@ class TournamentsController < ApplicationController
     # Réflechir aux infos utilent à montrer.
     @tournament = Tournament.find(params[:id])
     @bets = @tournament.bets
-    @available_bets = Bet.all.where(
-      "resulted_at < '#{@tournament.resulted_at}'
-      AND resulted_at > '#{DateTime.now}'
-      AND result IN (true, false)"
-      )
 
     #raise
     tournament_progress
@@ -22,5 +17,7 @@ class TournamentsController < ApplicationController
 
     @chatroom = @tournament.chatroom
     @message = Message.new()
+    @available_bets = current_user.in_bets.where.not(id: @tournament.bets).where(
+      "resulted_at > ? AND resulted_at < ?", DateTime.now, DateTime.now+500)
   end
 end
