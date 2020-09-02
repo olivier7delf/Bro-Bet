@@ -110,17 +110,17 @@ Bet.create!(
 )
 puts "CREATED : Sam Bête"
 
-Bet.all.each do |bet|
-  Chatroom.create(name: "bet-#{bet.id}", bet: bet)
-  User.all.each do |user|
-    if user == bet.user
-      BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
-    else
-      BetParticipation.create!(user: user, bet: bet, user_choice: !bet.owner_choice)
-    end
-  end
-end
-
+# Bet.all.each do |bet|
+#   Chatroom.create(name: "bet-#{bet.id}", bet: bet)
+#   User.all.each do |user|
+#     if user == bet.user
+#       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
+#     else
+#       BetParticipation.create!(user: user, bet: bet, user_choice: !bet.owner_choice)
+#     end
+#   end
+# end
+#
 Bet.create!(
   title: "6 Pari à rejoindre (de Sam)",
   stake: "une pinte",

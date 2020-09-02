@@ -27,6 +27,8 @@ class Bet < ApplicationRecord
   attribute :closed_at, default: -> { Time.now + 3600 * 12 }
   attribute :resulted_at, default: -> { Time.now + 3600 * 24 }
 
+  #validates :in_users, uniqueness: true
+
   private
 
   def resulted_at_after_closed_at

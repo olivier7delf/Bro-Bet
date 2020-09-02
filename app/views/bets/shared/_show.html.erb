@@ -1,4 +1,4 @@
-<div class="bet-infos">
+  <div class="bet-infos">
   <div class="bet-title">
     <h4>
     <%= @bet.title %>
@@ -33,20 +33,27 @@
     <%= render "./bets/shared/participants_choices" %>
   <% end %>
 
-    <p><%= @bet.description %></p>
-    <p>Mise : <%= @bet.stake %></p>
-    <p>Date de cloture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
-    <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
+  <p><%= @bet.description %></p>
+  <p>Mise : <%= @bet.stake %></p>
+  <p>Date de cloture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
+  <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
+
+  <a data-toggle="modal" data-target="#tournaments-availables">
+    <div class="btn-new-bet btn-color-success">
+      <span>Ajouter un tournoi</span>+<i class="fas fa-trophy"></i>
+    </div>
+  </a>
+  TOURNOI ICI (a SUPPR)
+  <% @bet.tournaments.each do |tournament| %>
+    <%= link_to tournament.title[0..28], tournament_path(tournament) %>
+  <% end %>
 </div>
 
 <%= render "./shared/show_chatroom" %>
 
-<div class="round-btn-link">
-<a data-toggle="modal" data-target="#tournaments-pending" href="<%= %>">+<i class="fas fa-trophy"></i></a>
-</div>
 
 <!-- Modal -->
-<div class="modal fade" id="tournaments-pending" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="tournaments-availables" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-center bg-second">
@@ -58,23 +65,12 @@
       <div class="modal-body d-flex justify-content-around bg-light">
         <div class="d-flex flex-column">
 
-          <% BetParticipation.where(bet: @bet).each_with_index do |participant,index| %>
+          <% @available_tournaments.each_with_index do |tournament, index| %>
 
             <div class="d-flex align-items-center mb-2">
-              <% if index > 0 %>
-                <% if participant.user.photo.attached? %>
-                  <%= cl_image_tag participant.user.photo.key, class: "avatar-bordered mb-2", style: "margin-left: -16px" %>
-                <% else %>
-                  <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo" style= "margin-left: -16px">
-                <% end %>
-              <% else %>
-                <% if participant.user.photo.attached? %>
-                  <%= cl_image_tag participant.user.photo.key, class: "avatar-bordered mb-2"%>
-                <% else %>
-                  <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
-                <% end %>
-              <% end %>
-              <span class="participant-name"><%= participant.user.nickname %></span>
+              <%= link_to tournament.title[0..14], tournament_path(tournament) %>
+              <%= link_to "Ajouter", tournament_tournament_bets_path(tournament, bet_id: @bet), method: :post  %>
+              </form>
             </div>
 
           <% end %>
