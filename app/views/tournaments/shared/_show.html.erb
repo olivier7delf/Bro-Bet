@@ -1,24 +1,49 @@
 <div class="bet-infos">
-  <h4><%= @tournament.title %></h4>
-  <div>
-    <% current_user.in_bets %>
+  <div class="bet-title">
+    <h4><%= @tournament.title %></h4>
+    <p class="text-left" >Par <%= @tournament.user.nickname %></p>
   </div>
+
+  <% case @tournament_progress
+  when "join_pending" %>
+    <%= render "./tournaments/shared/participants" %>
+
+
+    <%= render "./bets/shared/input_join_pending", bet_participation: @bet_participation%>
+
+
+  <% when "joined" %>
+    <%= render "./tournaments/shared/participants" %>
+    <label for="">Lien de partage : </label>
+    <!-- The text field -->
+    <input type="text" value="<%=request.original_url%>" id="myInput">
+    <!-- The button used to copy the text -->
+    <!-- <button onclick="myFunction()">Copy text</button> -->
+
+  <% when "result_pending" %>
+    <%= render "./tournaments/shared/participants" %>
+
+  <% when "resulted" %>
+    <%= render "./tournaments/shared/participants" %>
+  <% end %>
+
   <p><%= @tournament.description %></p>
-  <p>Créateur : <%= @tournament.user.nickname %></p>
   <p>Mise : <%= @tournament.stake %></p>
   <p>Date de cloture : <%= @tournament.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
   <p>Date de résultat : <%= @tournament.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
+  <% unless @tournament_progress == "join_pending" %>
     <a data-toggle="modal" data-target="#bets-availables">
-      <div class="btn-new-bet btn-color-success">
-        <span>Ajouter un pari</span>
-      </div>
-    </a>
-    <% @tournament.bets.each do |bet| %>
-      <%= link_to bet.title[0..28], bet_path(bet) %>
+        <div class="btn-new-bet btn-color-success">
+          <span>Ajouter un pari</span>
+        </div>
+      </a>
+      <% @tournament.bets.each do |bet| %>
+        <%= link_to bet.title[0..28], bet_path(bet) %>
     <% end %>
+    <%= render "./shared/show_chatroom" %>
+  <% end %>
 </div>
-<%= render "./shared/show_chatroom" %>
 
 <!-- Modal -->
 <div class="modal fade" id="bets-availables" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
