@@ -13,9 +13,9 @@
       <div style="height: 48px; width: 48px;"></div>
     <% end %>
     <% if participation.user.photo.attached? %>
-      <%= cl_image_tag participation.user.photo.key, class: "avatar-bordered mr-3" %>
+      <%= cl_image_tag participation.user.photo.key, class: "avatar avatar-classement mr-3" %>
     <% else %>
-      <img class="avatar avatar-profil mr-3" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+      <img class="avatar avatar-classement mr-3" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
     <% end %>
     <span><%= participation.user.nickname %> - <%= participation.score %> pts</span>
 
