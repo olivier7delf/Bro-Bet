@@ -2,7 +2,7 @@
   <a data-toggle="modal" data-target="#participants-no-closed">
     <div class="avatars">
       <% @bet.in_users.each_with_index do |participant, index| %>
-        <% if participant.user.photo.attached? %>
+        <% if participant.photo.attached? %>
           <%= cl_image_tag participant.user.photo.key, class: "avatar-bordered mb-2" %>
         <% else %>
           <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">

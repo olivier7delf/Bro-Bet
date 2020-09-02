@@ -34,12 +34,13 @@
   <% end %>
 
     <p><%= @bet.description %></p>
-    <p>Mise : <br><%= @bet.stake %></p>
-    <p>Date de cloture : <br><%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
-    <p>Date de résultat : <br><%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
+    <p>Mise : <%= @bet.stake %></p>
+    <p>Date de cloture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
+    <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 </div>
 
+<%= render "./shared/show_chatroom" %>
+=======
 <div class="round-btn-link">
 <a href="<%= %>">+<i class="fas fa-trophy"></i></a>
 </div>
-
