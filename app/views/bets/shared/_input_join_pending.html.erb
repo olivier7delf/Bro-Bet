@@ -1,7 +1,5 @@
-
 <%= simple_form_for [@bet, bet_participation] do |f| %>
-
-  <span class="Ton choix"> Fais ton choix</span>
+  <span class="Ton choix"> Fais ton choix </span>
   <div class="result-btns">
     <%= f.input_field :user_choice, inline_label: 'Remember me', label: false,
             :collection => [[true, 'Bro'], [false, 'No Bro']],

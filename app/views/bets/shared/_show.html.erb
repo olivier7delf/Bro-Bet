@@ -6,17 +6,14 @@
     <p class="text-left" >Par <%= @bet.user.nickname %></p>
   </div>
 
-
   <% if @progress == "resulted" %>
     Résultat : <%= @bet.result ? "Bro" : "No bro" %>
   <% end %>
 
   <% case @progress
-  when "join_pending" %>
+    when "join_pending" %>
     <%= render "./bets/shared/participants" %>
     <%= render "./bets/shared/input_join_pending", bet_participation: @bet_participation%>
-
-
   <% when "joined" %>
     <%= render "./bets/shared/participants" %>
     <label for="">Lien de partage : </label>
@@ -26,7 +23,7 @@
     <!-- <button onclick="myFunction()">Copy text</button> -->
   <% when "result_pending" %>
     <%= render "./bets/shared/participants_choices" %>
-  <% when "result_to_put" %>
+  <% when "result_input" %>
     <%= render "./bets/shared/participants_choices" %>
     <%= render "./bets/shared/result_input" %>
   <% when "resulted" %>
@@ -38,19 +35,19 @@
   <p>Date de cloture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
   <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
-  <a data-toggle="modal" data-target="#tournaments-availables">
-    <div class="btn-new-bet btn-color-success">
-      <span>Ajouter un tournoi</span>+<i class="fas fa-trophy"></i>
-    </div>
-  </a>
-  TOURNOI ICI (a SUPPR)
-  <% @bet.tournaments.each do |tournament| %>
-    <%= link_to tournament.title[0..28], tournament_path(tournament) %>
+  <% unless @progress == "join_pending" %>
+    <a data-toggle="modal" data-target="#tournaments-availables">
+      <div class="btn-new-bet btn-color-success">
+        <span>Ajouter un tournoi</span>+<i class="fas fa-trophy"></i>
+      </div>
+    </a>
+    TOURNOI ICI (a SUPPR)
+    <% @bet.tournaments.each do |tournament| %>
+      <%= link_to tournament.title[0..28], tournament_path(tournament) %>
+    <% end %>
+    <%= render "./shared/show_chatroom" %>
   <% end %>
 </div>
-
-<%= render "./shared/show_chatroom" %>
-
 
 <!-- Modal -->
 <div class="modal fade" id="tournaments-availables" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
