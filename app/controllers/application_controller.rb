@@ -56,4 +56,11 @@ class ApplicationController < ActionController::Base
       return @user_result
     end
   end
+
+  def get_available_tournaments
+    @available_tournaments = current_user.in_tournaments.where.not(id: @bet.tournaments).where(
+      "resulted_at > ? AND resulted_at > ?", DateTime.now, @bet.resulted_at)
+    @available_tournaments = current_user.in_tournaments.where.not(id: @bet.tournaments).where(
+      "resulted_at > ? ", DateTime.now)
+  end
 end
