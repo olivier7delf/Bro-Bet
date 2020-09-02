@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   # index will be handle by user ?
   resources :bet_participations, only: [:index]
-  resources :tournament_participations, only: [:index]
 
   resources :bets, only: [:show] do
     resources :bet_participations, only: [:create]
@@ -16,13 +15,14 @@ Rails.application.routes.draw do
 
   namespace :my do
     resources :bets, only: [:show, :new, :create, :edit, :update, :destroy]
-    resources :tournaments, only: [:show, :new, :create, :edit, :update, :destroy]
+    resources :tournaments, only: [:show,:new, :create, :edit, :update, :destroy]
   end
 
   resources :users, only: [:show]
 
-  resources :tournaments, only: [:show] do
+  resources :tournaments, only: [:show, :index] do
     # resources :bets do
+      resources :tournament_participations, only: [:index]
       resources :tournament_bets, only: [:create, :index]
     # end
   end
