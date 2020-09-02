@@ -1,4 +1,5 @@
 <%= render "./shared/mini-navbar-tournament" %>
-<% @participations.each do |participation| %>
-  <% raise %>
+<h2 class="text-center">Classement</h2>
+<% @participations.each_with_index do |participation| %>
+    <p> <%= participation.user.nickname %> - <%= participation.score %> </p>
 <% end %>

@@ -1,7 +1,7 @@
 class TournamentParticipationsController < ApplicationController
   def index
     @tournament = Tournament.find(params["tournament_id"])
-    @participations = @tournament.tournament_participations
+    @participations = @tournament.tournament_participations.order(score: :desc)
   end
 
   def create
