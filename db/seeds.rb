@@ -42,7 +42,7 @@ user.save!
 
 user = User.new(
   nickname: "Olivier",
-  email: "o@g.com",
+  email: "oli@g.com",
   password: "123123",
 )
 file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Ol_ru1oda.png')
@@ -110,17 +110,6 @@ Bet.create!(
 )
 puts "CREATED : Sam Bête"
 
-Bet.all.each do |bet|
-  Chatroom.create(name: "bet-#{bet.id}", bet: bet)
-  User.all.each do |user|
-    if user == bet.user
-      BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
-    else
-      BetParticipation.create!(user: user, bet: bet, user_choice: !bet.owner_choice)
-    end
-  end
-end
-
 Bet.create!(
   title: "6 Pari à rejoindre (de Sam)",
   stake: "une pinte",
@@ -131,11 +120,8 @@ Bet.create!(
 )
 puts "CREATED : Sam Bête"
 
-last_bet = Bet.last
-Chatroom.create(name: "bet-#{last_bet.id}", bet: last_bet)
-BetParticipation.create!(user: User.find_by(nickname: "Sam"), bet: Bet.last, user_choice: Bet.last.owner_choice)
-
 Bet.all.each do |bet|
+  Chatroom.create(name: "bet-#{bet.id}", bet: bet)
   User.all.each do |user|
     if user == bet.user
       puts "== #{user}, #{bet}"
@@ -184,6 +170,8 @@ Tournament.create!(
   resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
   user: User.find_by(nickname: "Théotime")
 )
+
+Chatroom.create(name: "tournament-#{Tournament.last.id}", tournament: Tournament.last)
 
 TournamentBet.create!(
   tournament: Tournament.last,
