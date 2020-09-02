@@ -9,6 +9,7 @@ class My::BetsController < ApplicationController
     bet_user_result
     @chatroom = @bet.chatroom
     @message = Message.new()
+    get_available_tournaments
   end
 
   def new

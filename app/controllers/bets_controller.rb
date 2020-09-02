@@ -9,5 +9,8 @@ class BetsController < ApplicationController
     end
     @chatroom = @bet.chatroom
     @message = Message.new()
+
+    get_available_tournaments
+
   end
 end

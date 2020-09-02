@@ -14,7 +14,7 @@
             </div>
             <p><i class="far fa-clock color-bold"></i> : <strong><%= pending_bet.resulted_at.strftime("%d/%m/%y") %></strong></p>
             <!-- <p>Résultat le <%= pending_bet.resulted_at.strftime("%d/%m/%y") %></p> -->
-            <% if current_user.in_in_bets.include? pending_bet %>
+            <% if current_user.in_bets_within_tournaments.include? pending_bet %>
                 <i class="fas fa-trophy tournament-icon"></i>
             <% end %>
           </div>
@@ -51,7 +51,7 @@
                   <div class="<%= mon_resultat == 'BRO' ? "bro-text-bold" : "no-bro-text-bold" %>"><%= mon_resultat %></div>
                 </div>
               </div>
-              <% if current_user.in_in_bets.include? finished_bet %>
+              <% if current_user.in_bets_within_tournaments.include? finished_bet %>
                 <i class="fas fa-trophy tournament-icon"></i>
               <% end %>
             </div>
@@ -76,7 +76,7 @@
                   <div class="<%= mon_resultat == 'BRO' ? "bro-text-bold" : "no-bro-text-bold" %>"><%= mon_resultat %></div>
                 </div>
               </div>
-              <% if current_user.in_in_bets.include? finished_bet %>
+              <% if current_user.in_bets_within_tournaments.include? finished_bet %>
                 <i class="fas fa-trophy tournament-icon"></i>
               <% end %>
             </div>
