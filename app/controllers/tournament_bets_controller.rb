@@ -1,13 +1,13 @@
 class TournamentBetsController < ApplicationController
-  # def index
-  #   @user = current_user
+  def index
+    @user = current_user
+    @tournament = Tournament.find(params["tournament_id"])
+    @finished_tournament_bets = @tournament.bets.where("resulted_at < ?", DateTime.now)
+    @finished_tournament_bets.order(resulted_at: :desc)
 
-  #   @finished_bets = @user.in_bets.where.not(result: nil)
-  #   @finished_bets.order(resulted_at: :desc)
-
-  #   @pending_bets = @user.in_bets.where(result: nil)
-  #   @pending_bets.order(resulted_at: :desc)
-  # end
+    @pending_tournament_bets = @tournament.bets.where("resulted_at > ?", DateTime.now)
+    @pending_tournament_bets.order(resulted_at: :desc)
+  end
 
   def create
     @bet = Bet.find(params["bet_id"])

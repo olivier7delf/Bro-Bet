@@ -156,10 +156,16 @@ TournamentBet.create!(
   bet: Bet.last
 )
 
-TournamentParticipation.create!(
+User.all.each do |user|
+  TournamentParticipation.create!(
   tournament: Tournament.last,
-  user: User.find_by(nickname: "Théotime")
+  user: user
 )
+end
+# TournamentParticipation.create!(
+#   tournament: Tournament.last,
+#   user: User.find_by(nickname: "Théotime")
+# )
 
 Tournament.create!(
   title: "Tournoi des vacances à Amiens",

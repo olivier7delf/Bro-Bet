@@ -1,0 +1,37 @@
+<% if action_name == 'show' && controller_name == 'tournaments' %>
+  <div class="mini-navbar">
+    <div class="tabs">
+      <%= link_to  do %>
+        <i class="fas fa-list-ol"></i>
+      <% end %>
+    </div>
+    <div class="tabs active">
+      <%= link_to tournament_path(@tournament) do %>
+        <i class="fas fa-trophy text-center"></i>
+      <% end %>
+    </div>
+    <div class="tabs">
+      <%= link_to tournament_tournament_bets_path(@tournament) do %>
+        <i class="fas fa-handshake text-center"></i>
+      <% end %>
+    </div>
+  </div>
+<% elsif action_name == 'index' && controller_name == 'tournament_bets' %>
+  <div class="mini-navbar">
+    <div class="tabs">
+      <%= link_to  do %>
+        <i class="fas fa-list-ol"></i>
+      <% end %>
+    </div>
+    <div class="tabs">
+      <%= link_to tournament_path(@tournament) do %>
+        <i class="fas fa-trophy text-center"></i>
+      <% end %>
+    </div>
+    <div class="tabs active">
+      <%= link_to tournament_tournament_bets_path(@tournament) do %>
+        <i class="fas fa-handshake text-center"></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
