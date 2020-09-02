@@ -11,7 +11,7 @@
         <% end %>
       </div>
       <div class="tabs">
-        <%= link_to tournament_participations_path do %>
+        <%= link_to tournaments_path do %>
           <i class="fas fa-trophy text-center"></i>
         <% end %>
       </div>
@@ -29,12 +29,12 @@
       <% end %>
     </div>
     <div class="tabs">
-      <%= link_to tournament_participations_path do %>
+      <%= link_to tournaments_path do %>
         <i class="fas fa-trophy text-center"></i>
       <% end %>
     </div>
   </div>
-<% elsif action_name == 'index' && controller_name == 'tournament_participations' %>
+<% elsif action_name == 'index' && controller_name == 'tournaments' %>
   <div class="mini-navbar">
     <div class="tabs">
       <%= link_to bet_participations_path do %>
@@ -47,7 +47,7 @@
       <% end %>
     </div>
     <div class="tabs active">
-      <%= link_to tournament_participations_path do %>
+      <%= link_to tournaments_path do %>
         <i class="fas fa-trophy text-center"></i>
       <% end %>
     </div>

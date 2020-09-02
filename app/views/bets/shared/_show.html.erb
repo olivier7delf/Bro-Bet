@@ -22,6 +22,7 @@
     <label for="">Lien de partage : </label>
     <!-- The text field -->
     <input type="text" value="<%=request.original_url%>" id="myInput">
+    <img id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
     <!-- The button used to copy the text -->
     <!-- <button onclick="myFunction()">Copy text</button> -->
   <% when "result_pending" %>
