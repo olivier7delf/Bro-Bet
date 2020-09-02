@@ -5,17 +5,17 @@ class TournamentParticipationsController < ApplicationController
   end
 
   def create
-    # @bet = Bet.find(params["bet_id"])
-    # bp = BetParticipation.new(bet_participation_params)
-    # bp.bet = @bet
-    # bp.user = current_user
-    # bp.save
-    # redirect_to bet_path(@bet)
+    @tournament = Tournament.find(params["tournament_id"])
+    tp = TournamentParticipation.new(tournament_id: params[:tournament_id], score: 0)
+    tp.tournament = @tournament
+    tp.user = current_user
+    tp.save
+    redirect_to tournament_path(@tournament)
   end
 
   private
 
-  def bet_participation_params
-    params.require(:bet_participation).permit(:user_choice)
-  end
+  # def tournament_participation_params
+  #   params.require(:tournament_participation).permit(:score)
+  # end
 end
