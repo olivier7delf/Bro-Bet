@@ -19,6 +19,7 @@
     <label for="">Lien de partage : </label>
     <!-- The text field -->
     <input type="text" value="<%=request.original_url%>" id="myInput">
+    <img id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
     <!-- The button used to copy the text -->
     <!-- <button onclick="myFunction()">Copy text</button> -->
   <% when "result_pending" %>
@@ -36,12 +37,12 @@
   <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
   <% unless @progress == "join_pending" %>
-    <a data-toggle="modal" data-target="#tournaments-availables">
-      <div class="btn-new-bet btn-color-success">
-        <span>Ajouter un tournoi</span>+<i class="fas fa-trophy"></i>
-      </div>
-    </a>
-    TOURNOI ICI (a SUPPR)
+      <a data-toggle="modal" data-target="#tournaments-availables">
+        <div class="round-btn-link">
+          <i class="fas fa-plus"></i>
+          <i class="fas fa-trophy"></i>
+        </div>
+      </a>
     <% @bet.tournaments.each do |tournament| %>
       <%= link_to tournament.title[0..28], tournament_path(tournament) %>
     <% end %>
@@ -64,9 +65,15 @@
 
           <% @available_tournaments.each_with_index do |tournament, index| %>
 
-            <div class="d-flex align-items-center mb-2">
-              <%= link_to tournament.title[0..14], tournament_path(tournament) %>
-              <%= link_to "Ajouter", tournament_tournament_bets_path(tournament, bet_id: @bet), method: :post  %>
+            <div class="d-flex justify-content-center mb-2">
+              <div class="btn-show">
+                <%= link_to tournament.title[0..30], tournament_path(tournament) %>
+              </div>
+              <div class="btn-add">
+                <%= link_to tournament_tournament_bets_path(tournament, bet_id: @bet), method: :post do  %>
+                  <i class="fas fa-plus-circle"></i>
+                <% end %>
+              </div>
               </form>
             </div>
 
