@@ -1,33 +1,34 @@
   <div class="bet-infos">
   <div class="bet-title">
-    <h4>
+    <h3>
     <%= @bet.title %>
-    </h4>
+    </h3>
     <p class="text-left" >Par <%= @bet.user.nickname %></p>
   </div>
-
 
   <% if @progress == "resulted" %>
     Résultat : <%= @bet.result ? "Bro" : "No bro" %>
   <% end %>
 
   <% case @progress
-  when "join_pending" %>
+    when "join_pending" %>
     <%= render "./bets/shared/participants" %>
     <%= render "./bets/shared/input_join_pending", bet_participation: @bet_participation%>
-
-
   <% when "joined" %>
     <%= render "./bets/shared/participants" %>
-    <label for="">Lien de partage : </label>
-    <!-- The text field -->
-    <input type="text" value="<%=request.original_url%>" id="myInput">
-    <img id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
+    <div class="justify-content-center" style="text-align: center">
+      <div class="justify-content-center" style="margin-bottom: 15px">
+        <label for="">Lien de partage : </label>
+        <!-- The text field -->
+        <input type="text" value="<%=request.original_url%>" id="myInput">
+      </div>
+      <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
+    </div>
     <!-- The button used to copy the text -->
     <!-- <button onclick="myFunction()">Copy text</button> -->
   <% when "result_pending" %>
     <%= render "./bets/shared/participants_choices" %>
-  <% when "result_to_put" %>
+  <% when "result_input" %>
     <%= render "./bets/shared/participants_choices" %>
     <%= render "./bets/shared/result_input" %>
   <% when "resulted" %>
@@ -39,20 +40,19 @@
   <p>Date de cloture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
   <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
-  <a data-toggle="modal" data-target="#tournaments-availables">
-    <div class="round-btn-link">
-      <i class="fas fa-plus"></i>
-      <i class="fas fa-trophy"></i>
-    </div>
-  </a>
-  TOURNOI ICI (a SUPPR)
-  <% @bet.tournaments.each do |tournament| %>
-    <%= link_to tournament.title[0..28], tournament_path(tournament) %>
+  <% unless @progress == "join_pending" %>
+      <a data-toggle="modal" data-target="#tournaments-availables">
+        <div class="round-btn-link">
+          <i class="fas fa-plus"></i>
+          <i class="fas fa-trophy"></i>
+        </div>
+      </a>
+    <% @bet.tournaments.each do |tournament| %>
+      <%= link_to tournament.title[0..28], tournament_path(tournament) %>
+    <% end %>
+    <%= render "./shared/show_chatroom" %>
   <% end %>
 </div>
-
-<%= render "./shared/show_chatroom" %>
-
 
 <!-- Modal -->
 <div class="modal fade" id="tournaments-availables" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
