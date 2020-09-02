@@ -2,10 +2,18 @@
   <a data-toggle="modal" data-target="#participants-no-closed">
     <div class="avatars">
       <% @bet.in_users.each_with_index do |participant, index| %>
-        <% if participant.photo.attached? %>
-          <%= cl_image_tag participant.photo.key, class: "avatar-bordered mb-2" %>
+        <% if index > 0 %>
+          <% if participant.photo.attached? %>
+            <%= cl_image_tag participant.photo.key, class: "avatar-bordered mb-2", style: "margin-left: -16px" %>
+          <% else %>
+            <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo" style= "margin-left: -16px">
+          <% end %>
         <% else %>
-          <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+          <% if participant.photo.attached? %>
+            <%= cl_image_tag participant.photo.key, class: "avatar-bordered mb-2"%>
+          <% else %>
+            <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+          <% end %>
         <% end %>
       <% end %>
     </div>

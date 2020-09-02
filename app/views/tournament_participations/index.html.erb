@@ -1,5 +1,24 @@
 <%= render "./shared/mini-navbar-tournament" %>
 <h2 class="text-center">Classement</h2>
-<% @participations.each_with_index do |participation| %>
-    <p> <%= participation.user.nickname %> - <%= participation.score %> </p>
+<% @participations.each_with_index do |participation, index| %>
+  <div class="ligne-classement">
+    <% case index
+      when 0 %>
+      <img src="https://img.icons8.com/emoji/48/000000/1st-place-medal-emoji.png"/>
+    <% when 1 %>
+      <img src="https://img.icons8.com/emoji/48/000000/2nd-place-medal-emoji.png"/>
+    <% when 2 %>
+      <img src="https://img.icons8.com/emoji/48/000000/3rd-place-medal-emoji.png"/>
+    <% when @participations.length - 1 %>
+      <div style="height: 48px; width: 48px;"></div>
+    <% end %>
+    <% if participation.user.photo.attached? %>
+      <%= cl_image_tag participation.user.photo.key, class: "avatar-bordered mr-3" %>
+    <% else %>
+      <img class="avatar avatar-profil mr-3" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+    <% end %>
+    <span><%= participation.user.nickname %> - <%= participation.score %> pts</span>
+
+  </div>
+
 <% end %>
