@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
         @progress = "result_pending"
 
       elsif @bet.resulted_at < now && @bet.result.nil? && current_user == @bet.user
-        @progress =  "result_to_put"
+        @progress =  "result_input"
 
       elsif !@bet.result.nil?
         @progress =  "resulted"
@@ -40,13 +40,23 @@ class ApplicationController < ActionController::Base
   end
 
   def tournament_progress
-    dt = DateTime.now
-    if dt > @tournament.resulted_at
-      @tournament_progress = "resulted"
-    elsif dt > @tournament.closed_at
-      @tournament_progress = "result_pending"
+    dt = Time.now
+    now = Time.zone.local_to_utc(dt)
+    if !current_user.in_tournaments.include?(@tournament)
+      if @tournament.closed_at > now
+        @tournament_progress = "join_pending"
+        @tournament_participation = TournamentParticipation.new(tournament: @tournament, user: current_user)
+      else
+        @tournament_progress = "not_joined"
+      end
     else
-      @tournament_progress = "joined"
+      if now > @tournament.resulted_at
+        @tournament_progress = "resulted"
+      elsif now > @tournament.closed_at
+        @tournament_progress = "result_pending"
+      else
+        @tournament_progress = "joined"
+      end
     end
   end
 
