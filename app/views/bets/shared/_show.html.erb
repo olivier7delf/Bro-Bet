@@ -1,8 +1,8 @@
   <div class="bet-infos">
   <div class="bet-title">
-    <h4>
+    <h3>
     <%= @bet.title %>
-    </h4>
+    </h3>
     <p class="text-left" >Par <%= @bet.user.nickname %></p>
   </div>
 
@@ -19,10 +19,14 @@
 
   <% when "joined" %>
     <%= render "./bets/shared/participants" %>
-    <label for="">Lien de partage : </label>
-    <!-- The text field -->
-    <input type="text" value="<%=request.original_url%>" id="myInput">
-    <img id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
+    <div class="justify-content-center" style="text-align: center">
+      <div class="justify-content-center" style="margin-bottom: 15px">
+        <label for="">Lien de partage : </label>
+        <!-- The text field -->
+        <input type="text" value="<%=request.original_url%>" id="myInput">
+      </div>
+      <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
+    </div>
     <!-- The button used to copy the text -->
     <!-- <button onclick="myFunction()">Copy text</button> -->
   <% when "result_pending" %>
@@ -45,7 +49,6 @@
       <i class="fas fa-trophy"></i>
     </div>
   </a>
-  TOURNOI ICI (a SUPPR)
   <% @bet.tournaments.each do |tournament| %>
     <%= link_to tournament.title[0..28], tournament_path(tournament) %>
   <% end %>
