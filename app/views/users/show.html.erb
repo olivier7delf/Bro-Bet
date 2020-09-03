@@ -4,7 +4,7 @@
   <% if current_user.photo.attached? %>
    <%= cl_image_tag current_user.photo.key, class: "avatar avatar-profil mb-2" %>
   <% else %>
-    <img class="avatar avatar-profil mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+    <img class="avatar avatar-profil mb-2" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo">
   <% end %>
   <span><strong>Niveau</strong> : <%= @level %></span>
 </div>

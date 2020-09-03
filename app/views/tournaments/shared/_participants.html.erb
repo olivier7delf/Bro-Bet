@@ -2,10 +2,18 @@
   <a data-toggle="modal" data-target="#participants-no-closed">
     <div class="avatars">
       <% @tournament.in_users.each_with_index do |participant, index| %>
-        <% if participant.photo.attached? %>
-          <%= cl_image_tag participant.photo.key, class: "avatar avatar-participant mb-2" %>
+        <% if index > 0 %>
+          <% if participant.photo.attached? %>
+            <%= cl_image_tag participant.photo.key, class: "avatar avatar-participant mb-2", style: "margin-left: -16px" %>
+          <% else %>
+            <img class="avatar avatar-participant mb-2" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo" style= "margin-left: -16px">
+          <% end %>
         <% else %>
-          <img class="avatar avatar-participant mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+          <% if participant.photo.attached? %>
+            <%= cl_image_tag participant.photo.key, class: "avatar avatar-participant mb-2"%>
+          <% else %>
+            <img class="avatar avatar-participant mb-2" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo">
+          <% end %>
         <% end %>
       <% end %>
     </div>
@@ -28,22 +36,13 @@
           <% TournamentParticipation.where(tournament: @tournament).each_with_index do |participant,index| %>
 
             <div class="d-flex align-items-center mb-2">
-              <% if index > 0 %>
-                <% if participant.user.photo.attached? %>
-                  <%= cl_image_tag participant.user.photo.key, class: "avatar avatar-participant mb-2", style: "margin-left: -16px" %>
-                <% else %>
-                  <img class="avatar avatar-participant mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo" style= "margin-left: -16px">
-                <% end %>
+              <% if participant.user.photo.attached? %>
+                <%= cl_image_tag participant.user.photo.key, class: "avatar avatar-participant mb-2", style: "margin-left: -16px" %>
               <% else %>
-                <% if participant.user.photo.attached? %>
-                  <%= cl_image_tag participant.user.photo.key, class: "avatar avatar-participant mb-2"%>
-                <% else %>
-                  <img class="avatar avatar-participant mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
-                <% end %>
+                <img class="avatar avatar-participant mb-2" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo" style= "margin-left: -16px">
               <% end %>
               <span class="participant-name"><%= participant.user.nickname %></span>
             </div>
-
           <% end %>
         </div>
       </div>
