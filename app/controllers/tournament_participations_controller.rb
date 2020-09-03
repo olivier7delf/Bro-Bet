@@ -6,7 +6,7 @@ class TournamentParticipationsController < ApplicationController
 
   def create
     @tournament = Tournament.find(params["tournament_id"])
-    tp = TournamentParticipation.new(tournament_id: params[:tournament_id], score: 0)
+    tp = TournamentParticipation.new(tournament_id: params[:tournament_id])
     tp.tournament = @tournament
     tp.user = current_user
     tp.save
