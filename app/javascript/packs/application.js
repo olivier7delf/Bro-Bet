@@ -27,6 +27,7 @@ require("chart.js")
 
 // External imports
 import "bootstrap";
+import "../plugins/flatpickr"
 import { initChatroomCable } from "../channels/chatroom_channel";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -51,5 +52,23 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   // myFunction()
   initChatroomCable();
+  flatpickr(".datepicker", {
+    enableTime: true,
+    dateFormat: "Y-m-d H:i",
 });
+});
+
+/* Copy generate link for new bet */
+const linkToCopy = document.getElementById('link-to-copy');
+
+if(linkToCopy) {
+  linkToCopy.addEventListener('click', copy)
+}
+
+function copy() {
+  console.log('hey');
+  var copyText = document.getElementById('link-to-copy-input');
+  copyText.select();
+  document.execCommand("copy");
+}
 

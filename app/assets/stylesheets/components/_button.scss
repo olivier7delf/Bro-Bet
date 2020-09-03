@@ -157,6 +157,28 @@
   }
 }
 
+#link-to-copy-input {
+  background-color: black;
+  border: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+#link-to-copy {
+  border: 2px solid;
+  font-size: 20px;
+  padding: 8px 16px;
+  border-radius: 15px;
+  border-color: $second;
+  &:active {
+    transform: scale(1.2);
+  }
+}
+
 .btn-show {
   border: 0.5px solid;
   border-radius: 30px;

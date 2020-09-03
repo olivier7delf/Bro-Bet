@@ -18,9 +18,9 @@
     <%= render "./bets/shared/participants" %>
     <div class="justify-content-center" style="text-align: center">
       <div class="justify-content-center" style="margin-bottom: 15px">
-        <label for="">Lien de partage : </label>
+        <label for="" id="link-to-copy" data-link="" >Copier le lien</label>
         <!-- The text field -->
-        <input type="text" value="<%=request.original_url%>" id="myInput">
+        <input type="text" value="<%=request.original_url%>" id="link-to-copy-input">
       </div>
       <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
     </div>
