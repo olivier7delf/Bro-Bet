@@ -2,11 +2,9 @@ class TournamentBetsController < ApplicationController
   def index
     @user = current_user
     @tournament = Tournament.find(params["tournament_id"])
-    @finished_tournament_bets = @tournament.bets.where("resulted_at < ?", DateTime.now)
-    @finished_tournament_bets.order(resulted_at: :desc)
+    @finished_tournament_bets = @tournament.bets.where("resulted_at < ?", DateTime.now).order(resulted_at: :asc)
+    @pending_tournament_bets = @tournament.bets.where("resulted_at > ?", DateTime.now).order(resulted_at: :asc)
 
-    @pending_tournament_bets = @tournament.bets.where("resulted_at > ?", DateTime.now)
-    @pending_tournament_bets.order(resulted_at: :desc)
   end
 
   def create
@@ -14,7 +12,7 @@ class TournamentBetsController < ApplicationController
     @tournament = Tournament.find(params["tournament_id"])
     tournamet_bet = TournamentBet.new(bet: @bet, tournament: @tournament)
     tournamet_bet.save
-    redirect_to tournament_path(@tournament)
+    redirect_to tournament_tournament_bets_path(@tournament)
   end
 
   private
