@@ -17,7 +17,8 @@
     <% else %>
       <img class="avatar avatar-classement mr-3" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo">
     <% end %>
-    <span><%= participation["nickname"] %> - <%= participation["score"] %> pts</span>
+    <span><%= participation["nickname"] %> - <%= participation["score"] %> pts
+      impact bonus: <%= @participations_bonus.select { |pp| pp["nickname"] == participation["nickname"] }.first["impact_score"] %></span>
 
   </div>
 

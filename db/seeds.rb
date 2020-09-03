@@ -33,7 +33,80 @@ Bonuse.create!(title: "champignon", probability: 0.1, description: "Vroum ! Vous
 Bonuse.create!(title: "dynamite", probability: 0.07, description: "Tic tac ! Attention à ne pas vous brulez, elle risque de vous explosez dessus, mais si cela n'arrive pas, votre cible se fera un plaisir de la garder...")
 Bonuse.create!(title: "Julie Lescroc", probability: 0.05, description: "Hop ! Vous filoutez en échangeant votre choix de pari avec un adversaire")
 Bonuse.create!(title: "brollard", probability: 0.95, description: "Cool un brollard ! 1 chance sur 10 d'avoir vos gains multipliés par deux !")
-puts "CREATED : Bonuses"
+
+# bonuse = Bonuse.new(
+#   title: "étoile",
+#   probability: 0.05,
+#   description: "Invicible, aucun bonus adverse ne t'atteint",
+# )
+# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154732/%C3%A9toile_r5nnak.png')
+# bonuse.photo.attach(io: file, filename: 'etoile', content_type: 'image/png')
+# bonuse.save!
+
+# bonuse = Bonuse.new(
+#   title: "éclair",
+#   probability: 0.02,
+#   description: "https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_393/v1599154730/%C3%A9clair_f4fzec.png",
+# )
+# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Margot_ir7hyr.png')
+# bonuse.photo.attach(io: file, filename: 'eclair', content_type: 'image/png')
+# bonuse.save!
+
+# bonuse = Bonuse.new(
+#   title: "champignon",
+#   probability: 0.1,
+#   description: "Vroum ! Vous passez la seconde et vos gains sont multipliés par deux !",
+# )
+# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/Champignon_gjxtuq.png')
+# bonuse.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
+# bonuse.save!
+
+# bonuse = Bonuse.new(
+#   title: "dynamite",
+#   probability: 0.07,
+#   description: "Tic tac ! Attention à ne pas vous bruler, elle risque de vous exploser dessus, mais si cela n'arrive pas, votre cible se fera un plaisir de la récupérer...",
+# )
+# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_384/v1599154731/dynamite_nehjrg.png')
+# bonuse.photo.attach(io: file, filename: 'dynamite', content_type: 'image/png')
+# bonuse.save!
+
+# bonuse = Bonuse.new(
+#   title: "switch",
+#   probability: 0.05,
+#   description: "Hop ! Vous filoutez en échangeant votre choix de pari avec un adversaire",
+# )
+# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/switch_jbz31y.png')
+# bonuse.photo.attach(io: file, filename: 'switch', content_type: 'image/png')
+# bonuse.save!
+
+# bonuse = Bonuse.new(
+#   title: "brollard",
+#   probability: 0.95,
+#   description: "Cool un brollard ! 1 chance sur 10 d'avoir vos gains multipliés par deux !",
+# )
+# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/brollard_wb3aj6.png')
+# bonuse.photo.attach(io: file, filename: 'brollard', content_type: 'image/png')
+# bonuse.save!
+
+# bonuse = Bonuse.new(
+#   title: "tortue rouge",
+#   probability: 0.05,
+#   description: "Le tord tue !",
+# )
+# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155874/MK8-CaraoaceRouge-Illustration_viehqd.png')
+# bonuse.photo.attach(io: file, filename: 'tortuerouge', content_type: 'image/png')
+# bonuse.save!
+
+# bonuse = Bonuse.new(
+#   title: "tortue bleue",
+#   probability: 0.95,
+#   description: "As-tu tort ?",
+# )
+# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155873/tortue_bleue_ut6nip.png')
+# bonuse.photo.attach(io: file, filename: 'tortuebleue', content_type: 'image/png')
+# bonuse.save!
+
+# puts "CREATED : Bonuses"
 
 puts "Creating Users..."
 user = User.new(
@@ -226,7 +299,9 @@ User.all.each do |user|
 )
 end
 
-results = [true, true, false, true, nil, nil]
+BONUSES = ["étoile", "éclair", "champignon", "éclair", "étoile", "champignon", "champignon"] * 4
+results = [true, false, false, nil, nil, nil]
+user_choices = [true, false, true, false, true, false]
 i = 0
 6.times do
 
@@ -257,16 +332,20 @@ i = 0
 
   Chatroom.create(name: "bet-#{bet.id}", bet: bet)
 
-
-  user_choices = [true, false, false, true]
   User.all.each_with_index do |user, index|
     user_choice = user_choices[index]
     if user == bet.user
       puts "== #{user.nickname}, #{bet.title}"
       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
+
     elsif i < 7
       puts "#{user.nickname}, #{bet.title}, user_choice = #{user_choice}"
       BetParticipation.create!(user: user, bet: bet, user_choice: user_choice)
+
+    end
+    if i < 4
+      bonuse = Bonuse.find_by(title: BONUSES[i * user.nickname.length])
+      bonus_used = BonusProgress.create!(bet: bet, tournament: Tournament.last, user: user, bonuse: bonuse, progress: "used")
     end
   end
   i += 1
