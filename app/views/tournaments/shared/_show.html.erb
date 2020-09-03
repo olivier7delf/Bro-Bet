@@ -25,7 +25,7 @@
 
   <p><%= @tournament.description %></p>
   <p>Mise : <%= @tournament.stake %></p>
-  <p>Date de cloture : <%= @tournament.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
+  <p>Date de clôture : <%= @tournament.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
   <p>Date de résultat : <%= @tournament.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
   <% unless @tournament_progress == "join_pending" %>

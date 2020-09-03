@@ -11,20 +11,19 @@
       Résultat : <%= @bet.result ? "Bro" : "No bro" %>
     <% end %>
 
-    <% case @progress
-      when "join_pending" %>
-      <%= render "./bets/shared/participants" %>
-      <%= render "./bets/shared/input_join_pending", bet_participation: @bet_participation%>
-    <% when "joined" %>
-      <%= render "./bets/shared/participants" %>
-      <div class="justify-content-center" style="text-align: center">
-        <div class="justify-content-center" style="margin-bottom: 15px">
-          <label for="">Lien de partage : </label>
-          <!-- The text field -->
-          <input type="text" value="<%=request.original_url%>" id="myInput">
-        </div>
-        <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
+  <% case @progress
+    when "join_pending" %>
+    <%= render "./bets/shared/participants" %>
+    <%= render "./bets/shared/input_join_pending", bet_participation: @bet_participation%>
+  <% when "joined" %>
+    <%= render "./bets/shared/participants" %>
+    <div class="justify-content-center" style="text-align: center">
+      <div class="justify-content-center" style="margin-bottom: 15px">
+        <label for="" id="link-to-copy" data-link="" >Copier le lien</label>
+        <!-- The text field -->
+        <input type="text" value="<%=request.original_url%>" id="link-to-copy-input">
       </div>
+      <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
 
       <% if @tournament %>
         <%= render './bonuses/available_bonuses' %>
@@ -40,22 +39,20 @@
       <%= render "./bets/shared/participants_choices" %>
     <% end %>
 
-    <p><%= @bet.description %></p>
-    <p>Mise : <%= @bet.stake %></p>
-    <p>Date de cloture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
-    <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
+  <p><%= @bet.description %></p>
+  <p>Mise : <%= @bet.stake %></p>
+  <p>Date de clôture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
+  <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
-    <% unless @progress == "join_pending" %>
-        <a data-toggle="modal" data-target="#tournaments-availables">
-          <div class="round-btn-link">
-            <i class="fas fa-plus"></i>
-            <i class="fas fa-trophy"></i>
-          </div>
-        </a>
-  </div>
-
-      <%= render "./shared/show_chatroom" %>
-    <% end %>
+  <% unless @progress == "join_pending" %>
+      <a data-toggle="modal" data-target="#tournaments-availables">
+        <div class="round-btn-link">
+          <i class="fas fa-plus"></i>
+          <i class="fas fa-trophy"></i>
+        </div>
+      </a>
+    <%= render "./shared/show_chatroom" %>
+  <% end %>
 
 </div>
 

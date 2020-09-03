@@ -42,7 +42,7 @@ def seed_prod
   user.save!
   user = User.new(
     nickname: "Léa",
-    email: "lea@g.com",
+    email: "lbugeat@gmail.com",
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Le%CC%81a_bxeyi0.png')
