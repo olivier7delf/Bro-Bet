@@ -30,8 +30,8 @@
 
   <% unless @tournament_progress == "join_pending" %>
     <a data-toggle="modal" data-target="#bets-availables">
-      <div class="round-btn-link">
-        <i class="fas fa-plus" style="color: #FEAD34;"></i>
+      <div class="round-btn-link bg-success">
+        <i class="fas fa-plus"></i>
         <i class="fas fa-handshake"></i>
       </div>
     </a>
@@ -53,6 +53,7 @@
         <div class="d-flex flex-column">
           <% @available_bets.each_with_index do |bet, index| %>
 
+
             <div class="d-flex flex-column align-items-center mb-2">
               <div class="d-flex">
                 <div class="btn-show">
@@ -60,7 +61,7 @@
                 </div>
                 <div class="btn-add">
                   <%= link_to tournament_tournament_bets_path(@tournament, bet_id: bet), method: :post do %>
-                    <i class="fas fa-plus-circle"></i>
+                    <i class="fas fa-plus-circle  color-success"></i>
                   <% end %>
                 </div>
               </div>

@@ -1,15 +1,14 @@
 class My::BetsController < ApplicationController
+
+  before_action :set_bet, only: [:show, :update]
+
   def show
-    # raise
-    @bet = Bet.find(params[:id])
+    # @bet = Bet.find(params[:id])
+
     if @bet.user != current_user
       redirect_to bet_path(@bet)
     end
-    bet_progress
-    bet_user_result
-    @chatroom = @bet.chatroom
-    @message = Message.new()
-    get_available_tournaments
+    bet_after_action_show
   end
 
   def new
@@ -33,7 +32,6 @@ class My::BetsController < ApplicationController
   end
 
   def update
-    @bet = Bet.find(params[:id])
     @bet.result = params[:bet][:result]
     @bet.save!
     redirect_to bet_path(@bet)

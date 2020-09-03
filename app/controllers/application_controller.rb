@@ -10,6 +10,37 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:username])
   end
 
+  def bet_after_action_show
+    bet_progress
+    bet_user_result
+    @chatroom = @bet.chatroom
+    @message = Message.new()
+    ### TODO handle bet in many tournaments !
+    if @bet.tournament_bets.count > 0
+      @tournament = @bet.tournament_bets.first.tournament
+    end
+
+    get_available_tournaments
+
+    bet_retrieve_bonuses_for_the_show
+    bet_retrieve_bonuse_used
+  end
+
+  def bet_retrieve_bonuse_used
+    if @tournament
+      @used_bonuse = BonusProgress.get_used_bonuse(current_user, @bet, @tournament)
+    end
+  end
+
+  def set_bet
+    @bet = Bet.find(params[:id])
+  end
+
+  def set_chatroom
+    @chatroom = @bet.chatroom
+    @message = Message.new()
+  end
+
   def bet_progress
     dt = Time.now
     now = Time.zone.local_to_utc(dt)
@@ -72,5 +103,24 @@ class ApplicationController < ActionController::Base
       "resulted_at > ? AND resulted_at > ?", DateTime.now, @bet.resulted_at)
     @available_tournaments = current_user.in_tournaments.where.not(id: @bet.tournaments).where(
       "resulted_at > ? ", DateTime.now)
+  end
+
+  def bet_retrieve_bonuses_for_the_show
+
+    if current_user.in_bets_within_tournaments.include?(@bet)
+      # raise
+      tournament = @bet.tournaments.first # !! refacto plus tard !!! que les tournois du user ...
+      if !tournament.nil?
+        while BonusProgress.get_available_bonuses(current_user, @bet, tournament).count == 0
+          available_bonuses = BonusProgress.calcul_available_bonuses(score=2, score_best_player=10)
+          available_bonuses.each do |bonus|
+            BonusProgress.create(user: current_user, bet: @bet, tournament: tournament, bonuse: bonus, progress: "available")
+          end
+        end
+        @available_bonuses = BonusProgress.get_available_bonuses(current_user, @bet, tournament)
+        # raise
+      end
+    end
+
   end
 end
