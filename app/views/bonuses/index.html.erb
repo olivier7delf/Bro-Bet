@@ -1,13 +1,11 @@
-<h2 class="text-center">Bonus</h2>
+<h2 class="text-center mt-2 mb-4">Bonus BroBet</h2>
 
-<p>Ils sont uniquement disponibles en mode tournois.</p>
-<p>Pour chaque pari d'un tournoi, vous disposez d'un ou plusieurs bonus, distribué(s) aléatoirement.</p>
-<p>Pouvoir de chacun des bonus :</p>
+<p class="text-bonus mb-4">Pour chaque pari, uniquement en mode tournoi, tu disposes d'un ou plusieurs bonus distribué(s) aléatoirement, qui te permettent d'avancer (ou pas) dans le classement.</p>
 
 <% @bonuses.each do |bonus| %>
-  <div class="bonus-row d-flex flex-column align-items-center justify-content-center my-3">
-    <%= cl_image_tag bonus.photo.key, class: "avatar avatar-classement mb-2" %>
+  <div class="bet-background-lg bonus-row d-flex flex-column align-items-center justify-content-center my-4">
+    <%= cl_image_tag bonus.photo.key, class: "avatar avatar-classement mb-3" %>
     <h4 style="font-weight: bold;"><%= bonus.title.capitalize %> </h4>
-    <span class="bonus-description"><%= bonus.description %> </span>
+    <span class="bonus-description text-bonus"><%= bonus.description %> </span>
   </div>
 <% end %>
