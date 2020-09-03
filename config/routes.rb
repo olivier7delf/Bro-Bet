@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # index will be handle by user ?
   resources :bet_participations, only: [:index]
 
-  resources :bets, only: [:show] do
+  resources :bets, only: [:show, :index] do
     resources :bet_participations, only: [:create]
   end
 
@@ -27,8 +27,8 @@ Rails.application.routes.draw do
     # end
   end
 
-  resources :bonus_progresses, only: :create
-
+  resources :bonus_progresses, only: [:create]
+  resources :bonuses, only: [:index]
 
 
   # resources :bets, only: [:show, :new, :create, :edit, :update, :destroy]
