@@ -7,13 +7,10 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "../node_modules/flatpickr/dist/themes/confetti";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-
-
 
 
 .wrapper {
@@ -43,15 +40,4 @@
 
 .bg-success {
   background-color: $success;
-}
-
-
-.bet-background-lg {
-  padding: 16px;
-
-
-  background: linear-gradient(to right, #303030, $bg-light);
-  border-radius: 5px;
-  margin: 0 auto;
-  margin-bottom: 16px
 }
