@@ -21,22 +21,25 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header d-flex justify-content-center bg-second">
-        <h5 class="modal-title" id="exampleModalLongTitle">Participants</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Bonus disponibles</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body d-flex justify-content-around bg-light">
-        <div class="d-flex flex-column">
+        <div class="d-flex flex-column justify-content-center align-center">
 
           <% if !@used_bonuse %>
             <% @available_bonuses.each do |bonus| %>
-              <% if bonus.user == current_user %>
-                <p> <%= bonus.bonuse.description %> </p>
-                <%= link_to bonus_progresses_path(bet: @bet, tournament: @tournament, bonus: bonus), method: "POST" do %>
-                  <i class="fas fa-plus-circle  color-success"></i>
+              <div style="margin-bottom: 8px; ">
+                <% if bonus.user == current_user %>
+                  <%= image_tag "bonus", alt: "alttext", class: "avatar avatar-participant mb-2" %>
+                  <%= link_to bonus_progresses_path(bet: @bet, tournament: @tournament, bonus: bonus), method: "POST" do %>
+                    <i style="margin:0" class="fas fa-plus-circle  color-success"></i>
+                  <% end %>
+                  <p> <%= bonus.bonuse.description %> </p>
                 <% end %>
-              <% end %>
+              </div>
             <% end %>
           <% end %>
         </div>
