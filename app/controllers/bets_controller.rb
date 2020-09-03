@@ -1,5 +1,12 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show]
+  def index
+    @user = current_user
+
+    @finished_bets = @user.in_bets.where.not(result: nil).order(resulted_at: :asc)
+
+    @pending_bets = @user.in_bets.where(result: nil).order(resulted_at: :asc)
+  end
 
   def show
     # @bet = Bet.find(params[:id])
