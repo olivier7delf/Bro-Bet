@@ -7,11 +7,7 @@
   <% case @tournament_progress
   when "join_pending" %>
     <%= render "./tournaments/shared/participants" %>
-
-
-    <%= render "./bets/shared/input_join_pending", bet_participation: @bet_participation%>
-
-
+    <%= render "./tournaments/shared/input_join_pending", tournament_participation: @tournament_participation %>
   <% when "joined" %>
     <%= render "./tournaments/shared/participants" %>
     <label for="">Lien de partage : </label>
