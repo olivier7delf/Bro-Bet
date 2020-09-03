@@ -1,7 +1,7 @@
-<% if action_name == 'index' && controller_name == 'bet_participations' %>
+<% if action_name == 'index' && controller_name == 'bets' %>
   <div class="mini-navbar">
       <div class="tabs active">
-        <%= link_to bet_participations_path do %>
+        <%= link_to bets_path do %>
           <i class="fas fa-handshake text-center"></i>
         <% end %>
       </div>
@@ -19,7 +19,7 @@
 <% elsif action_name == 'show' && controller_name == 'users' %>
   <div class="mini-navbar">
     <div class="tabs">
-      <%= link_to bet_participations_path do %>
+      <%= link_to bets_path do %>
         <i class="fas fa-handshake text-center"></i>
       <% end %>
     </div>
@@ -37,7 +37,7 @@
 <% elsif action_name == 'index' && controller_name == 'tournaments' %>
   <div class="mini-navbar">
     <div class="tabs">
-      <%= link_to bet_participations_path do %>
+      <%= link_to bets_path do %>
         <i class="fas fa-handshake text-center"></i>
       <% end %>
     </div>

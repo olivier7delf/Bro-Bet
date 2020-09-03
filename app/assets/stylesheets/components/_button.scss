@@ -179,6 +179,9 @@
   }
 }
 
+#imageQRcode {
+  margin-bottom: 16px;
+}
 .btn-show {
   border: 0.5px solid;
   border-radius: 30px;
@@ -189,4 +192,21 @@
     text-decoration: none;
   }
 }
+
+.small-green-btn {
+  border-radius: 30px;
+  padding: 10px 16px;
+  margin: 8px auto;
+  background-color: $success;
+  color: black;
+}
+
+a.small-green-btn {
+  text-decoration: none;
+  color: black;
+  &:hover {
+    opacity: 0.90;
+  }
+}
+
 

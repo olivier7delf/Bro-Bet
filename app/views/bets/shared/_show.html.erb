@@ -73,7 +73,7 @@
 
             <div class="d-flex justify-content-center mb-2">
               <div class="btn-show">
-                <%= link_to tournament.title[0..30], tournament_path(tournament) %>
+                <%= link_to tournament.title.length > 30 ? "#{tournament.title[0..30]} ..." : tournament.title, tournament_path(tournament) %>
               </div>
               <div class="btn-add">
                 <%= link_to tournament_tournament_bets_path(tournament, bet_id: @bet), method: :post do  %>

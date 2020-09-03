@@ -1,11 +1,9 @@
 class TournamentsController < ApplicationController
   def index
     @user = current_user
-    @finished_tournaments = @user.in_tournaments.where("resulted_at < ?", DateTime.now)
-    @finished_tournaments.order(resulted_at: :desc)
+    @finished_tournaments = @user.in_tournaments.where("resulted_at < ?", DateTime.now).order(resulted_at: :desc)
 
-    @pending_tournaments = @user.in_tournaments.where("resulted_at > ?", DateTime.now)
-    @pending_tournaments.order(resulted_at: :desc)
+    @pending_tournaments = @user.in_tournaments.where("resulted_at > ?", DateTime.now).order(resulted_at: :desc)
   end
   def show
     # raise
