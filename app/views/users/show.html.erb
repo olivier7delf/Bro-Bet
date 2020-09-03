@@ -9,19 +9,24 @@
   <span><strong>Niveau</strong> : <%= @level %></span>
 </div>
 
-<div class="d-flex flex-column infos-user">
-  <span><i class="fas fa-crown"></i><strong>Victoires</strong> - <%= @bets_winned %> (<%= @ratio_victory %> % )</span>
-  <span><i class="fas fa-poop"></i><strong>Poop's Bro</strong> - <%= @poop_bro %> (<%= @poop_bro_bets %>)</span>
-  <span><i class="fas fa-gem"></i><strong>Golden Bro</strong> - <%= @golden_bro %> (<%= @golden_bro_bets %>)</span>
-  <span><i class="fas fa-user-friends"></i><strong>Bro 4 life</strong> - <%= @bro4life %> (<%= @bro4life_bets %>)</span>
+<div class="card-user">
+  <div class="card-user-infos">
+    <span><i class="fas fa-crown"></i><strong>Victoires</strong> - <%= @bets_winned %> (<%= @ratio_victory %> % )</span><br>
+    <span><i class="fas fa-poop"></i><strong>Poop's Bro</strong> - <%= @poop_bro %> (<%= @poop_bro_bets %>)</span><br>
+    <span><i class="fas fa-gem"></i><strong>Golden Bro</strong> - <%= @golden_bro %> (<%= @golden_bro_bets %>)</span><br>
+    <span><i class="fas fa-user-friends mb-3"></i><strong>Bro 4 life</strong> - <%= @bro4life %> (<%= @bro4life_bets %>)</span><br>
 
-  <span>Tes paris :
-    <ul>
-      <li><strong>Total</strong> : <%= @bets_played %></li>
-      <li><strong>Finis</strong> : <%= @bets_finished %></li>
-      <li><strong>Créés</strong> : <%= @bets_created %></li>
-    </ul>
-  </span>
+    <span>Tes paris :
+      <ul>
+        <li><strong>- Total</strong> : <%= @bets_played %></li>
+        <li><strong>- Finis</strong> : <%= @bets_finished %></li>
+        <li><strong>- Créés</strong> : <%= @bets_created %></li>
+      </ul>
+    </span>
+  </div>
+</div>
+
+<div class="d-flex flex-column infos-user">
   <div class="btn-new-bet">
     <%= link_to 'Crée un nouveau pari !', new_my_bet_path %>
   </div>
