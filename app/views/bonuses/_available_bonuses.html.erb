@@ -1,5 +1,5 @@
 <div>
-  <span>Tournoi : <%= @tournament.title %></span>
+  <span>Tournoi associé: <%= @tournament.title %></span>
   <br>
 
     <% if @used_bonuse %>
@@ -7,9 +7,13 @@
     <% else %>
     <a data-toggle="modal" data-target="#bonuses-available">
       Bonus dispo :
-      <% @available_bonuses.each do |bonus| %>
+      <% @available_bonuses.each_with_index do |bonus, index| %>
         <% if bonus.user == current_user %>
-          <%= bonus.bonuse.title %>
+          <% if index > 0 %>
+            <%= cl_image_tag bonus.bonuse.photo.key, class: "avatar avatar-classement", style: "margin-left: -24px;" %>
+          <% else %>
+            <%= cl_image_tag bonus.bonuse.photo.key, class: "avatar avatar-classement" %>
+          <% end %>
         <% end %>
       <% end %>
     </a>
@@ -33,7 +37,7 @@
             <% @available_bonuses.each do |bonus| %>
               <div style="margin-bottom: 8px; ">
                 <% if bonus.user == current_user %>
-                  <%= image_tag "bonus", alt: "alttext", class: "avatar avatar-participant mb-2" %>
+                  <%= cl_image_tag bonus.bonuse.photo.key, class: "avatar avatar-participant" %>
                   <%= link_to bonus_progresses_path(bet: @bet, tournament: @tournament, bonus: bonus), method: "POST" do %>
                     <i style="margin:0" class="fas fa-plus-circle  color-success"></i>
                   <% end %>

@@ -39,16 +39,16 @@ bonuse = Bonuse.new(
 bonuse = Bonuse.new(
     title: "éclair",
     probability: 0.02,
-    description: "https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_393/v1599154730/%C3%A9clair_f4fzec.png",
+    description: "Tous vos adversaires sont foudroyés, leur gains sont divisés par deux !",
   )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Margot_ir7hyr.png')
+  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_393/v1599154730/%C3%A9clair_f4fzec.png')
   bonuse.photo.attach(io: file, filename: 'eclair', content_type: 'image/png')
   bonuse.save!
 
 bonuse = Bonuse.new(
     title: "champignon",
     probability: 0.1,
-    description: "Vroum ! Vous passez la seconde et vos gains sont multipliés par deux !",
+    description: "Un petit coupe de pouce, en cas de bonne prédiction vos gains sont multipliés par deux !",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/Champignon_gjxtuq.png')
   bonuse.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
@@ -84,7 +84,7 @@ bonuse = Bonuse.new(
 bonuse = Bonuse.new(
     title: "tortue rouge",
     probability: 0.05,
-    description: "Le tord tue !",
+    description: "Oh la belle carapace rouge, en utilisant ce bonus vous ferez perdre des points au concurrent devant vous dans le classement",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155874/MK8-CaraoaceRouge-Illustration_viehqd.png')
   bonuse.photo.attach(io: file, filename: 'tortuerouge', content_type: 'image/png')
@@ -93,7 +93,7 @@ bonuse = Bonuse.new(
 bonuse = Bonuse.new(
     title: "tortue bleue",
     probability: 0.95,
-    description: "As-tu tort ?",
+    description: "Oh la belle carapace bleue, en utilisant ce bonus vous ferez perdre des points au premier dans le classement",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155873/tortue_bleue_ut6nip.png')
   bonuse.photo.attach(io: file, filename: 'tortuebleue', content_type: 'image/png')

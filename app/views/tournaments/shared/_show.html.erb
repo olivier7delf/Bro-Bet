@@ -4,7 +4,7 @@
       <h4><%= @tournament.title %></h4>
       <p class="text-left" >Par <%= @tournament.user.nickname %></p>
     </div>
-    
+
   <% case @tournament_progress
   when "join_pending" %>
     <%= render "./tournaments/shared/participants" %>
@@ -35,6 +35,7 @@
     <% unless @tournament_progress == "join_pending" %>
       <a data-toggle="modal" data-target="#bets-availables">
         <div class="round-btn-link">
+          <div></div>
           <i class="fas fa-handshake"></i>
         </div>
       </a>
