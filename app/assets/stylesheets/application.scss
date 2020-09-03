@@ -7,13 +7,10 @@
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-@import "../node_modules/flatpickr/dist/themes/confetti";
 
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
-
-
 
 
 .wrapper {
@@ -35,4 +32,12 @@
 
 .loser {
   background-color: $main;
+}
+
+.color-success {
+  color: $success;
+}
+
+.bg-success {
+  background-color: $success;
 }

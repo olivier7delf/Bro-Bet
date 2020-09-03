@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_31_101436) do
+ActiveRecord::Schema.define(version: 2020_09_02_105611) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,29 @@ ActiveRecord::Schema.define(version: 2020_08_31_101436) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_bets_on_user_id"
+  end
+
+  create_table "bonus_progresses", force: :cascade do |t|
+    t.bigint "bonuse_id", null: false
+    t.bigint "bet_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "tournament_id", null: false
+    t.string "progress"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bet_id"], name: "index_bonus_progresses_on_bet_id"
+    t.index ["bonuse_id"], name: "index_bonus_progresses_on_bonuse_id"
+    t.index ["tournament_id"], name: "index_bonus_progresses_on_tournament_id"
+    t.index ["user_id"], name: "index_bonus_progresses_on_user_id"
+  end
+
+  create_table "bonuses", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "level"
+    t.float "probability"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "chatrooms", force: :cascade do |t|
@@ -109,6 +132,7 @@ ActiveRecord::Schema.define(version: 2020_08_31_101436) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "bonuse", default: false
     t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
 
@@ -130,6 +154,10 @@ ActiveRecord::Schema.define(version: 2020_08_31_101436) do
   add_foreign_key "bet_participations", "bets"
   add_foreign_key "bet_participations", "users"
   add_foreign_key "bets", "users"
+  add_foreign_key "bonus_progresses", "bets"
+  add_foreign_key "bonus_progresses", "bonuses"
+  add_foreign_key "bonus_progresses", "tournaments"
+  add_foreign_key "bonus_progresses", "users"
   add_foreign_key "chatrooms", "bets"
   add_foreign_key "chatrooms", "tournaments"
   add_foreign_key "messages", "chatrooms"

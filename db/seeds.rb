@@ -1,5 +1,8 @@
 require_relative "./seed_sam"
 
+Bonuse.destroy_all
+puts "DESTROYED : Bonuse"
+
 Message.destroy_all
 puts "DESTROYED : Message"
 
@@ -20,6 +23,14 @@ puts "DESTROYED : Tournament"
 
 User.destroy_all
 puts "DESTROYED : User"
+
+Bonuse.create!(title: "étoile", probability: 0.05, description: "Invicible, aucun bonus adverse ne t'atteint")
+Bonuse.create!(title: "éclair", probability: 0.02, description: "Tous vos adversaires sont foudroyez, leur gain sont divisés par deux !")
+Bonuse.create!(title: "champignon", probability: 0.1, description: "Vroum ! Vous passez la seconde et vos gains sont multipliés par deux !")
+Bonuse.create!(title: "dynamite", probability: 0.07, description: "Tic tac ! Attention à ne pas vous brulez, elle risque de vous explosez dessus, mais si cela n'arrive pas, votre cible se fera un plaisir de la garder...")
+Bonuse.create!(title: "Julie Lescroc", probability: 0.05, description: "Hop ! Vous filoutez en échangeant votre choix de pari avec un adversaire")
+Bonuse.create!(title: "brollard", probability: 0.95, description: "Cool un brollard ! 1 chance sur 10 d'avoir vos gains multipliés par deux !")
+puts "CREATED : Bonuses"
 
 puts "Creating Users..."
 user = User.new(
@@ -147,7 +158,8 @@ tournament = Tournament.create!(
   max_bets_number: 10,
   closed_at: DateTime.new(2020, 9, 5, 12, 0, 0),
   resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
-  user: User.find_by(nickname: "Théotime")
+  user: User.find_by(nickname: "Théotime"),
+  bonuse: true
 )
 Chatroom.create(name: "tournament-#{tournament.id}", tournament: tournament)
 

@@ -1,0 +1,15 @@
+<div>
+  <span>Tournoi : <%= @tournament.title %></span>
+  <% if @used_bonuse %>
+      Bonus utilisé :
+      <%= @used_bonuse.bonuse.title %>
+  <% else %>
+    Bonus dispo :
+    <% @available_bonuses.each do |bonus| %>
+      <% if bonus.user == current_user %>
+        <%= bonus.bonuse.title %>
+        # <%= link_to bonus.bonuse.title, bonus_progresses_path(bet: @bet, tournament: @tournament, bonus: bonus), method: "POST" %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

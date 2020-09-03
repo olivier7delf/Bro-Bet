@@ -66,7 +66,6 @@ if(linkToCopy) {
 }
 
 function copy() {
-  console.log('hey');
   var copyText = document.getElementById('link-to-copy-input');
   copyText.select();
   document.execCommand("copy");
