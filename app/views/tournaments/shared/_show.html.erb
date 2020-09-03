@@ -10,11 +10,14 @@
     <%= render "./tournaments/shared/input_join_pending", tournament_participation: @tournament_participation %>
   <% when "joined" %>
     <%= render "./tournaments/shared/participants" %>
-    <label for="">Lien de partage : </label>
-    <!-- The text field -->
-    <input type="text" value="<%=request.original_url%>" id="myInput">
-    <!-- The button used to copy the text -->
-    <!-- <button onclick="myFunction()">Copy text</button> -->
+    <div class="justify-content-center my-3" style="text-align: center">
+      <div class="justify-content-center" style="margin-bottom: 15px">
+        <label for="" id="link-to-copy" data-link="" >Copier le lien</label>
+        <!-- The text field -->
+        <input type="text" value="<%=request.original_url%>" id="link-to-copy-input">
+      </div>
+      <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
+    </div>
 
   <% when "result_pending" %>
     <%= render "./tournaments/shared/participants" %>
