@@ -41,3 +41,14 @@
 .bg-success {
   background-color: $success;
 }
+
+
+.bet-background-lg {
+  padding: 16px;
+
+
+  background: linear-gradient(to right, #303030, $bg-light);
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-bottom: 16px
+}

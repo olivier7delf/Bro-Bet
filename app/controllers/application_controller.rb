@@ -16,9 +16,9 @@ class ApplicationController < ActionController::Base
     @chatroom = @bet.chatroom
     @message = Message.new()
     ### TODO handle bet in many tournaments !
-    @tournament = @bet.tournament_bets.first.tournament
-    @bet.tournament_bets
-    current_user.in_bets_within_tournaments.include? @bet
+    if @bet.tournament_bets.count > 0
+      @tournament = @bet.tournament_bets.first.tournament
+    end
 
     get_available_tournaments
 
