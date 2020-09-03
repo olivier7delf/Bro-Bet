@@ -27,13 +27,13 @@ puts "DESTROYED : User"
 Bonuse.destroy_all
 puts "DESTROYED : Bonuse"
 
-<<<<<<< HEAD
-Bonuse.create!(title: "étoile", probability: 0.05, description: "Invicible, aucun bonus adverse ne t'atteint")
-Bonuse.create!(title: "éclair", probability: 0.02, description: "Tous vos adversaires sont foudroyez, leur gain sont divisés par deux !")
-Bonuse.create!(title: "champignon", probability: 0.1, description: "Vroum ! Vous passez la seconde et vos gains sont multipliés par deux !")
-Bonuse.create!(title: "dynamite", probability: 0.07, description: "Tic tac ! Attention à ne pas vous brulez, elle risque de vous explosez dessus, mais si cela n'arrive pas, votre cible se fera un plaisir de la garder...")
-Bonuse.create!(title: "Julie Lescroc", probability: 0.05, description: "Hop ! Vous filoutez en échangeant votre choix de pari avec un adversaire")
-Bonuse.create!(title: "brollard", probability: 0.95, description: "Cool un brollard ! 1 chance sur 10 d'avoir vos gains multipliés par deux !")
+
+# Bonuse.create!(title: "étoile", probability: 0.05, description: "Invicible, aucun bonus adverse ne t'atteint")
+# Bonuse.create!(title: "éclair", probability: 0.02, description: "Tous vos adversaires sont foudroyez, leur gain sont divisés par deux !")
+# Bonuse.create!(title: "champignon", probability: 0.1, description: "Vroum ! Vous passez la seconde et vos gains sont multipliés par deux !")
+# Bonuse.create!(title: "dynamite", probability: 0.07, description: "Tic tac ! Attention à ne pas vous brulez, elle risque de vous explosez dessus, mais si cela n'arrive pas, votre cible se fera un plaisir de la garder...")
+# Bonuse.create!(title: "Julie Lescroc", probability: 0.05, description: "Hop ! Vous filoutez en échangeant votre choix de pari avec un adversaire")
+# Bonuse.create!(title: "brollard", probability: 0.95, description: "Cool un brollard ! 1 chance sur 10 d'avoir vos gains multipliés par deux !")
 
 # bonuse = Bonuse.new(
 #   title: "étoile",
@@ -108,7 +108,7 @@ Bonuse.create!(title: "brollard", probability: 0.95, description: "Cool un broll
 # bonuse.save!
 
 # puts "CREATED : Bonuses"
-=======
+
 bonuse = Bonuse.new(
     title: "étoile",
     probability: 0.05,
@@ -182,7 +182,6 @@ bonuse = Bonuse.new(
   bonuse.save!
 
 puts "CREATED : Bonuses"
->>>>>>> 4d1e4f592af65fd3cba7ac1d160bf01dd57c5b7e
 
 puts "Creating Users..."
   user = User.new(
