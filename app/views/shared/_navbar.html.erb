@@ -19,6 +19,8 @@
             <nav class="d-flex flex-column">
               <%= link_to current_user.nickname, user_path(current_user) %>
               <%= link_to "Crée ton pari", new_my_bet_path %>
+              <%= link_to "Crée ton tournoi", new_my_tournament_path %>
+              <%= link_to "Aide Bonus", bonuses_path %>
               <%= link_to "Déconnexion", destroy_user_session_path, method: :delete %>
             </nav>
           </div>
