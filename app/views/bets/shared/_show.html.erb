@@ -37,7 +37,7 @@
 
   <p><%= @bet.description %></p>
   <p>Mise : <%= @bet.stake %></p>
-  <p>Date de cloture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
+  <p>Date de clôture : <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
   <p>Date de résultat : <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
   <% unless @progress == "join_pending" %>
@@ -47,9 +47,6 @@
           <i class="fas fa-trophy"></i>
         </div>
       </a>
-    <% @bet.tournaments.each do |tournament| %>
-      <%= link_to tournament.title[0..28], tournament_path(tournament) %>
-    <% end %>
     <%= render "./shared/show_chatroom" %>
   <% end %>
 </div>
