@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_105611) do
+ActiveRecord::Schema.define(version: 2020_09_03_190542) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_105611) do
     t.string "progress"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "impact_score"
     t.index ["bet_id"], name: "index_bonus_progresses_on_bet_id"
     t.index ["bonuse_id"], name: "index_bonus_progresses_on_bonuse_id"
     t.index ["tournament_id"], name: "index_bonus_progresses_on_tournament_id"
