@@ -6,13 +6,13 @@
           <% if participant.photo.attached? %>
             <%= cl_image_tag participant.photo.key, class: "avatar avatar-participant mb-2", style: "margin-left: -16px" %>
           <% else %>
-            <img class="avatar avatar-participant mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo" style= "margin-left: -16px">
+            <img class="avatar avatar-participant mb-2" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo" style= "margin-left: -16px">
           <% end %>
         <% else %>
           <% if participant.photo.attached? %>
             <%= cl_image_tag participant.photo.key, class: "avatar avatar-participant mb-2"%>
           <% else %>
-            <img class="avatar avatar-participant mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+            <img class="avatar avatar-participant mb-2" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo">
           <% end %>
         <% end %>
       <% end %>
