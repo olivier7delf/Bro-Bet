@@ -9,7 +9,8 @@
       <img src="https://img.icons8.com/emoji/48/000000/2nd-place-medal-emoji.png"/>
     <% when 2 %>
       <img src="https://img.icons8.com/emoji/48/000000/3rd-place-medal-emoji.png"/>
-    <% when @participations.count - 1 %>
+    <% end %>
+    <% if index > 2 %>
       <div style="height: 48px; width: 48px;"></div>
     <% end %>
     <% if User.find(participation["id"]).photo.attached? %>
@@ -19,7 +20,6 @@
     <% end %>
     <span><%= participation["nickname"] %> - <%= participation["score"] %> pts
       impact bonus: <%= @participations_bonus.select { |pp| pp["nickname"] == participation["nickname"] }.first["impact_score"] %></span>
-
   </div>
 
 <% end %>

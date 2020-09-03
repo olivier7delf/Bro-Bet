@@ -115,7 +115,7 @@
 }
 
 .round-btn-link {
-  background-color: $success;//$second;
+  background-color: $second;
   margin: 16px auto;
   color: black;
   border-radius: 50%;
@@ -125,20 +125,17 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  i:first-child {
+    font-size: 20px;
+    position: relative;
+    top: 10px;
+    left: 5px;
+  }
   i {
     color: black;
     text-decoration: none;
     font-size: 42px;
-  }
-  i:first-child {
-    font-size: 21px;
-    position: relative;
-    top: 9px;
-    left: 15px;
-  }
-  i:last-child {
-    position: relative;
-    left: -8px;
+    margin-right: 0;
   }
   a {
     font-size: 18px;

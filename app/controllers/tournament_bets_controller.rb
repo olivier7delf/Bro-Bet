@@ -21,5 +21,3 @@ class TournamentBetsController < ApplicationController
     params.require(:bet_participation).permit(:user_choice)
   end
 end
-
-

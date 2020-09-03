@@ -1,0 +1,13 @@
+<h2 class="text-center">Bonus</h2>
+
+<p>Ils sont uniquement disponibles en mode tournois.</p>
+<p>Pour chaque pari d'un tournoi, vous disposez d'un ou plusieurs bonus, distribué(s) aléatoirement.</p>
+<p>Pouvoir de chacun des bonus :</p>
+
+<% @bonuses.each do |bonus| %>
+  <div class="bonus-row d-flex flex-column align-items-center justify-content-center my-3">
+    <%= cl_image_tag bonus.photo.key, class: "avatar avatar-classement mb-2" %>
+    <h4 style="font-weight: bold;"><%= bonus.title.capitalize %> </h4>
+    <span class="bonus-description"><%= bonus.description %> </span>
+  </div>
+<% end %>
