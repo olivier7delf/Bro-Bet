@@ -67,16 +67,7 @@
                 <% else %>
                   <img class="avatar avatar-participant mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
                 <% end %>
-                <span>
-                  <% if !@available_bonuses.nil? %>
-                    <% @available_bonuses.each do |bonus| %>
-                      <% if bonus.user == current_user %>
-                        <%= bonus.bonuse.title %>
-
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </span>
+                <%= render './bonuses/used_bonuses' %>
                 <span class="participant-name"><%= participant.user.nickname %></span>
               </div>
             <% end %>

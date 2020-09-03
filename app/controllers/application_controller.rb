@@ -15,10 +15,21 @@ class ApplicationController < ActionController::Base
     bet_user_result
     @chatroom = @bet.chatroom
     @message = Message.new()
+    ### TODO handle bet in many tournaments !
+    @tournament = @bet.tournament_bets.first.tournament
+    @bet.tournament_bets
+    current_user.in_bets_within_tournaments.include? @bet
+
     get_available_tournaments
 
     bet_retrieve_bonuses_for_the_show
-    get_available_tournaments
+    bet_retrieve_bonuse_used
+  end
+
+  def bet_retrieve_bonuse_used
+    if @tournament
+      @used_bonuse = BonusProgress.get_used_bonuse(current_user, @bet, @tournament)
+    end
   end
 
   def set_bet

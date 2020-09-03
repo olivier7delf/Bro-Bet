@@ -24,6 +24,10 @@
       </div>
       <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
     </div>
+
+    <% if current_user.in_bets_within_tournaments.include? @bet %>
+      <%= render './bonuses/available_bonuses' %>
+    <% end %>
     <!-- The button used to copy the text -->
     <!-- <button onclick="myFunction()">Copy text</button> -->
   <% when "result_pending" %>

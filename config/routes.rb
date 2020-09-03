@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     # end
   end
 
+  resources :bonus_progresses, only: :create
+
 
 
   # resources :bets, only: [:show, :new, :create, :edit, :update, :destroy]
