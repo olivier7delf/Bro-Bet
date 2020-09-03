@@ -5,14 +5,13 @@ class UsersController < ApplicationController
     @bets_finished = count_bets_finished
     @bets_played = current_user.bet_participations.joins(:bet).length
     @bets_created = current_user.bets.count()
-    @ratio_victory = (100 * @bets_winned / @bets_finished).to_i
+    @ratio_victory = @bets_finished == 0 ? 0 : (100 * @bets_winned / @bets_finished).to_i
     @bro4life = find_bro4life[0]
     @bro4life_bets = find_bro4life[1]
     @golden_bro = find_golden_bro[0]
     @golden_bro_bets = find_golden_bro[1]
     @poop_bro = count_poop_bro[0]
     @poop_bro_bets = count_poop_bro[1]
-
   end
 
   private

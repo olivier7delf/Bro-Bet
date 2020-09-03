@@ -4,19 +4,19 @@
   <% if current_user.photo.attached? %>
    <%= cl_image_tag current_user.photo.key, class: "avatar avatar-profil mb-2" %>
   <% else %>
-    <img class="avatar avatar-profil mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+    <img class="avatar avatar-profil mb-2" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo">
   <% end %>
   <span><strong>Niveau</strong> : <%= @level %></span>
 </div>
 
 <div class="card-user">
   <div class="card-user-infos">
-    <span><i class="fas fa-crown"></i><strong>Victoires</strong> - <%= @bets_winned %> (<%= @ratio_victory %> % )</span><br>
-    <span><i class="fas fa-poop"></i><strong>Poop's Bro</strong> - <%= @poop_bro %> (<%= @poop_bro_bets %>)</span><br>
-    <span><i class="fas fa-gem"></i><strong>Golden Bro</strong> - <%= @golden_bro %> (<%= @golden_bro_bets %>)</span><br>
-    <span><i class="fas fa-user-friends mb-3"></i><strong>Bro 4 life</strong> - <%= @bro4life %> (<%= @bro4life_bets %>)</span><br>
+    <span><i class="fas fa-crown"></i><strong>Victoires</strong> : <%= @bets_winned %> (<%= @ratio_victory %> % )</span><br>
+    <span><i class="fas fa-poop"></i><strong>Celui que tu bats le plus</strong> : <br><%= @poop_bro %> (<%= @poop_bro_bets %>)</span><br>
+    <span><i class="fas fa-gem"></i><strong>Celui qui te bat le plus</strong> : <br><%= @golden_bro %> (<%= @golden_bro_bets %>)</span><br>
+    <span><i class="fas fa-user-friends"></i><strong>Celui avec qui tu joues le plus</strong> : <br><%= @bro4life %> (<%= @bro4life_bets %>)</span><br>
 
-    <span>Tes paris :
+    <span><h5 class="mt-2"><strong>Tes paris :</strong></h5>
       <ul>
         <li><strong>- Total</strong> : <%= @bets_played %></li>
         <li><strong>- Finis</strong> : <%= @bets_finished %></li>
