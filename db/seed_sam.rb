@@ -26,7 +26,7 @@ def seed_prod
   user.save!
   user = User.new(
     nickname: "Jonathan",
-    email: "",
+    email: "jonathan.serafini@gmail.com",
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Jo_jefczh.png')
@@ -40,7 +40,7 @@ def seed_prod
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/TT_lsquso.png')
   user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
   user.save!
-  user = User.new(
+   user = User.new(
     nickname: "Léa",
     email: "lbugeat@gmail.com",
     password: "123123",
@@ -106,7 +106,7 @@ def seed_prod
   user.save!
   user = User.new(
     nickname: "Pierre",
-    email: "pierre@g.com",
+    email: "deveixpierre@gmail.com",
     password: "123123",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Pierre_wak7ta.png')
