@@ -1,20 +1,24 @@
-<%= render "shared/mini-navbar" %>
-<h2 class="text-center">Tournois</h2>
-<div class="container bet-participations pt-2">
-  <h3>En cours</h3>
-    <% @pending_tournaments[0..2].each do |pending_tournament| %>
-      <%= link_to tournament_path(pending_tournament) do %>
-        <div class="card-bet-participation">
-          <div class="card-bet-participation-infos">
-            <h3><%= pending_tournament.title %></h3>
-            <p>Mise: <strong><%= pending_tournament.stake %></strong></p>
-            <p>Résultat le <%= pending_tournament.resulted_at.strftime("%d/%m/%Y à %k:%M") %></p>
-          </div>
-        </div>
-      <% end %>
+<%= render "./shared/mini-navbar-tournament" %>
+<h2 class="text-center">Classement</h2>
+<% @participations.each_with_index do |participation, index| %>
+  <div class="ligne-classement">
+    <% case index
+      when 0 %>
+      <img src="https://img.icons8.com/emoji/48/000000/1st-place-medal-emoji.png"/>
+    <% when 1 %>
+      <img src="https://img.icons8.com/emoji/48/000000/2nd-place-medal-emoji.png"/>
+    <% when 2 %>
+      <img src="https://img.icons8.com/emoji/48/000000/3rd-place-medal-emoji.png"/>
+    <% when @participations.length - 1 %>
+      <div style="height: 48px; width: 48px;"></div>
     <% end %>
-</div>
+    <% if participation.user.photo.attached? %>
+      <%= cl_image_tag participation.user.photo.key, class: "avatar avatar-classement mr-3" %>
+    <% else %>
+      <img class="avatar avatar-classement mr-3" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+    <% end %>
+    <span><%= participation.user.nickname %> - <%= participation.score %> pts</span>
 
-<div class="container bet-participations pt-2">
-  <h3>Terminés</h3>
-</div>
+  </div>
+
+<% end %>

@@ -2,9 +2,9 @@
 <h2 class="text-center">Tableau de Bord</h2>
 <div class="d-flex flex-column align-items-center my-3">
   <% if current_user.photo.attached? %>
-   <%= cl_image_tag current_user.photo.key, class: "avatar-bordered mb-2" %>
+   <%= cl_image_tag current_user.photo.key, class: "avatar avatar-profil mb-2" %>
   <% else %>
-    <img class="avatar-bordered mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
+    <img class="avatar avatar-profil mb-2" src="https://lemondedesados.fr/wp-content/uploads/2016/01/gold-texture-golden-gold-background.jpg" alt="logo">
   <% end %>
   <span><strong>Niveau</strong> : <%= @level %></span>
 </div>
@@ -15,7 +15,7 @@
   <span><i class="fas fa-gem"></i><strong>Golden Bro</strong> - <%= @golden_bro %> (<%= @golden_bro_bets %>)</span>
   <span><i class="fas fa-user-friends"></i><strong>Bro 4 life</strong> - <%= @bro4life %> (<%= @bro4life_bets %>)</span>
 
-  <span>Tes Bets :
+  <span>Tes paris :
     <ul>
       <li><strong>Total</strong> : <%= @bets_played %></li>
       <li><strong>Finis</strong> : <%= @bets_finished %></li>
@@ -23,7 +23,7 @@
     </ul>
   </span>
   <div class="btn-new-bet">
-    <%= link_to 'Crée un nouveau Pari !', new_my_bet_path %>
+    <%= link_to 'Crée un nouveau pari !', new_my_bet_path %>
   </div>
 </div>
 
