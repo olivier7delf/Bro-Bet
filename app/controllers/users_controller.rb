@@ -89,6 +89,7 @@ class UsersController < ApplicationController
     GROUP BY u.nickname
     ORDER BY victories DESC
     "
+
     result = ActiveRecord::Base.connection.execute(query)
     if result.to_a.empty?
       return [0, 0]

@@ -5,8 +5,7 @@ class BonusProgress < ApplicationRecord
   belongs_to :tournament
 
   def self.calcul_available_bonuses(score, score_best_player)
-    bonuses = Bonuse.all
-    bonuses = bonuses.each { |bonus| bonus.probability = 10 * bonus.probability * (1.5 - score / (score_best_player + 1)) }
+    bonuses = Bonuse.all.each { |bonus| bonus.probability = 10 * bonus.probability * (1.5 - score / (score_best_player + 1)) }
     available_bonuses = bonuses.select { |bonus| bonus.probability * 100 > Random.rand(1..100) }
 
   end

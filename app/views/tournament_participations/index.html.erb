@@ -9,15 +9,15 @@
       <img src="https://img.icons8.com/emoji/48/000000/2nd-place-medal-emoji.png"/>
     <% when 2 %>
       <img src="https://img.icons8.com/emoji/48/000000/3rd-place-medal-emoji.png"/>
-    <% when @participations.length - 1 %>
+    <% when @participations.count - 1 %>
       <div style="height: 48px; width: 48px;"></div>
     <% end %>
-    <% if participation.user.photo.attached? %>
-      <%= cl_image_tag participation.user.photo.key, class: "avatar avatar-classement mr-3" %>
+    <% if User.find(participation["id"]).photo.attached? %>
+      <%= cl_image_tag User.find(participation["id"]).photo.key, class: "avatar avatar-classement mr-3" %>
     <% else %>
       <img class="avatar avatar-classement mr-3" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo">
     <% end %>
-    <span><%= participation.user.nickname %> - <%= participation.score %> pts</span>
+    <span><%= participation["nickname"] %> - <%= participation["score"] %> pts</span>
 
   </div>
 
