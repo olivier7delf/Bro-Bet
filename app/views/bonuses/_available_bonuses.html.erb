@@ -1,15 +1,46 @@
 <div>
   <span>Tournoi : <%= @tournament.title %></span>
-  <% if @used_bonuse %>
-      Bonus utilisé :
-      <%= @used_bonuse.bonuse.title %>
-  <% else %>
-    Bonus dispo :
-    <% @available_bonuses.each do |bonus| %>
-      <% if bonus.user == current_user %>
-        <%= bonus.bonuse.title %>
-        # <%= link_to bonus.bonuse.title, bonus_progresses_path(bet: @bet, tournament: @tournament, bonus: bonus), method: "POST" %>
+  <br>
+
+    <% if @used_bonuse %>
+        <span>Bonus utilisé : <%= @used_bonuse.bonuse.title %></span>
+    <% else %>
+    <a data-toggle="modal" data-target="#bonuses-available">
+      Bonus dispo :
+      <% @available_bonuses.each do |bonus| %>
+        <% if bonus.user == current_user %>
+          <%= bonus.bonuse.title %>
+        <% end %>
       <% end %>
+    </a>
     <% end %>
-  <% end %>
+
+</div>
+
+<div class="modal fade" id="bonuses-available" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-center bg-second">
+        <h5 class="modal-title" id="exampleModalLongTitle">Participants</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body d-flex justify-content-around bg-light">
+        <div class="d-flex flex-column">
+
+          <% if !@used_bonuse %>
+            <% @available_bonuses.each do |bonus| %>
+              <% if bonus.user == current_user %>
+                <p> <%= bonus.bonuse.description %> </p>
+                <%= link_to bonus_progresses_path(bet: @bet, tournament: @tournament, bonus: bonus), method: "POST" do %>
+                  <i class="fas fa-plus-circle  color-success"></i>
+                <% end %>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
