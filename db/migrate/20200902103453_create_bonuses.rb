@@ -4,6 +4,7 @@ class CreateBonuses < ActiveRecord::Migration[6.0]
       t.string :title
       t.string :description
       t.integer :level
+      t.float :probability
 
       t.timestamps
     end

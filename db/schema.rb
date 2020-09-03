@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_105611) do
     t.string "title"
     t.string "description"
     t.integer "level"
+    t.float "probability"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -131,7 +132,7 @@ ActiveRecord::Schema.define(version: 2020_09_02_105611) do
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.boolean "bonus", default: false
+    t.boolean "bonuse", default: false
     t.index ["user_id"], name: "index_tournaments_on_user_id"
   end
 
