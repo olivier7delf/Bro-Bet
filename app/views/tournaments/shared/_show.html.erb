@@ -51,12 +51,13 @@
       </div>
       <div class="modal-body d-flex justify-content-around bg-light">
         <div class="d-flex flex-column">
+        <%= link_to 'Crée ton Pari', new_my_bet_path, class: "small-green-btn" %>
           <% @available_bets.each_with_index do |bet, index| %>
 
             <div class="d-flex flex-column align-items-center mb-2">
               <div class="d-flex">
                 <div class="btn-show">
-                  <%= link_to bet.title[0..14], bet_path(bet) %>
+                  <%= link_to bet.title.length > 30 ? "#{bet.title[0..30]} ..." : bet.title, bet_path(bet) %>
                 </div>
                 <div class="btn-add">
                   <%= link_to tournament_tournament_bets_path(@tournament, bet_id: bet), method: :post do %>
