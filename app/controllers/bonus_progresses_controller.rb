@@ -5,6 +5,9 @@ class BonusProgressesController < ApplicationController
     bonuse = BonusProgress.find(params["bonus"]).bonuse
     bonus_used = BonusProgress.new(bet: @bet, tournament: tournament, user: current_user, bonuse: bonuse, progress: "used")
     bonus_used.save
+
+
+
     redirect_to bet_path(@bet)
   end
 
