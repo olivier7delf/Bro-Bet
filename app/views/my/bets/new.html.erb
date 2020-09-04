@@ -23,7 +23,7 @@
             :checked => true %>
   </div>
   <%= f.input :closed_at, label: "Limite d'inscription", as: :string, required: true, input_html: { value: DateTime.now, class: "datepicker"} %>
-  <%= f.input :resulted_at, label: "Fin du tournoi", as: :string, required:true, input_html: {class: "datepicker"} %>
+  <%= f.input :resulted_at, label: "Fin du pari", as: :string, required:true, input_html: {class: "datepicker"} %>
   <div class="new-btn">
     <%= f.submit "Lance ton pari", class: "btn-new-bet" %>
   </div>
