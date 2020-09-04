@@ -65,7 +65,7 @@
               <div class="d-flex align-items-center mb-2">
                 <% if participant.user.photo.attached? %>
                   <%= cl_image_tag participant.user.photo.key, class: "avatar avatar-participant mb-2 mr-2" %>
-                  <%= cl_image_tag @used_bonuses.select { |b| b.user == participant.user}.first.bonuse.photo.key, class: "avatar avatar-participant mb-2"%>
+                  <%= cl_image_tag @used_bonuses.select { |b| b.user == participant.user}.first.bonuse.photo.key, class: "avatar avatar-participant mb-2" if @used_bonuses.count > 0%>
                 <% else %>
                   <img class="avatar avatar-participant mb-2 mr-2" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo">
                 <% end %>
@@ -81,7 +81,7 @@
               <div class="d-flex align-items-center mb-2">
                 <% if participant.user.photo.attached? %>
                   <%= cl_image_tag participant.user.photo.key, class: "avatar avatar-participant mb-2 mr-2" %>
-                  <%= cl_image_tag @used_bonuses.select { |b| b.user == participant.user}.first.bonuse.photo.key, class: "avatar avatar-participant mb-2"%>
+                  <%= cl_image_tag @used_bonuses.select { |b| b.user == participant.user}.first.bonuse.photo.key, class: "avatar avatar-participant mb-2" if @used_bonuses.count > 0%>
                 <% else %>
                   <img class="avatar avatar-participant mb-2 mr-2" src="https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599121283/logo_n5ubcv.png" alt="logo">
                 <% end %>

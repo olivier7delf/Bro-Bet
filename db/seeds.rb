@@ -184,46 +184,46 @@ bonuse = Bonuse.new(
 puts "CREATED : Bonuses"
 
 puts "Creating Users..."
-  user = User.new(
-    nickname: "Margot",
-    email: "m@g.com",
-    password: "123123",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Margot_ir7hyr.png')
-  user.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
-  user.save!
-  user = User.new(
-    nickname: "Sam",
-    email: "sam@g.com",
-    password: "123123",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/Sam_tzb5g4.png')
-  user.photo.attach(io: file, filename: 'samprofile', content_type: 'image/png')
-  user.save!
-  user = User.new(
-    nickname: "Olivier",
-    email: "o@g.com",
-    password: "123123",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Ol_ru1oda.png')
-  user.photo.attach(io: file, filename: 'olivierprofile', content_type: 'image/png')
-  user.save!
-  user = User.new(
-    nickname: "Jonathan",
-    email: "jonathan.serafini@gmail.com",
-    password: "123123",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Jo_jefczh.png')
-  user.photo.attach(io: file, filename: 'joprofile', content_type: 'image/png')
-  user.save!
-  user = User.new(
-    nickname: "Théotime",
-    email: "tt@g.com",
-    password: "123123",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/TT_lsquso.png')
-  user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
-  user.save!
+user = User.new(
+  nickname: "Margot",
+  email: "m@g.com",
+  password: "123123",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Margot_ir7hyr.png')
+user.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
+user.save!
+user = User.new(
+  nickname: "Sam",
+  email: "sam@g.com",
+  password: "123123",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/Sam_tzb5g4.png')
+user.photo.attach(io: file, filename: 'samprofile', content_type: 'image/png')
+user.save!
+user = User.new(
+  nickname: "Olivier",
+  email: "o@g.com",
+  password: "123123",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Ol_ru1oda.png')
+user.photo.attach(io: file, filename: 'olivierprofile', content_type: 'image/png')
+user.save!
+user = User.new(
+  nickname: "Jonathan",
+  email: "jonathan.serafini@gmail.com",
+  password: "123123",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676498/Jo_jefczh.png')
+user.photo.attach(io: file, filename: 'joprofile', content_type: 'image/png')
+user.save!
+user = User.new(
+  nickname: "Théotime",
+  email: "tt@g.com",
+  password: "123123",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/TT_lsquso.png')
+user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
+user.save!
 
 ### SEED DE BASE
 # Bet.create!(
@@ -395,13 +395,19 @@ i = 0
     resulted_at = DateTime.new(2021, 8, 28, 13 + i, 54, 0)
   end
 
+  if i == 5
+    user = User.find_by(nickname: "Olivier")
+  else
+    user = User.find_by(nickname: "Sam")
+  end
+
   bet = Bet.create!(
     title: "#{i} Paris test blabla",
     stake: "une pinte",
     closed_at: closed_at,
     resulted_at: resulted_at,
     owner_choice: true,
-    user: User.find_by(nickname: "Sam"),
+    user: user,
     result: results[i]
   )
 
@@ -418,6 +424,8 @@ i = 0
       puts "== #{user.nickname}, #{bet.title}"
       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
 
+    elsif i == 5 and user.nickname == "Sam"
+      puts "#{user.nickname}, #{bet.title}, user_choice = No choosed yet !"
     elsif i < 7
       puts "#{user.nickname}, #{bet.title}, user_choice = #{user_choice}"
       BetParticipation.create!(user: user, bet: bet, user_choice: user_choice)
