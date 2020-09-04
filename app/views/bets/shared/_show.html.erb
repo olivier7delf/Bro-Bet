@@ -23,12 +23,13 @@
     <%= render "./bets/shared/participants" %>
     <div class="justify-content-center" style="text-align: center">
       <div class="justify-content-center" style="margin-bottom: 15px">
+        <a data-toggle="modal" data-target="#QR">
+          <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=50x50&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
+        </a>
         <label for="" id="link-to-copy" data-link="" >Copier le lien</label>
         <!-- The text field -->
         <input type="text" value="<%=request.original_url%>" id="link-to-copy-input">
       </div>
-      <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=150x150&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
-
       <% if @tournament %>
         <%= render './bonuses/available_bonuses' %>
       <% end %>
@@ -93,3 +94,23 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Partage -->
+<div class="modal fade" id="QR" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header d-flex justify-content-center bg-second">
+          <h5 class="modal-title" id="exampleModalLongTitle">Paris disponibles</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body d-flex justify-content-around bg-light">
+          <img style="border-radius: 15px"  id="imageQRcode" src="http://chart.apis.google.com/chart?cht=qr&chs=200x200&chl=<%=request.original_url%>" alt="QR Code" name="imageQRcode" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
