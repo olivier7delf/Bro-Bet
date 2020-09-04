@@ -3,7 +3,7 @@
   <br>
 
     <% if @used_bonuse %>
-        <span>Bonus utilisé : <%= @used_bonuse.bonuse.title %></span>
+        <span>Bonus utilisé : <%= cl_image_tag @used_bonuse.bonuse.photo.key, class: "avatar avatar-classement" %></span>
     <% else %>
     <a data-toggle="modal" data-target="#bonuses-available">
       Bonus dispo :
