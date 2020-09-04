@@ -3,9 +3,12 @@
 <div class="container bet-participations pt-2">
   <h3>En cours</h3>
     <% @pending_tournament_bets.each do |pending_bet| %>
-    <% mon_pari = pending_bet.owner_choice ? "BRO" : "NO BRO" %>
+    <% mon_pari = BetParticipation.get_user_choice(pending_bet, current_user) %>
       <%= link_to bet_path(pending_bet) do %>
         <div class="card-bet-participation">
+          <% if pending_bet %>
+
+          <% end %>
           <div class="card-bet-participation-infos">
             <h3><%= pending_bet.title %></h3>
             <p><i class="fas fa-hand-holding-usd color-bold"></i> : <strong><%= pending_bet.stake %></strong></p>

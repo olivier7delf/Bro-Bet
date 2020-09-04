@@ -174,3 +174,24 @@
 
   }
 }
+
+.alert-circle {
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  background-color: $main;
+  border-radius: 50%;
+  width: 65px;
+  height: 65px;
+  .alert-emoji {
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    top: 23px;
+    left: 17px;
+  }
+  .emoticon {
+    position: relative;
+
+  }
+}
