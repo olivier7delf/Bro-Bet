@@ -5,6 +5,8 @@
       <%= @bet.title %>
       </h3>
       <p class="text-left" >Par <%= @bet.user.nickname %></p>
+      <p class="text-left">Dans <%= @bet.tournaments.first.title %></p>
+      <%= link_to "Voir le tournoi" , tournament_path(@bet.tournaments.first), class: "tournoi-associé-btn" %>
     </div>
 
     <% if @progress == "resulted" %>
