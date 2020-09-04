@@ -18,8 +18,8 @@ class Bet < ApplicationRecord
   # has_many :users_as_participation, through: :bet_participations, source: :users
 
   # validates :user_id, presence: true
-  validates :title, presence: true, length: { minimum: 10, maximum: 80 }
-  validates :description, length: { maximum: 140 }
+  validates :title, presence: true, length: { minimum: 4, maximum: 80 }
+  validates :description, length: { maximum: 180 }
   validates :stake, presence: true, length: { minimum: 1, maximum: 60 }
   # validates :owner_choice, presence: true # else bug in seed when value = false !
   validates :closed_at, presence: true

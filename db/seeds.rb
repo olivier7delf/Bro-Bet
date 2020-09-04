@@ -111,7 +111,7 @@ puts "DESTROYED : Bonuse"
 
 bonuse = Bonuse.new(
     title: "étoile",
-    probability: 0.05,
+    probability: 0.33,
     description: "Invicible, aucun bonus adverse ne t'atteint",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154732/%C3%A9toile_r5nnak.png')
@@ -120,7 +120,7 @@ bonuse = Bonuse.new(
 
 bonuse = Bonuse.new(
     title: "éclair",
-    probability: 0.02,
+    probability: 0.4,
     description: "Tous tes adversaires sont foudroyés, tu leur retires 2 points chacun",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_393/v1599154730/%C3%A9clair_f4fzec.png')
@@ -129,7 +129,7 @@ bonuse = Bonuse.new(
 
 bonuse = Bonuse.new(
     title: "champignon",
-    probability: 0.1,
+    probability: 0.3,
     description: "Petit coup de pouce en cas de bonne prédiction, tes gains sont multipliés par deux",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/Champignon_gjxtuq.png')
@@ -156,7 +156,7 @@ bonuse = Bonuse.new(
 
 bonuse = Bonuse.new(
     title: "brollard",
-    probability: 0.95,
+    probability: 0.095,
     description: "Coup de bol ! 1 chance sur 10 d'avoir tes gains multipliés par deux !",
   )
   file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/brollard_wb3aj6.png')

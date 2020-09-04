@@ -17,4 +17,18 @@ class BetParticipation < ApplicationRecord
       "En attente"
     end
   end
+
+  def self.get_user_result(bet)
+    if bet
+      if bet.user_choice
+        "BRO"
+      else
+        "NO BRO"
+      end
+    elsif bet.closed_at < DateTime.now
+      "Trop tard"
+    else
+      "En attente"
+    end
+  end
 end

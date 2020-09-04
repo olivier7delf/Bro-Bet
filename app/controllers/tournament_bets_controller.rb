@@ -2,9 +2,8 @@ class TournamentBetsController < ApplicationController
   def index
     @user = current_user
     @tournament = Tournament.find(params["tournament_id"])
-    @finished_tournament_bets = @tournament.bets.where("resulted_at < ?", DateTime.now).order(resulted_at: :asc)
-    @pending_tournament_bets = @tournament.bets.where("resulted_at > ?", DateTime.now).order(resulted_at: :asc)
-
+    @finished_tournament_bets = @tournament.bets.where("resulted_at < ? AND result IN (true, false)", DateTime.now).order(resulted_at: :asc)
+    @pending_tournament_bets = @tournament.bets.where("result IS NULL").order(resulted_at: :asc)
   end
 
   def create

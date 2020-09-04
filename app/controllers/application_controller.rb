@@ -127,6 +127,8 @@ class ApplicationController < ActionController::Base
     if current_user.in_bets_within_tournaments.include?(@bet)
       tournament = @bet.tournaments.first
       @used_bonuses = BonusProgress.get_used_bonuses(@bet, tournament)
+    else
+      @used_bonuses = []
     end
   end
 

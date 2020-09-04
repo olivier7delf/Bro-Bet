@@ -27,7 +27,7 @@ class TournamentParticipationsController < ApplicationController
 
     @participations = []
     @participations_ori.each do |participation|
-      participation["score"] += @participations_bonus.select { |p| p["nickname"] == participation["nickname"] }.first["impact_score"]
+      participation["score"] += @participations_bonus.select { |p| p["nickname"] == participation["nickname"] }.first["impact_score"] || 0
       @participations << participation
 
       # raise
