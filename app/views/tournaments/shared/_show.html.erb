@@ -31,12 +31,12 @@
 
     <p><%= @tournament.description %></p>
     <p>Mise : <%= @tournament.stake %></p>
-    <p>Date de clôture : <%= @tournament.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
-    <p>Date de résultat : <%= @tournament.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
+    <p>Clôture le <%= @tournament.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
+    <p>Résultat le <%= @tournament.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
     <% unless @tournament_progress == "join_pending" %>
       <a data-toggle="modal" data-target="#bets-availables">
-        <div class="round-btn-link">
+        <div class="round-btn-link bg-success">
           <div></div>
           <i class="fas fa-handshake"></i>
         </div>
@@ -87,7 +87,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header d-flex justify-content-center bg-second">
-          <h5 class="modal-title" id="exampleModalLongTitle">Paris disponibles</h5>
+          <h5 class="modal-title" id="exampleModalLongTitle">QR code</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
