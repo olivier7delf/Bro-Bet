@@ -22,8 +22,18 @@ class TournamentParticipationsController < ApplicationController
     # "
     # result = ActiveRecord::Base.connection.execute(query)
     # raise
-    @participations = TournamentParticipationsController.get_participations(@tournament)
+    @participations_ori = TournamentParticipationsController.get_participations(@tournament)
     @participations_bonus = TournamentParticipationsController.get_participations_bonus(@tournament)
+
+    @participations = []
+    @participations_ori.each do |participation|
+      participation["score"] += @participations_bonus.select { |p| p["nickname"] == participation["nickname"] }.first["impact_score"]
+      @participations << participation
+
+      # raise
+    end
+    @participations.sort_by! { |p| -p["score"] }
+
   end
 
   def self.get_participations(tournament)
@@ -40,7 +50,7 @@ class TournamentParticipationsController < ApplicationController
       u.nickname nickname,
       SUM(
         CASE WHEN b.user_choice = b.result THEN 1 ELSE 0 END
-      ) score
+      ) * 3 score
     FROM (
       SELECT
         bets.id id,
