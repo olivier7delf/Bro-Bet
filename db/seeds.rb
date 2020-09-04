@@ -397,9 +397,9 @@ i = 0
   end
 
   if i == 5
-    user = User.find_by(nickname: "Olivier")
-  else
     user = User.find_by(nickname: "Sam")
+  else
+    user = User.find_by(nickname: "Olivier")
   end
 
   bet = Bet.create!(
@@ -425,7 +425,7 @@ i = 0
       puts "== #{user.nickname}, #{bet.title}"
       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
 
-    elsif i == 5 and user.nickname == "Sam"
+    elsif i == 5 and user.nickname == "Olivier"
       puts "#{user.nickname}, #{bet.title}, user_choice = No choosed yet !"
     elsif i < 7
       puts "#{user.nickname}, #{bet.title}, user_choice = #{user_choice}"
