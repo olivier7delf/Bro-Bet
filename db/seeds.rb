@@ -362,9 +362,9 @@ user.save!
 #### TOURNOI A 4 AVEC PARIS FINIS
 
 Tournament.create!(
-  title: "Tournoi à 4 qui déchire sa mère",
-  description: "Pour pimenter cette journée de merde",
-  stake: "1 canard en plastique",
+  title: "Le légendaire tournoi du batch 435",
+  description: "Pour pimenter ces belles journées de code",
+  stake: "1 certification ou 1 bière",
   max_bets_number: 10,
   closed_at: DateTime.new(2020, 9, 5, 12, 0, 0),
   resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
@@ -380,6 +380,7 @@ User.all.each do |user|
 end
 
 BONUSES = ["étoile", "éclair", "champignon", "éclair", "étoile", "champignon", "champignon"] * 4
+BETISES = ["Théotime va-t-il avoir son permis","Paris va battre le Bayern","Paul va renporter le tournoi de Beer pong","Max va enfin conclure avec Pauline","Florian va convaicre Bertrand de se raser le crâne","BroBet va afficher une 500 au DemoDay"]
 results = [true, false, false, nil, nil, nil]
 user_choices = [true, false, true, false, true, false]
 i = 0
@@ -402,7 +403,7 @@ i = 0
   end
 
   bet = Bet.create!(
-    title: "#{i} Paris test blabla",
+    title: "#{i} - #{BETISES[i]}",
     stake: "une pinte",
     closed_at: closed_at,
     resulted_at: resulted_at,
