@@ -23,10 +23,11 @@ class ApplicationController < ActionController::Base
     get_available_tournaments
 
     bet_retrieve_bonuses_for_the_show
-    bet_retrieve_bonuse_used
+    bet_retrieve_used_bonuse
+    bet_retrieve_used_bonuses
   end
 
-  def bet_retrieve_bonuse_used
+  def bet_retrieve_used_bonuse
     if @tournament
       @used_bonuse = BonusProgress.get_used_bonuse(current_user, @bet, @tournament)
     end
@@ -106,11 +107,10 @@ class ApplicationController < ActionController::Base
   end
 
   def bet_retrieve_bonuses_for_the_show
-
     if current_user.in_bets_within_tournaments.include?(@bet)
       # raise
       tournament = @bet.tournaments.first # !! refacto plus tard !!! que les tournois du user ...
-      if !tournament.nil?
+      if !tournament.nil? # Cette condition est inutile pour le moment ! car on prend tjs le 1er tournoi
         while BonusProgress.get_available_bonuses(current_user, @bet, tournament).count == 0
           available_bonuses = BonusProgress.calcul_available_bonuses(score=2, score_best_player=10)
           available_bonuses.each do |bonus|
@@ -121,7 +121,13 @@ class ApplicationController < ActionController::Base
         # raise
       end
     end
+  end
 
+  def bet_retrieve_used_bonuses
+    if current_user.in_bets_within_tournaments.include?(@bet)
+      tournament = @bet.tournaments.first
+      @used_bonuses = BonusProgress.get_used_bonuses(@bet, tournament)
+    end
   end
 
   def default_url_options
