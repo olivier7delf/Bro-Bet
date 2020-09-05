@@ -34,7 +34,7 @@
     <p>Clôture le <%= @tournament.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
     <p>Résultat le <%= @tournament.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
-    <% unless @tournament_progress == "join_pending" %>
+    <% unless ["join_pending", "not_joined"].include?(@tournament_progress) %>
       <a data-toggle="modal" data-target="#bets-availables">
         <div class="round-btn-link bg-success">
           <div></div>
@@ -42,6 +42,8 @@
         </div>
       </a>
       <%= render "./shared/show_chatroom" %>
+    <% else %>
+      <p>(Rejoins le tournois pour accéder à tout le contenu)</p>
     <% end %>
   </div>
 
