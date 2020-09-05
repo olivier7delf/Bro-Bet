@@ -30,7 +30,7 @@
         <!-- The text field -->
         <input type="text" value="<%=request.original_url%>" id="link-to-copy-input">
       </div>
-      <% if @tournament %>
+      <% if @tournament.in_users.include?(current_user) %>
         <%= render './bonuses/available_bonuses' %>
       <% end %>
       <!-- The button used to copy the text -->
