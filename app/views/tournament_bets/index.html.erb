@@ -1,7 +1,7 @@
 <%= render "./shared/mini-navbar-tournament" %>
 <h2 class="text-center">Paris du tournoi</h2>
 <div class="container bet-participations pt-2">
-  <h3>En cours</h3>
+  <h3>En cours (<%= @pending_tournament_bets.count %>)</h3>
     <% @pending_tournament_bets.each do |pending_bet| %>
     <% mon_pari = BetParticipation.get_user_choice(pending_bet, current_user) %>
       <%= link_to bet_path(pending_bet) do %>
@@ -28,7 +28,7 @@
 </div>
 
 <div class="container bet-participations pt-2">
-  <h3>Terminés</h3>
+  <h3>Terminés (<%= @finished_tournament_bets.count %>)</h3>
     <% @finished_tournament_bets.each do |finished_bet| %>
       <% ma_prediction = BetParticipation.find_by(user: current_user, bet: finished_bet).user_choice ? "BRO" : "NO BRO"%>
       <% mon_resultat = finished_bet.result ? "BRO" : "NO BRO" %>
