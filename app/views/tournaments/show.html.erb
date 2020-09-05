@@ -1,4 +1,7 @@
-<%= render './shared/mini-navbar-tournament' %>
+<% if @tournament.in_users.include?(current_user) %>
+  <%= render './shared/mini-navbar-tournament' %>
+<% end %>
+
 <%= render './tournaments/shared/show' %>
 <!-- <span>
   Ajouter un bouton pour voir nos paris puis en ajouter au tournoi un à la fois

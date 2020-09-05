@@ -27,13 +27,14 @@ class TournamentParticipationsController < ApplicationController
 
     @participations = []
     @participations_ori.each do |participation|
-      participation["score"] += @participations_bonus.select { |p| p["nickname"] == participation["nickname"] }.first["impact_score"] || 0
+      if @participations_bonus.count > 0
+        participation["score"] += @participations_bonus.select { |p| p["nickname"] == participation["nickname"] }.first["impact_score"] || 0
+      end
       @participations << participation
 
       # raise
     end
     @participations.sort_by! { |p| -p["score"] }
-
   end
 
   def self.get_participations(tournament)
