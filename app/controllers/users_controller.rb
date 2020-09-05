@@ -92,7 +92,7 @@ class UsersController < ApplicationController
 
     result = ActiveRecord::Base.connection.execute(query)
     if result.to_a.empty?
-      return [0, 0]
+      return ["xXx", 0]
       # @golden_bro = 0
       # @golden_bro_bets = 0
     else
@@ -128,9 +128,7 @@ class UsersController < ApplicationController
     "
     result = ActiveRecord::Base.connection.execute(query)
     if result.to_a.empty?
-      return [0, 0]
-      # @poop_bro = 0
-      # @poop_bro_bets = 0
+      return ["xXx", 0]
     else
       return [result[0]["nickname"], result[0]["defeats"]]
       # @poop_bro = result[0]["nickname"]
