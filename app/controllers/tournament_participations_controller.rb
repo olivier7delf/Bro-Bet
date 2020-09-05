@@ -65,6 +65,13 @@ class TournamentParticipationsController < ApplicationController
     ) b
     JOIN users u
       ON b.user_id = u.id
+    JOIN (
+      SELECT
+        tp.user_id user_id
+      FROM tournament_participations tp
+      WHERE tp.tournament_id = #{tournament.id}
+    ) tp_
+      ON b.user_id = tp_.user_id
 
     GROUP BY u.id, u.nickname
     ORDER BY score DESC
