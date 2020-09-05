@@ -1,7 +1,7 @@
 <%= render "shared/mini-navbar" %>
 <h2 class="text-center">Tournois</h2>
 <div class="container bet-participations pt-2">
-  <h3>En cours</h3>
+  <h3>En cours (<%= @pending_tournaments.count %>)</h3>
     <% @pending_tournaments.each do |pending_tournament| %>
       <%= link_to tournament_path(pending_tournament) do %>
         <div class="card-bet-participation">
@@ -16,7 +16,7 @@
 </div>
 
 <div class="container bet-participations pt-2">
-  <h3>Terminés</h3>
+  <h3>Terminés (<%= @finished_tournaments.count %>)</h3>
     <% @finished_tournaments.each do |finished_tournament| %>
       <%= link_to tournament_path(finished_tournament) do %>
         <div class="card-bet-participation">
