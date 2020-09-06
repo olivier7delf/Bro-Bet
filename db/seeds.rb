@@ -27,159 +27,77 @@ puts "DESTROYED : User"
 Bonuse.destroy_all
 puts "DESTROYED : Bonuse"
 
-
-# Bonuse.create!(title: "étoile", probability: 0.05, description: "Invicible, aucun bonus adverse ne t'atteint")
-# Bonuse.create!(title: "éclair", probability: 0.02, description: "Tous vos adversaires sont foudroyez, leur gain sont divisés par deux !")
-# Bonuse.create!(title: "champignon", probability: 0.1, description: "Vroum ! Vous passez la seconde et vos gains sont multipliés par deux !")
-# Bonuse.create!(title: "dynamite", probability: 0.07, description: "Tic tac ! Attention à ne pas vous brulez, elle risque de vous explosez dessus, mais si cela n'arrive pas, votre cible se fera un plaisir de la garder...")
-# Bonuse.create!(title: "Julie Lescroc", probability: 0.05, description: "Hop ! Vous filoutez en échangeant votre choix de pari avec un adversaire")
-# Bonuse.create!(title: "brollard", probability: 0.95, description: "Cool un brollard ! 1 chance sur 10 d'avoir vos gains multipliés par deux !")
-
-# bonuse = Bonuse.new(
-#   title: "étoile",
-#   probability: 0.05,
-#   description: "Invicible, aucun bonus adverse ne t'atteint",
-# )
-# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154732/%C3%A9toile_r5nnak.png')
-# bonuse.photo.attach(io: file, filename: 'etoile', content_type: 'image/png')
-# bonuse.save!
-
-# bonuse = Bonuse.new(
-#   title: "éclair",
-#   probability: 0.02,
-#   description: "https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_393/v1599154730/%C3%A9clair_f4fzec.png",
-# )
-# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Margot_ir7hyr.png')
-# bonuse.photo.attach(io: file, filename: 'eclair', content_type: 'image/png')
-# bonuse.save!
-
-# bonuse = Bonuse.new(
-#   title: "champignon",
-#   probability: 0.1,
-#   description: "Vroum ! Vous passez la seconde et vos gains sont multipliés par deux !",
-# )
-# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/Champignon_gjxtuq.png')
-# bonuse.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
-# bonuse.save!
-
-# bonuse = Bonuse.new(
-#   title: "dynamite",
-#   probability: 0.07,
-#   description: "Tic tac ! Attention à ne pas vous bruler, elle risque de vous exploser dessus, mais si cela n'arrive pas, votre cible se fera un plaisir de la récupérer...",
-# )
-# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_384/v1599154731/dynamite_nehjrg.png')
-# bonuse.photo.attach(io: file, filename: 'dynamite', content_type: 'image/png')
-# bonuse.save!
-
-# bonuse = Bonuse.new(
-#   title: "switch",
-#   probability: 0.05,
-#   description: "Hop ! Vous filoutez en échangeant votre choix de pari avec un adversaire",
-# )
-# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/switch_jbz31y.png')
-# bonuse.photo.attach(io: file, filename: 'switch', content_type: 'image/png')
-# bonuse.save!
-
-# bonuse = Bonuse.new(
-#   title: "brollard",
-#   probability: 0.95,
-#   description: "Cool un brollard ! 1 chance sur 10 d'avoir vos gains multipliés par deux !",
-# )
-# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/brollard_wb3aj6.png')
-# bonuse.photo.attach(io: file, filename: 'brollard', content_type: 'image/png')
-# bonuse.save!
-
-# bonuse = Bonuse.new(
-#   title: "tortue rouge",
-#   probability: 0.05,
-#   description: "Le tord tue !",
-# )
-# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155874/MK8-CaraoaceRouge-Illustration_viehqd.png')
-# bonuse.photo.attach(io: file, filename: 'tortuerouge', content_type: 'image/png')
-# bonuse.save!
-
-# bonuse = Bonuse.new(
-#   title: "tortue bleue",
-#   probability: 0.95,
-#   description: "As-tu tort ?",
-# )
-# file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155873/tortue_bleue_ut6nip.png')
-# bonuse.photo.attach(io: file, filename: 'tortuebleue', content_type: 'image/png')
-# bonuse.save!
-
-# puts "CREATED : Bonuses"
+bonuse = Bonuse.new(
+  title: "étoile",
+  probability: 0.6,
+  description: "Invincible, aucun bonus adverse ne t'atteint",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154732/%C3%A9toile_r5nnak.png')
+bonuse.photo.attach(io: file, filename: 'etoile', content_type: 'image/png')
+bonuse.save!
 
 bonuse = Bonuse.new(
-    title: "étoile",
-    probability: 0.33,
-    description: "Invicible, aucun bonus adverse ne t'atteint",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154732/%C3%A9toile_r5nnak.png')
-  bonuse.photo.attach(io: file, filename: 'etoile', content_type: 'image/png')
-  bonuse.save!
+  title: "éclair",
+  probability: 0.05,
+  description: "Tous tes adversaires sont foudroyés et perdent 2 points chacun",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_393/v1599154730/%C3%A9clair_f4fzec.png')
+bonuse.photo.attach(io: file, filename: 'eclair', content_type: 'image/png')
+bonuse.save!
 
 bonuse = Bonuse.new(
-    title: "éclair",
-    probability: 0.4,
-    description: "Tous tes adversaires sont foudroyés, tu leur retires 2 points chacun",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_393/v1599154730/%C3%A9clair_f4fzec.png')
-  bonuse.photo.attach(io: file, filename: 'eclair', content_type: 'image/png')
-  bonuse.save!
+  title: "champignon",
+  probability: 0.12,
+  description: "Petit coup de pouce en cas de bonne prédiction, tes gains sont multipliés par deux",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/Champignon_gjxtuq.png')
+bonuse.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
+bonuse.save!
 
 bonuse = Bonuse.new(
-    title: "champignon",
-    probability: 0.3,
-    description: "Petit coup de pouce en cas de bonne prédiction, tes gains sont multipliés par deux",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/Champignon_gjxtuq.png')
-  bonuse.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
-  bonuse.save!
+  title: "dynamite",
+  probability: 0.1,
+  description: "Tic tac ! Elle explose au prochain tour et fait perdre 5 points à sa victime. Fais gaffe, celui qui la lance à deux fois plus de chance qu'elle lui pète dans les mains !",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_384/v1599154731/dynamite_nehjrg.png')
+bonuse.photo.attach(io: file, filename: 'dynamite', content_type: 'image/png')
+bonuse.save!
 
 bonuse = Bonuse.new(
-    title: "dynamite",
-    probability: 0.07,
-    description: "Tic tac ! Fais gaffe, elle explose au prochain tour et fait perdre 5 points à sa victime",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/c_scale,w_384/v1599154731/dynamite_nehjrg.png')
-  bonuse.photo.attach(io: file, filename: 'dynamite', content_type: 'image/png')
-  bonuse.save!
+  title: "switch",
+  probability: 0.0,
+  description: "Ni vu, ni connu, je t'embrouille ! Tu truandes en échangeant ton choix de pari avec un adversaire choisit aléatoirement",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/switch_jbz31y.png')
+bonuse.photo.attach(io: file, filename: 'switch', content_type: 'image/png')
+bonuse.save!
 
 bonuse = Bonuse.new(
-    title: "switch",
-    probability: 0.05,
-    description: "Ni vu, ni connu, je t'embrouille ! Tu truandes en échangeant ton choix de pari avec un adversaire",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/switch_jbz31y.png')
-  bonuse.photo.attach(io: file, filename: 'switch', content_type: 'image/png')
-  bonuse.save!
+  title: "brollard",
+  probability: 0.3,
+  description: "Coup de bol ! 1 chance sur 10 d'avoir tes gains multipliés par deux !",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/brollard_wb3aj6.png')
+bonuse.photo.attach(io: file, filename: 'brollard', content_type: 'image/png')
+bonuse.save!
 
 bonuse = Bonuse.new(
-    title: "brollard",
-    probability: 0.095,
-    description: "Coup de bol ! 1 chance sur 10 d'avoir tes gains multipliés par deux !",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599154730/brollard_wb3aj6.png')
-  bonuse.photo.attach(io: file, filename: 'brollard', content_type: 'image/png')
-  bonuse.save!
+  title: "tortue rouge",
+  probability: 0.07,
+  description: "C'est chacun pour soi ! Ce bonus te permet de faire perdre des points à celui devant toi dans le classement",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155874/MK8-CaraoaceRouge-Illustration_viehqd.png')
+bonuse.photo.attach(io: file, filename: 'tortuerouge', content_type: 'image/png')
+bonuse.save!
 
 bonuse = Bonuse.new(
-    title: "tortue rouge",
-    probability: 0.05,
-    description: "C'est chacun pour soi ! Ce bonus te permet de faire perdre des points à celui devant toi dans le classement",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155874/MK8-CaraoaceRouge-Illustration_viehqd.png')
-  bonuse.photo.attach(io: file, filename: 'tortuerouge', content_type: 'image/png')
-  bonuse.save!
-
-bonuse = Bonuse.new(
-    title: "tortue bleue",
-    probability: 0.95,
-    description: "Aucune pitié ! Ce bonus te permet de faire perdre des points au premier du classement",
-  )
-  file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155873/tortue_bleue_ut6nip.png')
-  bonuse.photo.attach(io: file, filename: 'tortuebleue', content_type: 'image/png')
-  bonuse.save!
+  title: "tortue bleue",
+  probability: 0.05,
+  description: "Aucune pitié ! Ce bonus te permet de faire perdre des points au premier du classement",
+)
+file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1599155873/tortue_bleue_ut6nip.png')
+bonuse.photo.attach(io: file, filename: 'tortuebleue', content_type: 'image/png')
+bonuse.save!
 
 puts "CREATED : Bonuses"
 
@@ -192,6 +110,7 @@ user = User.new(
 file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676499/Margot_ir7hyr.png')
 user.photo.attach(io: file, filename: 'margotprofile', content_type: 'image/png')
 user.save!
+
 user = User.new(
   nickname: "Sam",
   email: "sam@g.com",
@@ -200,6 +119,8 @@ user = User.new(
 file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/Sam_tzb5g4.png')
 user.photo.attach(io: file, filename: 'samprofile', content_type: 'image/png')
 user.save!
+puts "Creating Users... 2 DONE"
+
 user = User.new(
   nickname: "Olivier",
   email: "o@g.com",
@@ -224,7 +145,7 @@ user = User.new(
 file = URI.open('https://res.cloudinary.com/dv1x9ot6j/image/upload/v1598676500/TT_lsquso.png')
 user.photo.attach(io: file, filename: 'theoprofile', content_type: 'image/png')
 user.save!
-
+puts "Creating Users DONE"
 ### SEED DE BASE
 # Bet.create!(
 #   title: "1 Paris en cours (de Moi)",
@@ -379,7 +300,7 @@ User.all.each do |user|
 )
 end
 
-BONUSES = ["étoile", "éclair", "champignon", "éclair", "étoile", "champignon", "champignon"] * 4
+BONUSES = ["étoile", "dynamite", "champignon", "éclair", "étoile", "champignon", "champignon"] * 4
 BETISES = ["Théotime va-t-il avoir son permis","Paris va battre le Bayern","Paul va renporter le tournoi de Beer pong","Max va enfin conclure avec Pauline","Florian va convaicre Bertrand de se raser le crâne","BroBet va afficher une 500 au DemoDay"]
 results = [true, false, false, nil, nil, nil]
 user_choices = [true, false, true, false, true, false]
@@ -424,13 +345,11 @@ i = 0
     if user == bet.user
       puts "== #{user.nickname}, #{bet.title}"
       BetParticipation.create!(user: user, bet: bet, user_choice: bet.owner_choice)
-
     elsif i == 5 and user.nickname == "Olivier"
       puts "#{user.nickname}, #{bet.title}, user_choice = No choosed yet !"
     elsif i < 7
       puts "#{user.nickname}, #{bet.title}, user_choice = #{user_choice}"
       BetParticipation.create!(user: user, bet: bet, user_choice: user_choice)
-
     end
     if i < 4
       bonuse = Bonuse.find_by(title: BONUSES[i * user.nickname.length])

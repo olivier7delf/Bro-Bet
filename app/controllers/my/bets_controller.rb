@@ -10,8 +10,6 @@ class My::BetsController < ApplicationController
     end
 
 
-
-
     bet_after_action_show
   end
 
@@ -35,17 +33,33 @@ class My::BetsController < ApplicationController
   def edit
   end
 
+  def two_values_possible(a, b, a_probability)
+    # a_probability : integer between 1 and 99
+    if Random.rand(1..100) < a_probability
+      return a
+    else
+      return b
+    end
+  end
+
   def update
     @tournament = @bet.tournaments.first
     @participations = TournamentParticipationsController.get_participations(@tournament)
     @used_bonuses = BonusProgress.includes(:bonuse).where(tournament: @tournament, bet: @bet, progress: "used")
     @used_bonuses.each do |used_bonus|
       if used_bonus.bonuse.title == "champignon"
-        used_bonus_to_update = BonusProgress.find_by(tournament: @tournament, bet: @bet, progress: "used", user: used_bonus.user)
-        used_bonus_to_update.impact_score = (3 * 2).to_i
-        # TODO query to check result true ! else 0 !
-        used_bonus_to_update.save!
         # raise
+        used_bonus_to_update = BonusProgress.find_by(tournament: @tournament, bet: @bet, progress: "used", user: used_bonus.user)
+        if bet_user_result(@bet, used_bonus.user)
+          used_bonus_to_update.impact_score = (3 * 2).to_i
+          used_bonus_to_update.save!
+        end
+      elsif used_bonus.bonuse.title == "brollard"
+        used_bonus_to_update = BonusProgress.find_by(tournament: @tournament, bet: @bet, progress: "used", user: used_bonus.user)
+        if bet_user_result(@bet, used_bonus.user) && Random.rand(1..100) >= 90
+          used_bonus_to_update.impact_score = (3 * 2).to_i
+          used_bonus_to_update.save!
+        end
       end
     end
     @used_bonuses.each do |used_bonus|
@@ -59,6 +73,56 @@ class My::BetsController < ApplicationController
         end
       end
     end
+
+    @used_bonuses.each do |used_bonus|
+      if used_bonus.bonuse.title == "tortue bleue"
+        user_target = User.find(TournamentParticipationsController.get_participations(tournament).first["id"])
+        used_bonus_to_update = BonusProgress.find_by(tournament: @tournament, bet: @bet, progress: "used", user: user_target)
+        used_bonus_to_update.impact_score = two_values_possible(-2, 0, 90)
+        used_bonus_to_update.save!
+      end
+    end
+
+    @used_bonuses.each do |used_bonus|
+      if used_bonus.bonuse.title == "tortue rouge"
+        target_id = nil
+        owner = false
+        TournamentParticipationsController.get_participations(tournament).to_a.reverse.map do |u|
+          if owner
+            target_id = u.id
+            owner = false
+          elsif u.id == used_bonus.user.id
+            owner = true
+          end
+        end
+        user_target = User.find(target_id)
+        used_bonus_to_update = BonusProgress.find_by(tournament: @tournament, bet: @bet, progress: "used", user: user_target)
+        used_bonus_to_update.impact_score = two_values_possible(-2, 0, 85)
+        used_bonus_to_update.save!
+      end
+    end
+
+    dynamite_used = false
+    @used_bonuses.each do |used_bonus|
+      if used_bonus.bonuse.title == "dynamite"
+        while not dynamite_used
+          @used_bonuses.each do |tmp_used_bonus|
+            if tmp_used_bonus.user == used_bonus.user  && Random.rand(1..100) < 20
+              used_bonus_to_update = BonusProgress.find_by(tournament: @tournament, bet: @bet, progress: "used", user: tmp_used_bonus.user)
+              used_bonus_to_update.impact_score = -5
+              used_bonus_to_update.save!
+              dynamite_used = true
+            elsif tmp_used_bonus.user != used_bonus.user  && Random.rand(1..100) < 10
+              used_bonus_to_update = BonusProgress.find_by(tournament: @tournament, bet: @bet, progress: "used", user: tmp_used_bonus.user)
+              used_bonus_to_update.impact_score = -5
+              used_bonus_to_update.save!
+              dynamite_used = true
+            end
+          end
+        end
+      end
+    end
+
     @used_bonuses.each do |used_bonus|
       if used_bonus.bonuse.title == "étoile"
         used_bonus_to_update = BonusProgress.find_by(tournament: @tournament, bet: @bet, progress: "used", user: used_bonus.user)
