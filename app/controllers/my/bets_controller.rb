@@ -76,7 +76,7 @@ class My::BetsController < ApplicationController
 
     @used_bonuses.each do |used_bonus|
       if used_bonus.bonuse.title == "tortue bleue"
-        user_target = User.find(TournamentParticipationsController.get_participations(tournament).first["id"])
+        user_target = User.find(TournamentParticipationsController.get_participations(@tournament).first["id"])
         used_bonus_to_update = BonusProgress.find_by(tournament: @tournament, bet: @bet, progress: "used", user: user_target)
         used_bonus_to_update.impact_score = two_values_possible(-2, 0, 90)
         used_bonus_to_update.save!
@@ -87,7 +87,7 @@ class My::BetsController < ApplicationController
       if used_bonus.bonuse.title == "tortue rouge"
         target_id = nil
         owner = false
-        TournamentParticipationsController.get_participations(tournament).to_a.reverse.map do |u|
+        TournamentParticipationsController.get_participations(@tournament).to_a.reverse.map do |u|
           if owner
             target_id = u.id
             owner = false
