@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def bet_after_action_show
     bet_progress
-    bet_user_result
+    bet_current_user_result
     @chatroom = @bet.chatroom
     @message = Message.new()
     ### TODO handle bet in many tournaments !
@@ -92,9 +92,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def bet_user_result
+  def bet_user_result(bet, user)
+    # return a boolean : true if user is right else false
+    (@bet.result == BetParticipation.find_by(user: current_user, bet: @bet).user_choice)
+  end
+
+  def bet_current_user_result
     if @progress == "resulted"
-      @user_result = (@bet.result == BetParticipation.find_by(user: current_user, bet: @bet).user_choice)
+      @user_result = bet_user_result(@bet, current_user)
       return @user_result
     end
   end
@@ -111,8 +116,10 @@ class ApplicationController < ActionController::Base
       # raise
       tournament = @bet.tournaments.first # !! refacto plus tard !!! que les tournois du user ...
       if !tournament.nil? # Cette condition est inutile pour le moment ! car on prend tjs le 1er tournoi
-        while BonusProgress.get_available_bonuses(current_user, @bet, tournament).count == 0
-          available_bonuses = BonusProgress.calcul_available_bonuses(score=2, score_best_player=10)
+        while BonusProgress.get_available_bonuses(current_user, @bet, tournament).count < 2
+          current_user_score = TournamentParticipationsController.get_participations(tournament).select { |u| u['id'] == current_user.id }.first['score']
+          best_score = TournamentParticipationsController.get_participations(tournament).first["score"]
+          available_bonuses = BonusProgress.calcul_available_bonuses(score=current_user_score, score_best_player=best_score)
           available_bonuses.each do |bonus|
             BonusProgress.create(user: current_user, bet: @bet, tournament: tournament, bonuse: bonus, progress: "available")
           end
