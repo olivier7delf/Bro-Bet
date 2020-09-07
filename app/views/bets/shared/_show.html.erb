@@ -47,7 +47,7 @@
   <p><%= @bet.description %></p>
   <p>Mise : <%= @bet.stake %></p>
   <p>Clôture le <%= @bet.closed_at.strftime("%d/%m/%Y à %kh%M") %></p>
-  <p>Résultatle <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
+  <p>Résultat le <%= @bet.resulted_at.strftime("%d/%m/%Y à %kh%M") %></p>
 
   <% unless @progress == "join_pending" %>
       <a data-toggle="modal" data-target="#tournaments-availables">
