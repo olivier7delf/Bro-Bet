@@ -1,5 +1,7 @@
 require_relative "./seed_sam"
 
+puts "Starting seeds.rb"
+
 BonusProgress.destroy_all
 puts "DESTROYED : BonusProgress"
 
@@ -26,6 +28,8 @@ puts "DESTROYED : User"
 
 Bonuse.destroy_all
 puts "DESTROYED : Bonuse"
+
+puts "Start creating"
 
 bonuse = Bonuse.new(
   title: "étoile",
