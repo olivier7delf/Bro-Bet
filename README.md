@@ -25,3 +25,4 @@ pour les perdants, avoir des expressions sympa: ex: le touriste...
 STRANGE :
 Quand je veux aller sur tournaments/1 (sans /my/) j'attéri sur bets/1: WTF!!
 
+tmp
