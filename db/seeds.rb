@@ -291,6 +291,17 @@ Tournament.create!(
   resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
   user: User.find_by(nickname: "Théotime")
 )
+
+Tournament.create!(
+  title: "t24 lala lilo2",
+  description: "Pour pimenter ces belles journées de code",
+  stake: "1 certification ou 1 bière",
+  max_bets_number: 10,
+  closed_at: DateTime.new(2020, 9, 5, 12, 0, 0),
+  resulted_at: DateTime.new(2020, 9, 30, 19, 0, 0),
+  user: User.find_by(nickname: "Olivier")
+)
+
 Chatroom.create(name: "tournament-#{Tournament.last.id}", tournament: Tournament.last)
 
 User.all.each do |user|

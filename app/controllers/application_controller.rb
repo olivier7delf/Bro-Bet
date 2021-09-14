@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def bet_after_action_show
+    
     bet_progress
     bet_current_user_result
     @chatroom = @bet.chatroom
@@ -25,6 +26,7 @@ class ApplicationController < ActionController::Base
     bet_retrieve_bonuses_for_the_show
     bet_retrieve_used_bonuse
     bet_retrieve_used_bonuses
+    
   end
 
   def bet_retrieve_used_bonuse
@@ -113,19 +115,20 @@ class ApplicationController < ActionController::Base
 
   def bet_retrieve_bonuses_for_the_show
     if current_user.in_bets_within_tournaments.include?(@bet)
-      # raise
       tournament = @bet.tournaments.first # !! refacto plus tard !!! que les tournois du user ...
       if !tournament.nil? # Cette condition est inutile pour le moment ! car on prend tjs le 1er tournoi
         while BonusProgress.get_available_bonuses(current_user, @bet, tournament).count < 2
-          current_user_score = TournamentParticipationsController.get_participations(tournament).select { |u| u['id'] == current_user.id }.first['score']
-          best_score = TournamentParticipationsController.get_participations(tournament).first["score"]
+          tournament_participants = TournamentParticipationsController.get_participations(tournament)
+          tournament_participant = tournament_participants.select { |u| u['id'] == current_user.id }
+          current_user_score = tournament_participant.count > 0 ? tournament_participant.first['score'] : 0
+
+          best_score = tournament_participants.first["score"]
           available_bonuses = BonusProgress.calcul_available_bonuses(score=current_user_score, score_best_player=best_score)
           available_bonuses.each do |bonus|
             BonusProgress.create(user: current_user, bet: @bet, tournament: tournament, bonuse: bonus, progress: "available")
           end
         end
         @available_bonuses = BonusProgress.get_available_bonuses(current_user, @bet, tournament)
-        # raise
       end
     end
   end

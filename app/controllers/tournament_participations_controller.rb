@@ -27,9 +27,14 @@ class TournamentParticipationsController < ApplicationController
 
     @participations = []
     @participations_ori.each do |participation|
-      if @participations_bonus.count > 0
+      
+      @participations_bonus_filtered = @participations_bonus.select { |p| p["nickname"] == participation["nickname"] }
+      if @participations_bonus.count > 0 && !@participations_bonus_filtered.empty?
         participation["score"] += @participations_bonus.select { |p| p["nickname"] == participation["nickname"] }.first["impact_score"] || 0
+        else
+        participation["score"] = 0 
       end
+
       @participations << participation
 
       # raise
