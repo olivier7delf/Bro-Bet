@@ -129,11 +129,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.12.4-arm64-darwin)
       racc (~> 1.4)
-<<<<<<< HEAD
-    nokogiri (1.12.4-x86_64-linux)
-      racc (~> 1.4)
-=======
->>>>>>> efdc0203018451cf60aa3111bec172ce4fd39590
     orm_adapter (0.5.0)
     pg (1.2.3)
     pry (0.13.1)
@@ -231,7 +226,7 @@ GEM
       thread_safe (~> 0.1)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.7.7)
+    unf_ext (0.0.8)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.1.0)
@@ -256,8 +251,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
-  x86_64-linux
-
 
 DEPENDENCIES
   autoprefixer-rails
